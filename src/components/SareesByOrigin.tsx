@@ -649,12 +649,11 @@ export default function SareesByOrigin() {
             >
               <Image
                 key={`${selectedRegion.id}-${selectedColor.id}`}
-                src={`${selectedColor.image}?v=20260912_all_real_v4`}
+                src={selectedColor.image}
                 alt={`${selectedRegion.name[language]} in ${selectedColor.name[language]}`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover object-[center_top] transition-all duration-500"
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A1514]/65 via-transparent to-transparent pointer-events-none" />
 

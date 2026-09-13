@@ -364,13 +364,12 @@ export default function ShopByColor() {
                   }`}
                 >
                   <Image
-                    src={`${item.image}?v=20260912_all_real_v4`}
+                    src={item.image}
                     alt={item.title[language]}
                     fill
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     priority={item.id === "red"}
-                    unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A1514]/75 via-transparent to-transparent pointer-events-none" />
 
@@ -576,7 +575,7 @@ export default function ShopByColor() {
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                        unoptimized
+                        loading="lazy"
                       />
                       <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 bg-[#1A1514]/90 backdrop-blur-md rounded-full text-[#FAF5ED] text-[10px] font-sans font-medium border border-[#C5A869]/40 shadow-sm">
                         {priceVal}
@@ -685,12 +684,11 @@ export default function ShopByColor() {
 
             <div className="relative w-[85vw] max-w-xl aspect-[3/4] rounded-2xl overflow-hidden border border-[#C5A869]/50 shadow-2xl bg-[#1A1514]">
               <Image
-                src={`${activeColor.image}?v=20260912_all_real_v4`}
+                src={activeColor.image}
                 alt={activeColor.title[language]}
                 fill
                 sizes="(max-width: 768px) 85vw, 576px"
                 className="object-contain"
-                unoptimized
               />
             </div>
 

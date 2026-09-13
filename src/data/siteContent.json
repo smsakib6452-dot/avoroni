@@ -1,1687 +1,1687 @@
 {
+  "hero": {
+    "cta": {
+      "bn": "কালেকশনটি দেখুন",
+      "en": "Explore The Collection"
+    },
+    "image": "/images/hero_culture.jpg",
+    "stat_1": {
+      "bn": "৪৩টি আসল AI শাড়ি",
+      "en": "43 Real AI Drapes"
+    },
+    "stat_2": {
+      "bn": "শতবর্ষের ঐতিহ্য",
+      "en": "Heritage Craftsmanship"
+    },
+    "stat_3": {
+      "bn": "ঢাকার বনানী স্টুডিও",
+      "en": "Curated Dhaka Atelier"
+    },
+    "ctaLink": "#categories",
+    "eyebrow": {
+      "bn": "ঐতিহ্যের বন্ধনে বোনা",
+      "en": "Sarees Woven With"
+    },
+    "heading": {
+      "bn": "সংস্কৃতি",
+      "en": "Culture"
+    },
+    "subtitle_1": {
+      "bn": "অনন্য ঐতিহ্যবাহী শাড়ি",
+      "en": "Heirloom Drapes"
+    },
+    "subtitle_2": {
+      "bn": "আধুনিক বাঙালি নারীর জন্য",
+      "en": "For Modern Stories"
+    },
+    "description": {
+      "bn": "শতাব্দীর ঐতিহ্যবাহী তাঁতশিল্পের অমর প্রকাশ — খাঁটি রেশম, ঢাকাই জামদানি ও স্বর্ণ জরির রাজকীয় আভিজাত্য।",
+      "en": "Centuries of Bengali weaving wisdom carried forward in pure mulberry silks, Dhakai Jamdani, and hand-beaten gold zari."
+    }
+  },
   "brand": {
-    "name": "Avoroni",
-    "tagline": {
-      "en": "The Maison of Heritage Drapes",
-      "bn": "ঐতিহ্যবাহী শাড়ির রাজকীয় ঠিকানা"
-    },
     "cert": {
-      "en": "UNESCO Handloom Guild & Craftmark Certified",
-      "bn": "ইউনেস্কো স্বীকৃত জিআই ঐতিহ্যবাহী তাঁত"
+      "bn": "ইউনেস্কো স্বীকৃত জিআই ঐতিহ্যবাহী তাঁত",
+      "en": "UNESCO Handloom Guild & Craftmark Certified"
     },
+    "name": "Avoroni",
     "socials": {
-      "instagram": "https://instagram.com",
       "facebook": "https://facebook.com",
+      "instagram": "https://instagram.com",
       "pinterest": "https://pinterest.com"
+    },
+    "tagline": {
+      "bn": "ঐতিহ্যবাহী শাড়ির রাজকীয় ঠিকানা",
+      "en": "The Maison of Heritage Drapes"
     },
     "adminPasscode": "avoroni2026"
   },
+  "footer": {
+    "quote": {
+      "bn": "“শাড়ি শুধু সুতোয় বোনা কাপড় নয় — এটি বাংলার নদী, প্রাচীন কবিতা ও কারিগরের হাতের জীবন্ত আখ্যান।”",
+      "en": "“A saree is not merely woven thread — it is an archive of living poetry, rivers, and ancestral hands.”"
+    },
+    "certText": {
+      "bn": "ইউনেস্কো হ্যান্ডলুম গিল্ড সার্টিফাইড",
+      "en": "UNESCO Handloom Guild Certified"
+    },
+    "copyright": {
+      "bn": "© ২০২৬ আভরণী মেসন লিমিটেড। সর্বস্বত্ব সংরক্ষিত।",
+      "en": "© 2026 Avoroni Maison Ltd. All Rights Reserved."
+    },
+    "registerText": {
+      "bn": "ঢাকা হ্যান্ডলুম অ্যাটেলিয়ার • রেজি. ১৮৯২",
+      "en": "Dhaka Handloom Atelier • Reg. 1892"
+    }
+  },
+  "contact": {
+    "pill": {
+      "bn": "যোগাযোগ",
+      "en": "Contact Us"
+    },
+    "email": "atelier@avoroni.com",
+    "image": "/images/contact_intro.jpg",
+    "phone": "+880 1712-345678",
+    "caption": {
+      "bn": "আভরণী স্টুডিও • বনানী, ঢাকা",
+      "en": "Avoroni Studio • Banani, Dhaka"
+    },
+    "heading": {
+      "bn": "আপনার যেকোনো প্রয়োজনে আমরা প্রস্তুত",
+      "en": "We'd Love to Hear From You"
+    },
+    "mapsUrl": "https://maps.google.com",
+    "emailSub": {
+      "bn": "পরামর্শ ও ব্রাইডাল বুকিং",
+      "en": "Inquiries & bridal curation"
+    },
+    "subtitle": {
+      "bn": "বিয়ের শাড়ির পরামর্শ, জামদানি নির্বাচন বা আমাদের বনানী স্টুডিওতে আসার বিষয়ে যোগাযোগ করুন।",
+      "en": "Whether it's bridal styling, selecting a Jamdani heirloom, or visiting our Banani studio — our curators are here for you."
+    },
+    "whatsapp": "+8801712345678",
+    "phoneHours": {
+      "bn": "সকাল ১০টা – রাত ৮টা",
+      "en": "10:00 AM – 8:00 PM (GMT+6)"
+    },
+    "studioHours": {
+      "bn": "শনিবার – বৃহস্পতিবার, সকাল ১১টা – রাত ৮টা",
+      "en": "Open Saturday – Thursday, 11 AM – 8 PM"
+    },
+    "studioAddress": {
+      "bn": "রোড ১১, ব্লক ডি, বনানী, ঢাকা-১২১৩",
+      "en": "Road 11, Block D, Banani, Dhaka-1213"
+    }
+  },
   "aiEngine": {
-    "geminiApiKey": "",
-    "replicateApiKey": "",
     "modelType": "auto",
-    "statusNote": "Avoroni Neural Engine Active"
-  },
-  "hero": {
-    "eyebrow": {
-      "en": "Sarees Woven With",
-      "bn": "ঐতিহ্যের বন্ধনে বোনা"
-    },
-    "heading": {
-      "en": "Culture",
-      "bn": "সংস্কৃতি"
-    },
-    "subtitle_1": {
-      "en": "Heirloom Drapes",
-      "bn": "অনন্য ঐতিহ্যবাহী শাড়ি"
-    },
-    "subtitle_2": {
-      "en": "For Modern Stories",
-      "bn": "আধুনিক বাঙালি নারীর জন্য"
-    },
-    "description": {
-      "en": "Centuries of Bengali weaving wisdom carried forward in pure mulberry silks, Dhakai Jamdani, and hand-beaten gold zari.",
-      "bn": "শতাব্দীর ঐতিহ্যবাহী তাঁতশিল্পের অমর প্রকাশ — খাঁটি রেশম, ঢাকাই জামদানি ও স্বর্ণ জরির রাজকীয় আভিজাত্য।"
-    },
-    "cta": {
-      "en": "Explore The Collection",
-      "bn": "কালেকশনটি দেখুন"
-    },
-    "ctaLink": "#categories",
-    "stat_1": {
-      "en": "43 Real AI Drapes",
-      "bn": "৪৩টি আসল AI শাড়ি"
-    },
-    "stat_2": {
-      "en": "Heritage Craftsmanship",
-      "bn": "শতবর্ষের ঐতিহ্য"
-    },
-    "stat_3": {
-      "en": "Curated Dhaka Atelier",
-      "bn": "ঢাকার বনানী স্টুডিও"
-    },
-    "image": "/images/hero_culture.jpg"
-  },
-  "newArrivals": {
-    "pill": {
-      "en": "New Arrivals",
-      "bn": "নতুন কালেকশন"
-    },
-    "heading_1": {
-      "en": "Fresh Weaves,",
-      "bn": "নতুন বুনন,"
-    },
-    "heading_2": {
-      "en": "Timeless Grace",
-      "bn": "অনন্ত সৌন্দর্য"
-    },
-    "subtitle": {
-      "en": "Colors chosen with care — for every mood, festive evening, and special occasion.",
-      "bn": "প্রতিটি মুহূর্ত ও উৎসবের জন্য পরম যত্নে বাছাই করা অনন্য রঙের শাড়ি।"
-    },
-    "cta": {
-      "en": "Discover New Arrivals",
-      "bn": "নতুন আগমন দেখুন"
-    },
-    "footnote": {
-      "en": "Ancient Bengal Craft, Modern Soul",
-      "bn": "বাংলার আদিম শিল্প, আধুনিক রূপ"
-    },
-    "items": [
-      {
-        "id": "green-floral",
-        "name": {
-          "en": "Gulbahar Organza",
-          "bn": "গুলবাহার অর্গানজা"
-        },
-        "weave": {
-          "en": "Hand-Painted Floral Sheer",
-          "bn": "হাতে আঁকা ফ্লোরাল শিয়ার"
-        },
-        "price": {
-          "en": "৳ 4,200",
-          "bn": "৳ ৪,২০০"
-        },
-        "image": "/images/sarees_origin_model.jpg"
-      },
-      {
-        "id": "rose-silk",
-        "name": {
-          "en": "Dhakai Rose Jamdani",
-          "bn": "ঢাকাই রোজ জামদানি"
-        },
-        "weave": {
-          "en": "Shitalakshya 84-Count Weave",
-          "bn": "শীতলক্ষ্যা ৮৪-কাউন্ট সুতো"
-        },
-        "price": {
-          "en": "৳ 6,800",
-          "bn": "৳ ৬,৮০০"
-        },
-        "image": "/images/swatch_rose.jpg"
-      },
-      {
-        "id": "emerald-twill",
-        "name": {
-          "en": "Rajshahi Mulberry Silk",
-          "bn": "রাজশাহী রেশম সিল্ক"
-        },
-        "weave": {
-          "en": "Pure Hand-Reeled Silk Twill",
-          "bn": "খাঁটি হাতে বোনা তুত সিল্ক"
-        },
-        "price": {
-          "en": "৳ 8,400",
-          "bn": "৳ ৮,৪০০"
-        },
-        "image": "/images/editorial_portrait.jpg"
-      },
-      {
-        "id": "sunset-orange",
-        "name": {
-          "en": "Mirpur Surya Katan",
-          "bn": "মিরপুর সূর্য কাতান"
-        },
-        "weave": {
-          "en": "Burnt Amber Zari Brocade",
-          "bn": "আম্বর জরির রাজকীয় ব্রোকেড"
-        },
-        "price": {
-          "en": "৳ 5,600",
-          "bn": "৳ ৫,৬০০"
-        },
-        "image": "/images/swatch_orange.jpg"
-      }
-    ]
-  },
-  "regionalSarees": {
-    "pill": {
-      "en": "The Collection",
-      "bn": "সিগনেচার কালেকশন"
-    },
-    "heading": {
-      "en": "Sarees By Origin",
-      "bn": "অঞ্চলভিত্তিক শাড়ি"
-    },
-    "subtitle": {
-      "en": "Preserving generational craft traditions across Bangladesh & the subcontinent.",
-      "bn": "বাংলাদেশ ও উপমহাদেশের শতাব্দী প্রাচীন তাঁতশিল্পের সংরক্ষণ।"
-    },
-    "tag": {
-      "en": "Signature Weave Archive",
-      "bn": "সিগনেচার ঐতিহ্যবাহী তাঁত"
-    },
-    "regions": [
-      {
-        "id": "jamdani",
-        "category": "bangladesh",
-        "name": {
-          "en": "Dhakai Jamdani",
-          "bn": "ঢাকাই জামদানি"
-        },
-        "location": {
-          "en": "Narayanganj, Shitalakshya River",
-          "bn": "নারায়ণগঞ্জ, শীতলক্ষ্যা পাড়"
-        },
-        "weave": {
-          "en": "UNESCO Intangible Heritage & GI Certified",
-          "bn": "ইউনেস্কো স্বীকৃত জিআই ঐতিহ্যবাহী তাঁত"
-        },
-        "description": {
-          "en": "Hand-spun translucent cotton-silk with supplementary geometric butidar motifs woven by master generational karigars.",
-          "bn": "ঐতিহাসিক শীতলক্ষ্যার বাতাসে বোনা স্নিগ্ধ সুতো ও সূক্ষ্ম জ্যামিতিক নকশায় মাস্টার তাঁতিদের হাতে বোনা অনন্য শিল্পকর্ম।"
-        },
-        "primaryImage": "/images/colorways/jamdani_white.jpg",
-        "colorways": [
-          {
-            "id": "white",
-            "name": {
-              "en": "Shweto White & Gold",
-              "bn": "শুভ্র শ্বেত ও সোনালী"
-            },
-            "hex": "#F5F0E8",
-            "image": "/images/colorways/jamdani_white.jpg",
-            "price": {
-              "en": "৳ 9,500",
-              "bn": "৳ ৯,৫০০"
-            }
-          },
-          {
-            "id": "red",
-            "name": {
-              "en": "Crimson Red Jamdani",
-              "bn": "লাল ঢাকাই জামদানি"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/jamdani_red.jpg",
-            "price": {
-              "en": "৳ 9,800",
-              "bn": "৳ ৯,৮০০"
-            }
-          },
-          {
-            "id": "green",
-            "name": {
-              "en": "Emerald Green Jamdani",
-              "bn": "পান্না সবুজ জামদানি"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/jamdani_green.jpg",
-            "price": {
-              "en": "৳ 9,200",
-              "bn": "৳ ৯,২০০"
-            }
-          },
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Haldi Saffron Jamdani",
-              "bn": "হলুদ জাফরান জামদানি"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/jamdani_yellow.jpg",
-            "price": {
-              "en": "৳ 8,800",
-              "bn": "৳ ৮,৮০০"
-            }
-          },
-          {
-            "id": "blue",
-            "name": {
-              "en": "Meghdoot Blue Jamdani",
-              "bn": "মেঘদূত নীল জামদানি"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/jamdani_blue.jpg",
-            "price": {
-              "en": "৳ 9,400",
-              "bn": "৳ ৯,৪০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Gulabi Rose Jamdani",
-              "bn": "গোলাপি নূর জামদানি"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/jamdani_pink.jpg",
-            "price": {
-              "en": "৳ 9,600",
-              "bn": "৳ ৯,৬০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Royal Jamuni Jamdani",
-              "bn": "রয়েল জামুনি জামদানি"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/jamdani_purple.jpg",
-            "price": {
-              "en": "৳ 9,900",
-              "bn": "৳ ৯,৯০০"
-            }
-          }
-        ]
-      },
-      {
-        "id": "rajshahi",
-        "category": "bangladesh",
-        "name": {
-          "en": "Rajshahi Mulberry Silk",
-          "bn": "রাজশাহী রেশম সিল্ক"
-        },
-        "location": {
-          "en": "Rajshahi, Bangladesh",
-          "bn": "রাজশাহী, বাংলাদেশ"
-        },
-        "weave": {
-          "en": "Pure Mulberry & Hand-Reeled Silk",
-          "bn": "খাঁটি রেশম তুত সিল্ক ও মটকা বুনন"
-        },
-        "description": {
-          "en": "Known as the Silk City of Bengal, producing lightweight luxury mulberry drapes with natural luster and regal fall.",
-          "bn": "বাংলার ঐতিহাসিক রেশম নগরী রাজশাহীর খাঁটি তুত সিল্ক, যা অত্যন্ত মোলায়েম, জমকালো এবং রাজকীয়ভাবে মানানসই।"
-        },
-        "primaryImage": "/images/colorways/rajshahi_blue.jpg",
-        "colorways": [
-          {
-            "id": "blue",
-            "name": {
-              "en": "Midnight Sapphire Silk",
-              "bn": "মিডনাইট নীল রেশম সিল্ক"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/rajshahi_blue.jpg",
-            "price": {
-              "en": "৳ 8,400",
-              "bn": "৳ ৮,৪০০"
-            }
-          },
-          {
-            "id": "red",
-            "name": {
-              "en": "Bridal Red Rajshahi",
-              "bn": "লাল রাজশাহী সিল্ক"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/rajshahi_red.jpg",
-            "price": {
-              "en": "৳ 8,600",
-              "bn": "৳ ৮,৬০০"
-            }
-          },
-          {
-            "id": "green",
-            "name": {
-              "en": "Peacock Emerald Rajshahi",
-              "bn": "ময়ূরকণ্ঠী সবুজ সিল্ক"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/rajshahi_green.jpg",
-            "price": {
-              "en": "৳ 8,200",
-              "bn": "৳ ৮,২০০"
-            }
-          },
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Golden Mustard Silk",
-              "bn": "সোনালী হলুদ সিল্ক"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/rajshahi_yellow.jpg",
-            "price": {
-              "en": "৳ 7,900",
-              "bn": "৳ ৭,৯০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Damascus Rose Silk",
-              "bn": "গোলাপি রেশম সিল্ক"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/rajshahi_pink.jpg",
-            "price": {
-              "en": "৳ 8,300",
-              "bn": "৳ ৮,৩০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Royal Jamuni Silk",
-              "bn": "জামুনি বেগুনি সিল্ক"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/rajshahi_purple.jpg",
-            "price": {
-              "en": "৳ 8,500",
-              "bn": "৳ ৮,৫০০"
-            }
-          }
-        ]
-      },
-      {
-        "id": "mirpur-katan",
-        "category": "bangladesh",
-        "name": {
-          "en": "Mirpur Bridal Katan",
-          "bn": "মিরপুর ব্রাইডাল কাতান"
-        },
-        "location": {
-          "en": "Benarasi Polli, Mirpur, Dhaka",
-          "bn": "বেনারসি পল্লী, মিরপুর, ঢাকা"
-        },
-        "weave": {
-          "en": "Bridal Zari & Pure Kadwa Brocade",
-          "bn": "খাঁটি জরি ও ব্রাইডাল কাতান ব্রোকেড"
-        },
-        "description": {
-          "en": "The undisputed centerpiece of Bengali bridal trousseau, woven with hand-twisted silk and lustrous gold metallic zari.",
-          "bn": "বাঙালি কনের বিয়ের মূল আকর্ষণ — খাঁটি সিল্কের জমিনে ঘন জরির কারুকাজ ও রাজকীয় পাড়ের অনন্য বুনন।"
-        },
-        "primaryImage": "/images/colorways/mirpur_red.jpg",
-        "colorways": [
-          {
-            "id": "red",
-            "name": {
-              "en": "Maharani Bridal Red",
-              "bn": "মহারানী বিয়ের লাল কাতান"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/mirpur_red.jpg",
-            "price": {
-              "en": "৳ 12,500",
-              "bn": "৳ ১২,৫০০"
-            }
-          },
-          {
-            "id": "green",
-            "name": {
-              "en": "Emerald Brocade Katan",
-              "bn": "পান্না সবুজ ব্রোকেড কাতান"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/mirpur_green.jpg",
-            "price": {
-              "en": "৳ 11,800",
-              "bn": "৳ ১১,৮০০"
-            }
-          },
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Haldi Shondhya Katan",
-              "bn": "হলুদ সন্ধ্যা ব্রাইডাল কাতান"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/mirpur_yellow.jpg",
-            "price": {
-              "en": "৳ 10,900",
-              "bn": "৳ ১০,৯০০"
-            }
-          },
-          {
-            "id": "blue",
-            "name": {
-              "en": "Royal Sapphire Katan",
-              "bn": "রয়েল ব্লু কাতান"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/mirpur_blue.jpg",
-            "price": {
-              "en": "৳ 12,200",
-              "bn": "৳ ১২,২০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Rani Magenta Katan",
-              "bn": "রানী ম্যাজেন্টা গোলাপি কাতান"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/mirpur_pink.jpg",
-            "price": {
-              "en": "৳ 11,500",
-              "bn": "৳ ১১,৫০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Deep Jamuni Katan",
-              "bn": "গাঢ় জামুনি জরি কাতান"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/mirpur_purple.jpg",
-            "price": {
-              "en": "৳ 12,800",
-              "bn": "৳ ১২,৮০০"
-            }
-          }
-        ]
-      },
-      {
-        "id": "tangail",
-        "category": "bangladesh",
-        "name": {
-          "en": "Tangail Silk Taant",
-          "bn": "টাঙ্গাইল তাঁত সিল্ক"
-        },
-        "location": {
-          "en": "Tangail, Bangladesh",
-          "bn": "টাঙ্গাইল, বাংলাদেশ"
-        },
-        "weave": {
-          "en": "Fine Cotton-Silk Handloom Weave",
-          "bn": "হ্যান্ডলুম সূক্ষ্ম কটন-সিল্ক তাঁত"
-        },
-        "description": {
-          "en": "Celebrated for centuries for its featherweight comfort, ornate floral borders, and soft fluid drape.",
-          "bn": "হালকা আরামদায়ক বুনন, মনোমুগ্ধকর ফুল-লতার পাড় ও অনন্য আভিজাত্যের ঐতিহ্যবাহী টাঙ্গাইল তাঁত।"
-        },
-        "primaryImage": "/images/colorways/tangail_yellow.jpg",
-        "colorways": [
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Basanti Haldi Taant",
-              "bn": "বাসন্তী হলুদ টাঙ্গাইল তাঁত"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/tangail_yellow.jpg",
-            "price": {
-              "en": "৳ 4,500",
-              "bn": "৳ ৪,৫০০"
-            }
-          },
-          {
-            "id": "red",
-            "name": {
-              "en": "Crimson Border Taant",
-              "bn": "রক্তলাল পাড় টাঙ্গাইল তাঁত"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/tangail_red.jpg",
-            "price": {
-              "en": "৳ 4,800",
-              "bn": "৳ ৪,৮০০"
-            }
-          },
-          {
-            "id": "green",
-            "name": {
-              "en": "Pata Shobuj Taant",
-              "bn": "পাতাসবুজ স্নিগ্ধ তাঁত"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/tangail_green.jpg",
-            "price": {
-              "en": "৳ 4,200",
-              "bn": "৳ ৪,২০০"
-            }
-          },
-          {
-            "id": "blue",
-            "name": {
-              "en": "Aakashi Blue Taant",
-              "bn": "আকাশি নীল তাঁত"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/tangail_blue.jpg",
-            "price": {
-              "en": "৳ 4,400",
-              "bn": "৳ ৪,৪০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Golapi Noor Taant",
-              "bn": "গোলাপি আভা তাঁত"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/tangail_pink.jpg",
-            "price": {
-              "en": "৳ 4,600",
-              "bn": "৳ ৪,৬০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Baiguni Sheer Taant",
-              "bn": "বেগুনি জমিন তাঁত"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/tangail_purple.jpg",
-            "price": {
-              "en": "৳ 4,700",
-              "bn": "৳ ৪,৭০০"
-            }
-          }
-        ]
-      },
-      {
-        "id": "banaras",
-        "category": "indian",
-        "name": {
-          "en": "Kashi Banarasi Silk",
-          "bn": "কাশি বেনারসি সিল্ক"
-        },
-        "location": {
-          "en": "Varanasi Atelier",
-          "bn": "বারাণসী স্টুডিও"
-        },
-        "weave": {
-          "en": "Kadwa Pure Silk & 24k Gold Zari",
-          "bn": "খাঁটি কাড়োয়া সিল্ক ও ২৪ ক্যারেট গোল্ড জরি"
-        },
-        "description": {
-          "en": "Woven on ancient jacquard looms with hand-twisted mulberry silk and pure gold filigree.",
-          "bn": "ঐতিহাসিক জ্যাকার্ড তাঁতে খাঁটি রেশম ও স্বর্ণের তারের কারুকাজে বোনা রাজকীয় বেনারসি।"
-        },
-        "primaryImage": "/images/colorways/banaras_red.jpg",
-        "colorways": [
-          {
-            "id": "red",
-            "name": {
-              "en": "Imperial Red Kadwa",
-              "bn": "ইম্পেরিয়াল লাল কাড়োয়া"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/banaras_red.jpg",
-            "price": {
-              "en": "৳ 14,500",
-              "bn": "৳ ১৪,৫০০"
-            }
-          },
-          {
-            "id": "green",
-            "name": {
-              "en": "Emerald Brocade Kadwa",
-              "bn": "সবুজ ব্রোকেড কাড়োয়া"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/banaras_green.jpg",
-            "price": {
-              "en": "৳ 13,800",
-              "bn": "৳ ১৩,৮০০"
-            }
-          },
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Saffron Gold Kadwa",
-              "bn": "জাফরান গোল্ড কাড়োয়া"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/banaras_yellow.jpg",
-            "price": {
-              "en": "৳ 12,900",
-              "bn": "৳ ১২,৯০০"
-            }
-          },
-          {
-            "id": "blue",
-            "name": {
-              "en": "Midnight Kashi Silk",
-              "bn": "মিডনাইট কাশি সিল্ক"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/banaras_blue.jpg",
-            "price": {
-              "en": "৳ 14,200",
-              "bn": "৳ ১৪,২০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Gulabi Zardozi Silk",
-              "bn": "গোলাপি জারদৌসি সিল্ক"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/banaras_pink.jpg",
-            "price": {
-              "en": "৳ 13,500",
-              "bn": "৳ ১৩,৫০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Royal Jamuni Kadwa",
-              "bn": "রয়েল জামুনি কাড়োয়া"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/banaras_purple.jpg",
-            "price": {
-              "en": "৳ 14,800",
-              "bn": "৳ ১৪,৮০০"
-            }
-          }
-        ]
-      },
-      {
-        "id": "kanchipuram",
-        "category": "indian",
-        "name": {
-          "en": "Kanchipuram Temple Twill",
-          "bn": "কাঞ্জিভরম টেম্পল টুইল"
-        },
-        "location": {
-          "en": "Tamil Nadu Master Weavers",
-          "bn": "তামিলনাড়ু মাস্টার তাঁতি"
-        },
-        "weave": {
-          "en": "Korvai Interlocked Temple Borders",
-          "bn": "করভাই মন্দির নকশার খাঁটি জারি বুনন"
-        },
-        "description": {
-          "en": "Interlocked warp and weft creating vibrant jewel tones and sacred temple architectural motifs.",
-          "bn": "পবিত্র মন্দির স্থাপত্যের অনুপ্রেরণায় বোনা গাঢ় রঙের জমিন ও দীর্ঘস্থায়ী ঐতিহ্যের প্রতীক।"
-        },
-        "primaryImage": "/images/colorways/kanchipuram_green.jpg",
-        "colorways": [
-          {
-            "id": "green",
-            "name": {
-              "en": "Peacock Emerald Korvai",
-              "bn": "ময়ূরকণ্ঠী সবুজ করভাই"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/kanchipuram_green.jpg",
-            "price": {
-              "en": "৳ 16,500",
-              "bn": "৳ ১৬,৫০০"
-            }
-          },
-          {
-            "id": "red",
-            "name": {
-              "en": "Temple Red Kanjivaram",
-              "bn": "টেম্পল লাল কাঞ্জিভরম"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/kanchipuram_red.jpg",
-            "price": {
-              "en": "৳ 17,200",
-              "bn": "৳ ১৭,২০০"
-            }
-          },
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Haldi Amber Kanjivaram",
-              "bn": "হলুদ আম্বর কাঞ্জিভরম"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/kanchipuram_yellow.jpg",
-            "price": {
-              "en": "৳ 15,500",
-              "bn": "৳ ১৫,৫০০"
-            }
-          },
-          {
-            "id": "blue",
-            "name": {
-              "en": "Sapphire Indigo Korvai",
-              "bn": "নীলমণি নীল করভাই"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/kanchipuram_blue.jpg",
-            "price": {
-              "en": "৳ 15,900",
-              "bn": "৳ ১৫,৯০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Lotus Rani Pink",
-              "bn": "পদ্ম রানী গোলাপি"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/kanchipuram_pink.jpg",
-            "price": {
-              "en": "৳ 16,200",
-              "bn": "৳ ১৬,২০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Jamuni Temple Zari",
-              "bn": "জামুনি মন্দির জারি সিল্ক"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/kanchipuram_purple.jpg",
-            "price": {
-              "en": "৳ 16,800",
-              "bn": "৳ ১৬,৮০০"
-            }
-          }
-        ]
-      },
-      {
-        "id": "chanderi",
-        "category": "indian",
-        "name": {
-          "en": "Chanderi Sheer Tissue",
-          "bn": "চান্দেরি শিয়ার টিস্যু"
-        },
-        "location": {
-          "en": "Madhya Pradesh",
-          "bn": "মধ্যপ্রদেশ"
-        },
-        "weave": {
-          "en": "Featherweight Sheer Tissue",
-          "bn": "অতি-হালকা স্বচ্ছ সিল্ক টিস্যু"
-        },
-        "description": {
-          "en": "Delicate transparency woven from finest cotton-silk blends with miniature floral butis.",
-          "bn": "স্বচ্ছ স্নিগ্ধ কাপড়ে সূক্ষ্ম জরি বুটির সমাহার, পার্টি ও সন্ধ্যার অনুষ্ঠানের জন্য অনবদ্য।"
-        },
-        "primaryImage": "/images/colorways/chanderi_yellow.jpg",
-        "colorways": [
-          {
-            "id": "yellow",
-            "name": {
-              "en": "Golden Amber Tissue",
-              "bn": "সোনালী আম্বর টিস্যু"
-            },
-            "hex": "#D49B28",
-            "image": "/images/colorways/chanderi_yellow.jpg",
-            "price": {
-              "en": "৳ 7,500",
-              "bn": "৳ ৭,৫০০"
-            }
-          },
-          {
-            "id": "red",
-            "name": {
-              "en": "Ruby Red Tissue",
-              "bn": "রুবি লাল টিস্যু"
-            },
-            "hex": "#8B1E28",
-            "image": "/images/colorways/chanderi_red.jpg",
-            "price": {
-              "en": "৳ 7,900",
-              "bn": "৳ ৭,৯০০"
-            }
-          },
-          {
-            "id": "green",
-            "name": {
-              "en": "Emerald Sheer Chanderi",
-              "bn": "পান্না সবুজ চান্দেরি"
-            },
-            "hex": "#1F4E3B",
-            "image": "/images/colorways/chanderi_green.jpg",
-            "price": {
-              "en": "৳ 7,200",
-              "bn": "৳ ৭,২০০"
-            }
-          },
-          {
-            "id": "blue",
-            "name": {
-              "en": "Sapphire Mist Tissue",
-              "bn": "নীল কুয়াশা টিস্যু"
-            },
-            "hex": "#1B3B6F",
-            "image": "/images/colorways/chanderi_blue.jpg",
-            "price": {
-              "en": "৳ 7,400",
-              "bn": "৳ ৭,৪০০"
-            }
-          },
-          {
-            "id": "pink",
-            "name": {
-              "en": "Damascus Rose Sheer",
-              "bn": "গোলাপ শিয়ার টিস্যু"
-            },
-            "hex": "#C95B7E",
-            "image": "/images/colorways/chanderi_pink.jpg",
-            "price": {
-              "en": "৳ 7,800",
-              "bn": "৳ ৭,৮০০"
-            }
-          },
-          {
-            "id": "purple",
-            "name": {
-              "en": "Royal Jamuni Tissue",
-              "bn": "রয়েল জামুনি টিস্যু"
-            },
-            "hex": "#5B2C6F",
-            "image": "/images/colorways/chanderi_purple.jpg",
-            "price": {
-              "en": "৳ 8,100",
-              "bn": "৳ ৮,১০০"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "colorCapsules": {
-    "pill": {
-      "en": "Explore Every Shade",
-      "bn": "রঙের মোহনায়"
-    },
-    "heading": {
-      "en": "Shop By Color",
-      "bn": "রঙ অনুযায়ী শাড়ি"
-    },
-    "subtitle": {
-      "en": "Rich palettes for every sentiment & celebration",
-      "bn": "প্রতিটি উৎসব ও আনন্দের জন্য মনকাড়া রঙের বিন্যাস"
-    },
-    "capsules": [
-      {
-        "id": "red",
-        "name": {
-          "en": "Red",
-          "bn": "লাল"
-        },
-        "count": {
-          "en": "14",
-          "bn": "১৪"
-        },
-        "colorHex": "#8B1E28",
-        "image": "/images/colorways/mirpur_red.jpg",
-        "title": {
-          "en": "Imperial Mirpur Red Katan",
-          "bn": "ইম্পেরিয়াল মিরপুর লাল কাতান"
-        },
-        "weave": {
-          "en": "Pure Kadwa Silk & 24k Gold Zari",
-          "bn": "খাঁটি কাড়োয়া সিল্ক ও ২৪ ক্যারেট গোল্ড জরি"
-        },
-        "description": {
-          "en": "Steeped in Bengali bridal tradition, woven with pure crimson silk and master handloom zari filigree.",
-          "bn": "বাঙালি বিয়ের চিরন্তন লাল শাড়ি, খাঁটি রেশম ও নিপুণ কারিগরের হাতে বোনা স্বর্ণ জরির রাজকীয় রূপ।"
-        }
-      },
-      {
-        "id": "green",
-        "name": {
-          "en": "Green",
-          "bn": "সবুজ"
-        },
-        "count": {
-          "en": "8",
-          "bn": "৮"
-        },
-        "colorHex": "#1F4E3B",
-        "image": "/images/colorways/jamdani_green.jpg",
-        "title": {
-          "en": "Emerald Green Dhakai Jamdani",
-          "bn": "পান্না সবুজ ঢাকাই জামদানি"
-        },
-        "weave": {
-          "en": "Hand-Spun Cotton-Silk with Temple Buti",
-          "bn": "হাতে বোনা কটন-সিল্ক ও সবুজ জামদানি বুটি"
-        },
-        "description": {
-          "en": "Deep jewel emerald representing nature and auspicious prosperity, draped with subtle antique gold motifs.",
-          "bn": "গাঢ় পান্না সবুজ রঙে সজীবতা ও ঐতিহ্যের ছোঁয়া, সূক্ষ্ম জরি পাড়ে জামদানির অনন্য প্রকাশ।"
-        }
-      },
-      {
-        "id": "yellow",
-        "name": {
-          "en": "Yellow",
-          "bn": "হলুদ"
-        },
-        "count": {
-          "en": "11",
-          "bn": "১১"
-        },
-        "colorHex": "#D49B28",
-        "image": "/images/colorways/tangail_yellow.jpg",
-        "title": {
-          "en": "Haldi Basanti Tangail Silk",
-          "bn": "হলুদ বাসন্তী টাঙ্গাইল সিল্ক"
-        },
-        "weave": {
-          "en": "Fine Cotton-Silk Handloom Weave",
-          "bn": "সূক্ষ্ম কটন-সিল্ক ঐতিহ্যবাহী তাঁত"
-        },
-        "description": {
-          "en": "A ceremonial yellow radiant as Gaye Holud marigolds, handcrafted with miniature golden lotus motifs.",
-          "bn": "গায়ে হলুদের অনুষ্ঠানের জন্য উজ্জ্বল হলুদ শেড, পদ্ম ও জ্যামিতিক বুটির সূক্ষ্ম কারুকাজ।"
-        }
-      },
-      {
-        "id": "blue",
-        "name": {
-          "en": "Blue",
-          "bn": "নীল"
-        },
-        "count": {
-          "en": "6",
-          "bn": "৬"
-        },
-        "colorHex": "#1B3B6F",
-        "image": "/images/colorways/rajshahi_blue.jpg",
-        "title": {
-          "en": "Midnight Sapphire Rajshahi Silk",
-          "bn": "মিডনাইট নীল রাজশাহী রেশম সিল্ক"
-        },
-        "weave": {
-          "en": "Pure Mulberry Hand-Reeled Silk",
-          "bn": "খাঁটি রেশম তুত সিল্ক ও জরির পাড়"
-        },
-        "description": {
-          "en": "Evoking monsoon rain evenings over rivers, woven in lustrous midnight indigo threads.",
-          "bn": "বর্ষার মেঘলা সন্ধ্যার মতো স্নিগ্ধ নীল আভা, মসৃণ ফিনিশ ও আরামদায়ক রাজকীয় বুনন।"
-        }
-      },
-      {
-        "id": "pink",
-        "name": {
-          "en": "Pink",
-          "bn": "গোলাপি"
-        },
-        "count": {
-          "en": "12",
-          "bn": "১২"
-        },
-        "colorHex": "#C95B7E",
-        "image": "/images/colorways/jamdani_pink.jpg",
-        "title": {
-          "en": "Gulabi Noor Sheer Jamdani",
-          "bn": "গোলাবি নূর শিয়ার জামদানি"
-        },
-        "weave": {
-          "en": "Shitalakshya Rose Floral Weave",
-          "bn": "শীতলক্ষ্যা পাড়ের স্নিগ্ধ গোলাপ জামদানি"
-        },
-        "description": {
-          "en": "Delicate rose transparency accented with hand-beaten gold zardozi and romantic floral sprigs.",
-          "bn": "কোমল গোলাপের পাপড়ির মতো মোলায়েম ও রোমান্টিক রূপ, হালকা জরি আর বুটির অপরূপ মেলবন্ধন।"
-        }
-      },
-      {
-        "id": "purple",
-        "name": {
-          "en": "Purple",
-          "bn": "বেগুনি"
-        },
-        "count": {
-          "en": "7",
-          "bn": "৭"
-        },
-        "colorHex": "#5B2C6F",
-        "image": "/images/colorways/mirpur_purple.jpg",
-        "title": {
-          "en": "Royal Jamuni Katan Brocade",
-          "bn": "রয়েল জামুনি কাতান ব্রোকেড"
-        },
-        "weave": {
-          "en": "Heavy Wedding Zari Border",
-          "bn": "ভারী বিয়ের জরি পাড় ও আঁচল"
-        },
-        "description": {
-          "en": "Majestic royal purple with antique gold borders, inspired by palatial archives.",
-          "bn": "জমকালো রাজকীয় বেগুনি রঙে অ্যান্টিক গোল্ড পাড়, আভিজাত্য ও ঐতিহ্যের সেরা পরিচয়।"
-        }
-      }
-    ]
+    "statusNote": "Avoroni Neural Engine Active",
+    "geminiApiKey": "",
+    "replicateApiKey": ""
   },
   "bestSellers": {
-    "pill": {
-      "en": "The Most Loved",
-      "bn": "সবচেয়ে জনপ্রিয়"
-    },
-    "heading": {
-      "en": "Best Sellers",
-      "bn": "সেরা পছন্দ"
-    },
-    "subtitle": {
-      "en": "The drapes our women wear — chosen with love, woven into lasting memories.",
-      "bn": "ভালোবাসার স্পর্শে বোনা আমাদের সবচেয়ে জনপ্রিয় শাড়িসমূহ।"
-    },
     "cta": {
-      "en": "Explore All",
-      "bn": "সবগুলো দেখুন"
+      "bn": "সবগুলো দেখুন",
+      "en": "Explore All"
     },
-    "footnote": {
-      "en": "More Than A Saree — An Heirloom",
-      "bn": "একটি শাড়ি নয় — এক আজীবন উত্তরাধিকার"
+    "pill": {
+      "bn": "সবচেয়ে জনপ্রিয়",
+      "en": "The Most Loved"
     },
     "items": [
       {
         "id": "red-kadwa",
         "name": {
-          "en": "Maharani Red Katan",
-          "bn": "মহারানী লাল কাতান"
-        },
-        "weave": {
-          "en": "Pure Silk Bridal Kadwa",
-          "bn": "খাঁটি সিল্ক ব্রাইডাল কাড়োয়া"
-        },
-        "price": {
-          "en": "৳ 4,800",
-          "bn": "৳ ৪,৮০০"
+          "bn": "মহারানী লাল কাতান",
+          "en": "Maharani Red Katan"
         },
         "image": "/images/hero_culture.jpg",
+        "price": {
+          "bn": "৳ ৪,৮০০",
+          "en": "৳ 4,800"
+        },
+        "weave": {
+          "bn": "খাঁটি সিল্ক ব্রাইডাল কাড়োয়া",
+          "en": "Pure Silk Bridal Kadwa"
+        },
         "rating": {
-          "en": "4.9 (128)",
-          "bn": "৪.৯ (১২৮)"
+          "bn": "৪.৯ (১২৮)",
+          "en": "4.9 (128)"
         }
       },
       {
         "id": "gulabi-noor",
         "name": {
-          "en": "Gulabi Noor Jamdani",
-          "bn": "গোলাবি নূর জামদানি"
-        },
-        "weave": {
-          "en": "Dhakai Rose Floral Sheer",
-          "bn": "ঢাকাই গোলাপ ফ্লোরাল শিয়ার"
-        },
-        "price": {
-          "en": "৳ 5,200",
-          "bn": "৳ ৫,২০০"
+          "bn": "গোলাবি নূর জামদানি",
+          "en": "Gulabi Noor Jamdani"
         },
         "image": "/images/swatch_rose.jpg",
+        "price": {
+          "bn": "৳ ৫,২০০",
+          "en": "৳ 5,200"
+        },
+        "weave": {
+          "bn": "ঢাকাই গোলাপ ফ্লোরাল শিয়ার",
+          "en": "Dhakai Rose Floral Sheer"
+        },
         "rating": {
-          "en": "4.8 (94)",
-          "bn": "৪.৮ (৯৪)"
+          "bn": "৪.৮ (৯৪)",
+          "en": "4.8 (94)"
         }
       },
       {
         "id": "emerald-temple",
         "name": {
-          "en": "Mayuri Emerald Silk",
-          "bn": "ময়ূরী পান্না সিল্ক"
-        },
-        "weave": {
-          "en": "Rajshahi Mulberry Gold Zari",
-          "bn": "রাজশাহী তুত সিল্ক গোল্ড জরি"
-        },
-        "price": {
-          "en": "৳ 6,400",
-          "bn": "৳ ৬,৪০০"
+          "bn": "ময়ূরী পান্না সিল্ক",
+          "en": "Mayuri Emerald Silk"
         },
         "image": "/images/editorial_portrait.jpg",
+        "price": {
+          "bn": "৳ ৬,৪০০",
+          "en": "৳ 6,400"
+        },
+        "weave": {
+          "bn": "রাজশাহী তুত সিল্ক গোল্ড জরি",
+          "en": "Rajshahi Mulberry Gold Zari"
+        },
         "rating": {
-          "en": "5.0 (156)",
-          "bn": "৫.০ (১৫৬)"
+          "bn": "৫.০ (১৫৬)",
+          "en": "5.0 (156)"
         }
       },
       {
         "id": "swarna-surya",
         "name": {
-          "en": "Swarna Surya Tissue",
-          "bn": "স্বর্ণ সূর্য তস্যু"
-        },
-        "weave": {
-          "en": "Handloom Chanderi Amber Silk",
-          "bn": "হ্যান্ডলুম আম্বর সিল্ক"
-        },
-        "price": {
-          "en": "৳ 3,900",
-          "bn": "৳ ৩,৯০০"
+          "bn": "স্বর্ণ সূর্য তস্যু",
+          "en": "Swarna Surya Tissue"
         },
         "image": "/images/swatch_orange.jpg",
+        "price": {
+          "bn": "৳ ৩,৯০০",
+          "en": "৳ 3,900"
+        },
+        "weave": {
+          "bn": "হ্যান্ডলুম আম্বর সিল্ক",
+          "en": "Handloom Chanderi Amber Silk"
+        },
         "rating": {
-          "en": "4.9 (112)",
-          "bn": "৪.৯ (১১২)"
+          "bn": "৪.৯ (১১২)",
+          "en": "4.9 (112)"
         }
       }
-    ]
-  },
-  "contact": {
-    "pill": {
-      "en": "Contact Us",
-      "bn": "যোগাযোগ"
-    },
+    ],
     "heading": {
-      "en": "We'd Love to Hear From You",
-      "bn": "আপনার যেকোনো প্রয়োজনে আমরা প্রস্তুত"
+      "bn": "সেরা পছন্দ",
+      "en": "Best Sellers"
+    },
+    "footnote": {
+      "bn": "একটি শাড়ি নয় — এক আজীবন উত্তরাধিকার",
+      "en": "More Than A Saree — An Heirloom"
     },
     "subtitle": {
-      "en": "Whether it's bridal styling, selecting a Jamdani heirloom, or visiting our Banani studio — our curators are here for you.",
-      "bn": "বিয়ের শাড়ির পরামর্শ, জামদানি নির্বাচন বা আমাদের বনানী স্টুডিওতে আসার বিষয়ে যোগাযোগ করুন।"
-    },
-    "caption": {
-      "en": "Avoroni Studio • Banani, Dhaka",
-      "bn": "আভরণী স্টুডিও • বনানী, ঢাকা"
-    },
-    "phone": "+880 1712-345678",
-    "phoneHours": {
-      "en": "10:00 AM – 8:00 PM (GMT+6)",
-      "bn": "সকাল ১০টা – রাত ৮টা"
-    },
-    "whatsapp": "+8801712345678",
-    "email": "atelier@avoroni.com",
-    "emailSub": {
-      "en": "Inquiries & bridal curation",
-      "bn": "পরামর্শ ও ব্রাইডাল বুকিং"
-    },
-    "studioAddress": {
-      "en": "Road 11, Block D, Banani, Dhaka-1213",
-      "bn": "রোড ১১, ব্লক ডি, বনানী, ঢাকা-১২১৩"
-    },
-    "studioHours": {
-      "en": "Open Saturday – Thursday, 11 AM – 8 PM",
-      "bn": "শনিবার – বৃহস্পতিবার, সকাল ১১টা – রাত ৮টা"
-    },
-    "mapsUrl": "https://maps.google.com",
-    "image": "/images/contact_intro.jpg"
+      "bn": "ভালোবাসার স্পর্শে বোনা আমাদের সবচেয়ে জনপ্রিয় শাড়িসমূহ।",
+      "en": "The drapes our women wear — chosen with love, woven into lasting memories."
+    }
   },
-  "footer": {
-    "quote": {
-      "en": "“A saree is not merely woven thread — it is an archive of living poetry, rivers, and ancestral hands.”",
-      "bn": "“শাড়ি শুধু সুতোয় বোনা কাপড় নয় — এটি বাংলার নদী, প্রাচীন কবিতা ও কারিগরের হাতের জীবন্ত আখ্যান।”"
+  "newArrivals": {
+    "cta": {
+      "bn": "নতুন আগমন দেখুন",
+      "en": "Discover New Arrivals"
     },
-    "registerText": {
-      "en": "Dhaka Handloom Atelier • Reg. 1892",
-      "bn": "ঢাকা হ্যান্ডলুম অ্যাটেলিয়ার • রেজি. ১৮৯২"
+    "pill": {
+      "bn": "নতুন কালেকশন",
+      "en": "New Arrivals"
     },
-    "certText": {
-      "en": "UNESCO Handloom Guild Certified",
-      "bn": "ইউনেস্কো হ্যান্ডলুম গিল্ড সার্টিফাইড"
+    "items": [
+      {
+        "id": "green-floral",
+        "name": {
+          "bn": "গুলবাহার অর্গানজা",
+          "en": "Gulbahar Organza"
+        },
+        "image": "/images/sarees_origin_model.jpg",
+        "price": {
+          "bn": "৳ ৪,২০০",
+          "en": "৳ 4,200"
+        },
+        "weave": {
+          "bn": "হাতে আঁকা ফ্লোরাল শিয়ার",
+          "en": "Hand-Painted Floral Sheer"
+        }
+      },
+      {
+        "id": "rose-silk",
+        "name": {
+          "bn": "ঢাকাই রোজ জামদানি",
+          "en": "Dhakai Rose Jamdani"
+        },
+        "image": "/images/swatch_rose.jpg",
+        "price": {
+          "bn": "৳ ৬,৮০০",
+          "en": "৳ 6,800"
+        },
+        "weave": {
+          "bn": "শীতলক্ষ্যা ৮৪-কাউন্ট সুতো",
+          "en": "Shitalakshya 84-Count Weave"
+        }
+      },
+      {
+        "id": "emerald-twill",
+        "name": {
+          "bn": "রাজশাহী রেশম সিল্ক",
+          "en": "Rajshahi Mulberry Silk"
+        },
+        "image": "/images/editorial_portrait.jpg",
+        "price": {
+          "bn": "৳ ৮,৪০০",
+          "en": "৳ 8,400"
+        },
+        "weave": {
+          "bn": "খাঁটি হাতে বোনা তুত সিল্ক",
+          "en": "Pure Hand-Reeled Silk Twill"
+        }
+      },
+      {
+        "id": "sunset-orange",
+        "name": {
+          "bn": "মিরপুর সূর্য কাতান",
+          "en": "Mirpur Surya Katan"
+        },
+        "image": "/images/swatch_orange.jpg",
+        "price": {
+          "bn": "৳ ৫,৬০০",
+          "en": "৳ 5,600"
+        },
+        "weave": {
+          "bn": "আম্বর জরির রাজকীয় ব্রোকেড",
+          "en": "Burnt Amber Zari Brocade"
+        }
+      }
+    ],
+    "footnote": {
+      "bn": "বাংলার আদিম শিল্প, আধুনিক রূপ",
+      "en": "Ancient Bengal Craft, Modern Soul"
     },
-    "copyright": {
-      "en": "© 2026 Avoroni Maison Ltd. All Rights Reserved.",
-      "bn": "© ২০২৬ আভরণী মেসন লিমিটেড। সর্বস্বত্ব সংরক্ষিত।"
+    "subtitle": {
+      "bn": "প্রতিটি মুহূর্ত ও উৎসবের জন্য পরম যত্নে বাছাই করা অনন্য রঙের শাড়ি।",
+      "en": "Colors chosen with care — for every mood, festive evening, and special occasion."
+    },
+    "heading_1": {
+      "bn": "নতুন বুনন,",
+      "en": "Fresh Weaves,"
+    },
+    "heading_2": {
+      "bn": "অনন্ত সৌন্দর্য",
+      "en": "Timeless Grace"
+    }
+  },
+  "colorCapsules": {
+    "pill": {
+      "bn": "রঙের মোহনায়",
+      "en": "Explore Every Shade"
+    },
+    "heading": {
+      "bn": "রঙ অনুযায়ী শাড়ি",
+      "en": "Shop By Color"
+    },
+    "capsules": [
+      {
+        "id": "red",
+        "name": {
+          "bn": "লাল",
+          "en": "Red"
+        },
+        "count": {
+          "bn": "১৪",
+          "en": "14"
+        },
+        "image": "/images/colorways/mirpur_red.jpg",
+        "title": {
+          "bn": "ইম্পেরিয়াল মিরপুর লাল কাতান",
+          "en": "Imperial Mirpur Red Katan"
+        },
+        "weave": {
+          "bn": "খাঁটি কাড়োয়া সিল্ক ও ২৪ ক্যারেট গোল্ড জরি",
+          "en": "Pure Kadwa Silk & 24k Gold Zari"
+        },
+        "colorHex": "#8B1E28",
+        "description": {
+          "bn": "বাঙালি বিয়ের চিরন্তন লাল শাড়ি, খাঁটি রেশম ও নিপুণ কারিগরের হাতে বোনা স্বর্ণ জরির রাজকীয় রূপ।",
+          "en": "Steeped in Bengali bridal tradition, woven with pure crimson silk and master handloom zari filigree."
+        }
+      },
+      {
+        "id": "green",
+        "name": {
+          "bn": "সবুজ",
+          "en": "Green"
+        },
+        "count": {
+          "bn": "৮",
+          "en": "8"
+        },
+        "image": "/images/colorways/jamdani_green.jpg",
+        "title": {
+          "bn": "পান্না সবুজ ঢাকাই জামদানি",
+          "en": "Emerald Green Dhakai Jamdani"
+        },
+        "weave": {
+          "bn": "হাতে বোনা কটন-সিল্ক ও সবুজ জামদানি বুটি",
+          "en": "Hand-Spun Cotton-Silk with Temple Buti"
+        },
+        "colorHex": "#1F4E3B",
+        "description": {
+          "bn": "গাঢ় পান্না সবুজ রঙে সজীবতা ও ঐতিহ্যের ছোঁয়া, সূক্ষ্ম জরি পাড়ে জামদানির অনন্য প্রকাশ।",
+          "en": "Deep jewel emerald representing nature and auspicious prosperity, draped with subtle antique gold motifs."
+        }
+      },
+      {
+        "id": "yellow",
+        "name": {
+          "bn": "হলুদ",
+          "en": "Yellow"
+        },
+        "count": {
+          "bn": "১১",
+          "en": "11"
+        },
+        "image": "/images/colorways/tangail_yellow.jpg",
+        "title": {
+          "bn": "হলুদ বাসন্তী টাঙ্গাইল সিল্ক",
+          "en": "Haldi Basanti Tangail Silk"
+        },
+        "weave": {
+          "bn": "সূক্ষ্ম কটন-সিল্ক ঐতিহ্যবাহী তাঁত",
+          "en": "Fine Cotton-Silk Handloom Weave"
+        },
+        "colorHex": "#D49B28",
+        "description": {
+          "bn": "গায়ে হলুদের অনুষ্ঠানের জন্য উজ্জ্বল হলুদ শেড, পদ্ম ও জ্যামিতিক বুটির সূক্ষ্ম কারুকাজ।",
+          "en": "A ceremonial yellow radiant as Gaye Holud marigolds, handcrafted with miniature golden lotus motifs."
+        }
+      },
+      {
+        "id": "blue",
+        "name": {
+          "bn": "নীল",
+          "en": "Blue"
+        },
+        "count": {
+          "bn": "৬",
+          "en": "6"
+        },
+        "image": "/images/colorways/rajshahi_blue.jpg",
+        "title": {
+          "bn": "মিডনাইট নীল রাজশাহী রেশম সিল্ক",
+          "en": "Midnight Sapphire Rajshahi Silk"
+        },
+        "weave": {
+          "bn": "খাঁটি রেশম তুত সিল্ক ও জরির পাড়",
+          "en": "Pure Mulberry Hand-Reeled Silk"
+        },
+        "colorHex": "#1B3B6F",
+        "description": {
+          "bn": "বর্ষার মেঘলা সন্ধ্যার মতো স্নিগ্ধ নীল আভা, মসৃণ ফিনিশ ও আরামদায়ক রাজকীয় বুনন।",
+          "en": "Evoking monsoon rain evenings over rivers, woven in lustrous midnight indigo threads."
+        }
+      },
+      {
+        "id": "pink",
+        "name": {
+          "bn": "গোলাপি",
+          "en": "Pink"
+        },
+        "count": {
+          "bn": "১২",
+          "en": "12"
+        },
+        "image": "/images/colorways/jamdani_pink.jpg",
+        "title": {
+          "bn": "গোলাবি নূর শিয়ার জামদানি",
+          "en": "Gulabi Noor Sheer Jamdani"
+        },
+        "weave": {
+          "bn": "শীতলক্ষ্যা পাড়ের স্নিগ্ধ গোলাপ জামদানি",
+          "en": "Shitalakshya Rose Floral Weave"
+        },
+        "colorHex": "#C95B7E",
+        "description": {
+          "bn": "কোমল গোলাপের পাপড়ির মতো মোলায়েম ও রোমান্টিক রূপ, হালকা জরি আর বুটির অপরূপ মেলবন্ধন।",
+          "en": "Delicate rose transparency accented with hand-beaten gold zardozi and romantic floral sprigs."
+        }
+      },
+      {
+        "id": "purple",
+        "name": {
+          "bn": "বেগুনি",
+          "en": "Purple"
+        },
+        "count": {
+          "bn": "৭",
+          "en": "7"
+        },
+        "image": "/images/colorways/mirpur_purple.jpg",
+        "title": {
+          "bn": "রয়েল জামুনি কাতান ব্রোকেড",
+          "en": "Royal Jamuni Katan Brocade"
+        },
+        "weave": {
+          "bn": "ভারী বিয়ের জরি পাড় ও আঁচল",
+          "en": "Heavy Wedding Zari Border"
+        },
+        "colorHex": "#5B2C6F",
+        "description": {
+          "bn": "জমকালো রাজকীয় বেগুনি রঙে অ্যান্টিক গোল্ড পাড়, আভিজাত্য ও ঐতিহ্যের সেরা পরিচয়।",
+          "en": "Majestic royal purple with antique gold borders, inspired by palatial archives."
+        }
+      }
+    ],
+    "subtitle": {
+      "bn": "প্রতিটি উৎসব ও আনন্দের জন্য মনকাড়া রঙের বিন্যাস",
+      "en": "Rich palettes for every sentiment & celebration"
+    }
+  },
+  "regionalSarees": {
+    "tag": {
+      "bn": "সিগনেচার ঐতিহ্যবাহী তাঁত",
+      "en": "Signature Weave Archive"
+    },
+    "pill": {
+      "bn": "সিগনেচার কালেকশন",
+      "en": "The Collection"
+    },
+    "heading": {
+      "bn": "অঞ্চলভিত্তিক শাড়ি",
+      "en": "Sarees By Origin"
+    },
+    "regions": [
+      {
+        "id": "jamdani",
+        "name": {
+          "bn": "ঢাকাই জামদানি",
+          "en": "Dhakai Jamdani"
+        },
+        "weave": {
+          "bn": "ইউনেস্কো স্বীকৃত জিআই ঐতিহ্যবাহী তাঁত",
+          "en": "UNESCO Intangible Heritage & GI Certified"
+        },
+        "category": "bangladesh",
+        "location": {
+          "bn": "নারায়ণগঞ্জ, শীতলক্ষ্যা পাড়",
+          "en": "Narayanganj, Shitalakshya River"
+        },
+        "colorways": [
+          {
+            "id": "white",
+            "hex": "#F5F0E8",
+            "name": {
+              "bn": "শুভ্র শ্বেত ও সোনালী",
+              "en": "Shweto White & Gold"
+            },
+            "image": "/images/colorways/jamdani_white.jpg",
+            "price": {
+              "bn": "৳ ৯,৫০০",
+              "en": "৳ 9,500"
+            }
+          },
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "লাল ঢাকাই জামদানি",
+              "en": "Crimson Red Jamdani"
+            },
+            "image": "/images/colorways/jamdani_red.jpg",
+            "price": {
+              "bn": "৳ ৯,৮০০",
+              "en": "৳ 9,800"
+            }
+          },
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "পান্না সবুজ জামদানি",
+              "en": "Emerald Green Jamdani"
+            },
+            "image": "/images/colorways/jamdani_green.jpg",
+            "price": {
+              "bn": "৳ ৯,২০০",
+              "en": "৳ 9,200"
+            }
+          },
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "হলুদ জাফরান জামদানি",
+              "en": "Haldi Saffron Jamdani"
+            },
+            "image": "/images/colorways/jamdani_yellow.jpg",
+            "price": {
+              "bn": "৳ ৮,৮০০",
+              "en": "৳ 8,800"
+            }
+          },
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "মেঘদূত নীল জামদানি",
+              "en": "Meghdoot Blue Jamdani"
+            },
+            "image": "/images/colorways/jamdani_blue.jpg",
+            "price": {
+              "bn": "৳ ৯,৪০০",
+              "en": "৳ 9,400"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "গোলাপি নূর জামদানি",
+              "en": "Gulabi Rose Jamdani"
+            },
+            "image": "/images/colorways/jamdani_pink.jpg",
+            "price": {
+              "bn": "৳ ৯,৬০০",
+              "en": "৳ 9,600"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "রয়েল জামুনি জামদানি",
+              "en": "Royal Jamuni Jamdani"
+            },
+            "image": "/images/colorways/jamdani_purple.jpg",
+            "price": {
+              "bn": "৳ ৯,৯০০",
+              "en": "৳ 9,900"
+            }
+          }
+        ],
+        "description": {
+          "bn": "ঐতিহাসিক শীতলক্ষ্যার বাতাসে বোনা স্নিগ্ধ সুতো ও সূক্ষ্ম জ্যামিতিক নকশায় মাস্টার তাঁতিদের হাতে বোনা অনন্য শিল্পকর্ম।",
+          "en": "Hand-spun translucent cotton-silk with supplementary geometric butidar motifs woven by master generational karigars."
+        },
+        "primaryImage": "/images/colorways/jamdani_white.jpg"
+      },
+      {
+        "id": "rajshahi",
+        "name": {
+          "bn": "রাজশাহী রেশম সিল্ক",
+          "en": "Rajshahi Mulberry Silk"
+        },
+        "weave": {
+          "bn": "খাঁটি রেশম তুত সিল্ক ও মটকা বুনন",
+          "en": "Pure Mulberry & Hand-Reeled Silk"
+        },
+        "category": "bangladesh",
+        "location": {
+          "bn": "রাজশাহী, বাংলাদেশ",
+          "en": "Rajshahi, Bangladesh"
+        },
+        "colorways": [
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "মিডনাইট নীল রেশম সিল্ক",
+              "en": "Midnight Sapphire Silk"
+            },
+            "image": "/images/colorways/rajshahi_blue.jpg",
+            "price": {
+              "bn": "৳ ৮,৪০০",
+              "en": "৳ 8,400"
+            }
+          },
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "লাল রাজশাহী সিল্ক",
+              "en": "Bridal Red Rajshahi"
+            },
+            "image": "/images/colorways/rajshahi_red.jpg",
+            "price": {
+              "bn": "৳ ৮,৬০০",
+              "en": "৳ 8,600"
+            }
+          },
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "ময়ূরকণ্ঠী সবুজ সিল্ক",
+              "en": "Peacock Emerald Rajshahi"
+            },
+            "image": "/images/colorways/rajshahi_green.jpg",
+            "price": {
+              "bn": "৳ ৮,২০০",
+              "en": "৳ 8,200"
+            }
+          },
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "সোনালী হলুদ সিল্ক",
+              "en": "Golden Mustard Silk"
+            },
+            "image": "/images/colorways/rajshahi_yellow.jpg",
+            "price": {
+              "bn": "৳ ৭,৯০০",
+              "en": "৳ 7,900"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "গোলাপি রেশম সিল্ক",
+              "en": "Damascus Rose Silk"
+            },
+            "image": "/images/colorways/rajshahi_pink.jpg",
+            "price": {
+              "bn": "৳ ৮,৩০০",
+              "en": "৳ 8,300"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "জামুনি বেগুনি সিল্ক",
+              "en": "Royal Jamuni Silk"
+            },
+            "image": "/images/colorways/rajshahi_purple.jpg",
+            "price": {
+              "bn": "৳ ৮,৫০০",
+              "en": "৳ 8,500"
+            }
+          }
+        ],
+        "description": {
+          "bn": "বাংলার ঐতিহাসিক রেশম নগরী রাজশাহীর খাঁটি তুত সিল্ক, যা অত্যন্ত মোলায়েম, জমকালো এবং রাজকীয়ভাবে মানানসই।",
+          "en": "Known as the Silk City of Bengal, producing lightweight luxury mulberry drapes with natural luster and regal fall."
+        },
+        "primaryImage": "/images/colorways/rajshahi_blue.jpg"
+      },
+      {
+        "id": "mirpur-katan",
+        "name": {
+          "bn": "মিরপুর ব্রাইডাল কাতান",
+          "en": "Mirpur Bridal Katan"
+        },
+        "weave": {
+          "bn": "খাঁটি জরি ও ব্রাইডাল কাতান ব্রোকেড",
+          "en": "Bridal Zari & Pure Kadwa Brocade"
+        },
+        "category": "bangladesh",
+        "location": {
+          "bn": "বেনারসি পল্লী, মিরপুর, ঢাকা",
+          "en": "Benarasi Polli, Mirpur, Dhaka"
+        },
+        "colorways": [
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "মহারানী বিয়ের লাল কাতান",
+              "en": "Maharani Bridal Red"
+            },
+            "image": "/images/colorways/mirpur_red.jpg",
+            "price": {
+              "bn": "৳ ১২,৫০০",
+              "en": "৳ 12,500"
+            }
+          },
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "পান্না সবুজ ব্রোকেড কাতান",
+              "en": "Emerald Brocade Katan"
+            },
+            "image": "/images/colorways/mirpur_green.jpg",
+            "price": {
+              "bn": "৳ ১১,৮০০",
+              "en": "৳ 11,800"
+            }
+          },
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "হলুদ সন্ধ্যা ব্রাইডাল কাতান",
+              "en": "Haldi Shondhya Katan"
+            },
+            "image": "/images/colorways/mirpur_yellow.jpg",
+            "price": {
+              "bn": "৳ ১০,৯০০",
+              "en": "৳ 10,900"
+            }
+          },
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "রয়েল ব্লু কাতান",
+              "en": "Royal Sapphire Katan"
+            },
+            "image": "/images/colorways/mirpur_blue.jpg",
+            "price": {
+              "bn": "৳ ১২,২০০",
+              "en": "৳ 12,200"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "রানী ম্যাজেন্টা গোলাপি কাতান",
+              "en": "Rani Magenta Katan"
+            },
+            "image": "/images/colorways/mirpur_pink.jpg",
+            "price": {
+              "bn": "৳ ১১,৫০০",
+              "en": "৳ 11,500"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "গাঢ় জামুনি জরি কাতান",
+              "en": "Deep Jamuni Katan"
+            },
+            "image": "/images/colorways/mirpur_purple.jpg",
+            "price": {
+              "bn": "৳ ১২,৮০০",
+              "en": "৳ 12,800"
+            }
+          }
+        ],
+        "description": {
+          "bn": "বাঙালি কনের বিয়ের মূল আকর্ষণ — খাঁটি সিল্কের জমিনে ঘন জরির কারুকাজ ও রাজকীয় পাড়ের অনন্য বুনন।",
+          "en": "The undisputed centerpiece of Bengali bridal trousseau, woven with hand-twisted silk and lustrous gold metallic zari."
+        },
+        "primaryImage": "/images/colorways/mirpur_red.jpg"
+      },
+      {
+        "id": "tangail",
+        "name": {
+          "bn": "টাঙ্গাইল তাঁত সিল্ক",
+          "en": "Tangail Silk Taant"
+        },
+        "weave": {
+          "bn": "হ্যান্ডলুম সূক্ষ্ম কটন-সিল্ক তাঁত",
+          "en": "Fine Cotton-Silk Handloom Weave"
+        },
+        "category": "bangladesh",
+        "location": {
+          "bn": "টাঙ্গাইল, বাংলাদেশ",
+          "en": "Tangail, Bangladesh"
+        },
+        "colorways": [
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "বাসন্তী হলুদ টাঙ্গাইল তাঁত",
+              "en": "Basanti Haldi Taant"
+            },
+            "image": "/images/colorways/tangail_yellow.jpg",
+            "price": {
+              "bn": "৳ ৪,৫০০",
+              "en": "৳ 4,500"
+            }
+          },
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "রক্তলাল পাড় টাঙ্গাইল তাঁত",
+              "en": "Crimson Border Taant"
+            },
+            "image": "/images/colorways/tangail_red.jpg",
+            "price": {
+              "bn": "৳ ৪,৮০০",
+              "en": "৳ 4,800"
+            }
+          },
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "পাতাসবুজ স্নিগ্ধ তাঁত",
+              "en": "Pata Shobuj Taant"
+            },
+            "image": "/images/colorways/tangail_green.jpg",
+            "price": {
+              "bn": "৳ ৪,২০০",
+              "en": "৳ 4,200"
+            }
+          },
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "আকাশি নীল তাঁত",
+              "en": "Aakashi Blue Taant"
+            },
+            "image": "/images/colorways/tangail_blue.jpg",
+            "price": {
+              "bn": "৳ ৪,৪০০",
+              "en": "৳ 4,400"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "গোলাপি আভা তাঁত",
+              "en": "Golapi Noor Taant"
+            },
+            "image": "/images/colorways/tangail_pink.jpg",
+            "price": {
+              "bn": "৳ ৪,৬০০",
+              "en": "৳ 4,600"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "বেগুনি জমিন তাঁত",
+              "en": "Baiguni Sheer Taant"
+            },
+            "image": "/images/colorways/tangail_purple.jpg",
+            "price": {
+              "bn": "৳ ৪,৭০০",
+              "en": "৳ 4,700"
+            }
+          }
+        ],
+        "description": {
+          "bn": "হালকা আরামদায়ক বুনন, মনোমুগ্ধকর ফুল-লতার পাড় ও অনন্য আভিজাত্যের ঐতিহ্যবাহী টাঙ্গাইল তাঁত।",
+          "en": "Celebrated for centuries for its featherweight comfort, ornate floral borders, and soft fluid drape."
+        },
+        "primaryImage": "/images/colorways/tangail_yellow.jpg"
+      },
+      {
+        "id": "banaras",
+        "name": {
+          "bn": "কাশি বেনারসি সিল্ক",
+          "en": "Kashi Banarasi Silk"
+        },
+        "weave": {
+          "bn": "খাঁটি কাড়োয়া সিল্ক ও ২৪ ক্যারেট গোল্ড জরি",
+          "en": "Kadwa Pure Silk & 24k Gold Zari"
+        },
+        "category": "indian",
+        "location": {
+          "bn": "বারাণসী স্টুডিও",
+          "en": "Varanasi Atelier"
+        },
+        "colorways": [
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "ইম্পেরিয়াল লাল কাড়োয়া",
+              "en": "Imperial Red Kadwa"
+            },
+            "image": "/images/colorways/banaras_red.jpg",
+            "price": {
+              "bn": "৳ ১৪,৫০০",
+              "en": "৳ 14,500"
+            }
+          },
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "সবুজ ব্রোকেড কাড়োয়া",
+              "en": "Emerald Brocade Kadwa"
+            },
+            "image": "/images/colorways/banaras_green.jpg",
+            "price": {
+              "bn": "৳ ১৩,৮০০",
+              "en": "৳ 13,800"
+            }
+          },
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "জাফরান গোল্ড কাড়োয়া",
+              "en": "Saffron Gold Kadwa"
+            },
+            "image": "/images/colorways/banaras_yellow.jpg",
+            "price": {
+              "bn": "৳ ১২,৯০০",
+              "en": "৳ 12,900"
+            }
+          },
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "মিডনাইট কাশি সিল্ক",
+              "en": "Midnight Kashi Silk"
+            },
+            "image": "/images/colorways/banaras_blue.jpg",
+            "price": {
+              "bn": "৳ ১৪,২০০",
+              "en": "৳ 14,200"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "গোলাপি জারদৌসি সিল্ক",
+              "en": "Gulabi Zardozi Silk"
+            },
+            "image": "/images/colorways/banaras_pink.jpg",
+            "price": {
+              "bn": "৳ ১৩,৫০০",
+              "en": "৳ 13,500"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "রয়েল জামুনি কাড়োয়া",
+              "en": "Royal Jamuni Kadwa"
+            },
+            "image": "/images/colorways/banaras_purple.jpg",
+            "price": {
+              "bn": "৳ ১৪,৮০০",
+              "en": "৳ 14,800"
+            }
+          }
+        ],
+        "description": {
+          "bn": "ঐতিহাসিক জ্যাকার্ড তাঁতে খাঁটি রেশম ও স্বর্ণের তারের কারুকাজে বোনা রাজকীয় বেনারসি।",
+          "en": "Woven on ancient jacquard looms with hand-twisted mulberry silk and pure gold filigree."
+        },
+        "primaryImage": "/images/colorways/banaras_red.jpg"
+      },
+      {
+        "id": "kanchipuram",
+        "name": {
+          "bn": "কাঞ্জিভরম টেম্পল টুইল",
+          "en": "Kanchipuram Temple Twill"
+        },
+        "weave": {
+          "bn": "করভাই মন্দির নকশার খাঁটি জারি বুনন",
+          "en": "Korvai Interlocked Temple Borders"
+        },
+        "category": "indian",
+        "location": {
+          "bn": "তামিলনাড়ু মাস্টার তাঁতি",
+          "en": "Tamil Nadu Master Weavers"
+        },
+        "colorways": [
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "ময়ূরকণ্ঠী সবুজ করভাই",
+              "en": "Peacock Emerald Korvai"
+            },
+            "image": "/images/colorways/kanchipuram_green.jpg",
+            "price": {
+              "bn": "৳ ১৬,৫০০",
+              "en": "৳ 16,500"
+            }
+          },
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "টেম্পল লাল কাঞ্জিভরম",
+              "en": "Temple Red Kanjivaram"
+            },
+            "image": "/images/colorways/kanchipuram_red.jpg",
+            "price": {
+              "bn": "৳ ১৭,২০০",
+              "en": "৳ 17,200"
+            }
+          },
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "হলুদ আম্বর কাঞ্জিভরম",
+              "en": "Haldi Amber Kanjivaram"
+            },
+            "image": "/images/colorways/kanchipuram_yellow.jpg",
+            "price": {
+              "bn": "৳ ১৫,৫০০",
+              "en": "৳ 15,500"
+            }
+          },
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "নীলমণি নীল করভাই",
+              "en": "Sapphire Indigo Korvai"
+            },
+            "image": "/images/colorways/kanchipuram_blue.jpg",
+            "price": {
+              "bn": "৳ ১৫,৯০০",
+              "en": "৳ 15,900"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "পদ্ম রানী গোলাপি",
+              "en": "Lotus Rani Pink"
+            },
+            "image": "/images/colorways/kanchipuram_pink.jpg",
+            "price": {
+              "bn": "৳ ১৬,২০০",
+              "en": "৳ 16,200"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "জামুনি মন্দির জারি সিল্ক",
+              "en": "Jamuni Temple Zari"
+            },
+            "image": "/images/colorways/kanchipuram_purple.jpg",
+            "price": {
+              "bn": "৳ ১৬,৮০০",
+              "en": "৳ 16,800"
+            }
+          }
+        ],
+        "description": {
+          "bn": "পবিত্র মন্দির স্থাপত্যের অনুপ্রেরণায় বোনা গাঢ় রঙের জমিন ও দীর্ঘস্থায়ী ঐতিহ্যের প্রতীক।",
+          "en": "Interlocked warp and weft creating vibrant jewel tones and sacred temple architectural motifs."
+        },
+        "primaryImage": "/images/colorways/kanchipuram_green.jpg"
+      },
+      {
+        "id": "chanderi",
+        "name": {
+          "bn": "চান্দেরি শিয়ার টিস্যু",
+          "en": "Chanderi Sheer Tissue"
+        },
+        "weave": {
+          "bn": "অতি-হালকা স্বচ্ছ সিল্ক টিস্যু",
+          "en": "Featherweight Sheer Tissue"
+        },
+        "category": "indian",
+        "location": {
+          "bn": "মধ্যপ্রদেশ",
+          "en": "Madhya Pradesh"
+        },
+        "colorways": [
+          {
+            "id": "yellow",
+            "hex": "#D49B28",
+            "name": {
+              "bn": "সোনালী আম্বর টিস্যু",
+              "en": "Golden Amber Tissue"
+            },
+            "image": "/images/colorways/chanderi_yellow.jpg",
+            "price": {
+              "bn": "৳ ৭,৫০০",
+              "en": "৳ 7,500"
+            }
+          },
+          {
+            "id": "red",
+            "hex": "#8B1E28",
+            "name": {
+              "bn": "রুবি লাল টিস্যু",
+              "en": "Ruby Red Tissue"
+            },
+            "image": "/images/colorways/chanderi_red.jpg",
+            "price": {
+              "bn": "৳ ৭,৯০০",
+              "en": "৳ 7,900"
+            }
+          },
+          {
+            "id": "green",
+            "hex": "#1F4E3B",
+            "name": {
+              "bn": "পান্না সবুজ চান্দেরি",
+              "en": "Emerald Sheer Chanderi"
+            },
+            "image": "/images/colorways/chanderi_green.jpg",
+            "price": {
+              "bn": "৳ ৭,২০০",
+              "en": "৳ 7,200"
+            }
+          },
+          {
+            "id": "blue",
+            "hex": "#1B3B6F",
+            "name": {
+              "bn": "নীল কুয়াশা টিস্যু",
+              "en": "Sapphire Mist Tissue"
+            },
+            "image": "/images/colorways/chanderi_blue.jpg",
+            "price": {
+              "bn": "৳ ৭,৪০০",
+              "en": "৳ 7,400"
+            }
+          },
+          {
+            "id": "pink",
+            "hex": "#C95B7E",
+            "name": {
+              "bn": "গোলাপ শিয়ার টিস্যু",
+              "en": "Damascus Rose Sheer"
+            },
+            "image": "/images/colorways/chanderi_pink.jpg",
+            "price": {
+              "bn": "৳ ৭,৮০০",
+              "en": "৳ 7,800"
+            }
+          },
+          {
+            "id": "purple",
+            "hex": "#5B2C6F",
+            "name": {
+              "bn": "রয়েল জামুনি টিস্যু",
+              "en": "Royal Jamuni Tissue"
+            },
+            "image": "/images/colorways/chanderi_purple.jpg",
+            "price": {
+              "bn": "৳ ৮,১০০",
+              "en": "৳ 8,100"
+            }
+          }
+        ],
+        "description": {
+          "bn": "স্বচ্ছ স্নিগ্ধ কাপড়ে সূক্ষ্ম জরি বুটির সমাহার, পার্টি ও সন্ধ্যার অনুষ্ঠানের জন্য অনবদ্য।",
+          "en": "Delicate transparency woven from finest cotton-silk blends with miniature floral butis."
+        },
+        "primaryImage": "/images/colorways/chanderi_yellow.jpg"
+      }
+    ],
+    "subtitle": {
+      "bn": "বাংলাদেশ ও উপমহাদেশের শতাব্দী প্রাচীন তাঁতশিল্পের সংরক্ষণ।",
+      "en": "Preserving generational craft traditions across Bangladesh & the subcontinent."
     }
   },
   "lifestyleSection": {
     "pill": {
-      "en": "Curated Lifestyle Atelier",
-      "bn": "অভিজাত অনুষঙ্গ ও সম্ভার"
-    },
-    "heading": {
-      "en": "Royal Adornments & Heritage Accents",
-      "bn": "ঐতিহ্যের রাজকীয় সাজ ও অনুপম অনুষঙ্গ"
-    },
-    "subtitle": {
-      "en": "Beyond drapes — meticulously handcrafted jewelry, bridal potlis, unstitched silks, and pure pashminas designed for timeless poise.",
-      "bn": "শাড়ির বাইরেও নারীর রূপ ও আভিজাত্যের পূর্ণতায়—হস্তনির্মিত কুন্দন গয়না, ভেলভেট বটুয়া, রেশমি আনস্টিচড ৩-পিস ও খাঁটি কাশ্মীরি শাল।"
+      "bn": "অভিজাত অনুষঙ্গ ও সম্ভার",
+      "en": "Curated Lifestyle Atelier"
     },
     "ctaText": {
-      "en": "Inquire & Order via WhatsApp",
-      "bn": "হোয়াটসঅ্যাপে অর্ডার ও পরামর্শ"
+      "bn": "হোয়াটসঅ্যাপে অর্ডার ও পরামর্শ",
+      "en": "Inquire & Order via WhatsApp"
+    },
+    "heading": {
+      "bn": "ঐতিহ্যের রাজকীয় সাজ ও অনুপম অনুষঙ্গ",
+      "en": "Royal Adornments & Heritage Accents"
+    },
+    "subtitle": {
+      "bn": "শাড়ির বাইরেও নারীর রূপ ও আভিজাত্যের পূর্ণতায়—হস্তনির্মিত কুন্দন গয়না, ভেলভেট বটুয়া, রেশমি আনস্টিচড ৩-পিস ও খাঁটি কাশ্মীরি শাল।",
+      "en": "Beyond drapes — meticulously handcrafted jewelry, bridal potlis, unstitched silks, and pure pashminas designed for timeless poise."
     },
     "categories": [
       {
         "id": "jewelry",
-        "slug": "heritage-jewelry",
         "name": {
-          "en": "Heritage Jewelry",
-          "bn": "অভিজাত গয়না"
+          "bn": "অভিজাত গয়না",
+          "en": "Heritage Jewelry"
         },
-        "tagline": {
-          "en": "Mughal Jadau & Polki Heirlooms",
-          "bn": "মোগল জাদাউ ও পোলকি কারুকাজ"
-        },
-        "description": {
-          "en": "Artisanal Kundan, Polki, and antique gold filigree crafted without compromise.",
-          "bn": "খাঁটি সোনার পাতে বাঁধানো কুন্দন, অ্যান্টিক পোলকি ও সুনিপুণ মীনা কারুকাজ。"
-        },
+        "slug": "heritage-jewelry",
         "badge": {
-          "en": "Zero Fitting Risk • High Heirloom Value",
-          "bn": "১০০% খাঁটি হস্তশিল্প • ব্রাইডাল স্পেশাল"
+          "bn": "১০০% খাঁটি হস্তশিল্প • ব্রাইডাল স্পেশাল",
+          "en": "Zero Fitting Risk • High Heirloom Value"
         },
-        "coverImage": "/images/lifestyle/jewelry_cover.jpg",
         "items": [
           {
             "id": "jewel-1",
+            "tag": {
+              "bn": "ব্রাইডাল সেট",
+              "en": "Bridal Set"
+            },
             "name": {
-              "en": "Royal Jadau Kundan Choker Set",
-              "bn": "রাজকীয় কুন্দন চোকার ও কানপাশা"
+              "bn": "রাজকীয় কুন্দন চোকার ও কানপাশা",
+              "en": "Royal Jadau Kundan Choker Set"
             },
             "craft": {
-              "en": "Handcrafted 24k Gold Foil Jadau with Natural Pearls",
-              "bn": "খাঁটি মীনা ও সোনার পাতে বাঁধানো কুন্দন"
-            },
-            "price": {
-              "en": "৳ 8,500",
-              "bn": "৳ ৮,৫০০"
+              "bn": "খাঁটি মীনা ও সোনার পাতে বাঁধানো কুন্দন",
+              "en": "Handcrafted 24k Gold Foil Jadau with Natural Pearls"
             },
             "image": "/images/lifestyle/jewel_kundan_choker.jpg",
-            "tag": {
-              "en": "Bridal Set",
-              "bn": "ব্রাইডাল সেট"
+            "price": {
+              "bn": "৳ ৮,৫০০",
+              "en": "৳ 8,500"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "jewel-2",
+            "tag": {
+              "bn": "হস্তনির্মিত",
+              "en": "Handcrafted"
+            },
             "name": {
-              "en": "Imperial Chandbali & Polki Jhumka",
-              "bn": "অ্যান্টিক পোলকি ও চাঁদবালি ঝুমকা"
+              "bn": "অ্যান্টিক পোলকি ও চাঁদবালি ঝুমকা",
+              "en": "Imperial Chandbali & Polki Jhumka"
             },
             "craft": {
-              "en": "Rajputana Filigree with Clustered Freshwater Pearls",
-              "bn": "হস্তনির্মিত রাজস্থানি পোলকি ও মুক্তা"
-            },
-            "price": {
-              "en": "৳ 4,200",
-              "bn": "৳ ৪,২০০"
+              "bn": "হস্তনির্মিত রাজস্থানি পোলকি ও মুক্তা",
+              "en": "Rajputana Filigree with Clustered Freshwater Pearls"
             },
             "image": "/images/lifestyle/jewel_chandbali_jhumka.jpg",
-            "tag": {
-              "en": "Handcrafted",
-              "bn": "হস্তনির্মিত"
+            "price": {
+              "bn": "৳ ৪,২০০",
+              "en": "৳ 4,200"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "jewel-3",
+            "tag": {
+              "bn": "হেরিটেজ গোল্ড",
+              "en": "Heritage Gold"
+            },
             "name": {
-              "en": "Meenakari Jadau Bangles Pair",
-              "bn": "মীনা কারি জাদাউ বালা জোড়া"
+              "bn": "মীনা কারি জাদাউ বালা জোড়া",
+              "en": "Meenakari Jadau Bangles Pair"
             },
             "craft": {
-              "en": "Traditional Red & Emerald Green Cloisonné Enamel",
-              "bn": "এথনিক লাল ও সবুজ মীনা কারুকাজ"
-            },
-            "price": {
-              "en": "৳ 5,500",
-              "bn": "৳ ৫,৫০০"
+              "bn": "এথনিক লাল ও সবুজ মীনা কারুকাজ",
+              "en": "Traditional Red & Emerald Green Cloisonné Enamel"
             },
             "image": "/images/lifestyle/jewel_meenakari_bangles.jpg",
-            "tag": {
-              "en": "Heritage Gold",
-              "bn": "হেরিটেজ গোল্ড"
+            "price": {
+              "bn": "৳ ৫,৫০০",
+              "en": "৳ 5,500"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "jewel-4",
+            "tag": {
+              "bn": "মাস্টারপিস",
+              "en": "Masterpiece"
+            },
             "name": {
-              "en": "Mughal Royal Chandrahaar & Pendant",
-              "bn": "মোগল চন্দ্রহার ও সীতাহার"
+              "bn": "মোগল চন্দ্রহার ও সীতাহার",
+              "en": "Mughal Royal Chandrahaar & Pendant"
             },
             "craft": {
-              "en": "Eight-Metal Layered Filigree with Ruby Gemstone",
-              "bn": "অষ্টধাতুর সূক্ষ্ম তারের ফিলগ্রি নকশা"
-            },
-            "price": {
-              "en": "৳ 12,500",
-              "bn": "৳ ১২,৫০০"
+              "bn": "অষ্টধাতুর সূক্ষ্ম তারের ফিলগ্রি নকশা",
+              "en": "Eight-Metal Layered Filigree with Ruby Gemstone"
             },
             "image": "/images/lifestyle/jewel_chandrahaar_pendant.jpg",
-            "tag": {
-              "en": "Masterpiece",
-              "bn": "মাস্টারপিস"
+            "price": {
+              "bn": "৳ ১২,৫০০",
+              "en": "৳ 12,500"
             },
             "inStock": true,
             "featured": false
           }
-        ]
+        ],
+        "tagline": {
+          "bn": "মোগল জাদাউ ও পোলকি কারুকাজ",
+          "en": "Mughal Jadau & Polki Heirlooms"
+        },
+        "coverImage": "/images/lifestyle/jewelry_cover.jpg",
+        "description": {
+          "bn": "খাঁটি সোনার পাতে বাঁধানো কুন্দন, অ্যান্টিক পোলকি ও সুনিপুণ মীনা কারুকাজ。",
+          "en": "Artisanal Kundan, Polki, and antique gold filigree crafted without compromise."
+        }
       },
       {
         "id": "clutches",
-        "slug": "royal-clutches",
         "name": {
-          "en": "Royal Clutches & Potlis",
-          "bn": "রয়েল বটুয়া ও ক্লাচ"
+          "bn": "রয়েল বটুয়া ও ক্লাচ",
+          "en": "Royal Clutches & Potlis"
         },
-        "tagline": {
-          "en": "Zardozi Velvet & Hand-Gilded Bags",
-          "bn": "জারদৌসি ভেলভেট ও ধাতব কারুকাজ"
-        },
-        "description": {
-          "en": "Opulent evening clutches and bridal potli bags designed to complement your drapes.",
-          "bn": "শাড়ির আভিজাত্যের সাথে মানানসই জারদৌসি কারুকাজ ও মোতি গাঁথা বটুয়া ব্যাগ।"
-        },
+        "slug": "royal-clutches",
         "badge": {
-          "en": "Zero Size Risk • Perfect Gifting",
-          "bn": "সাইজ-মুক্ত • বিয়ের নিখুঁত উপহার"
+          "bn": "সাইজ-মুক্ত • বিয়ের নিখুঁত উপহার",
+          "en": "Zero Size Risk • Perfect Gifting"
         },
-        "coverImage": "/images/lifestyle/clutches_cover.jpg",
         "items": [
           {
             "id": "potli-1",
+            "tag": {
+              "bn": "বেস্ট সেলার",
+              "en": "Best Seller"
+            },
             "name": {
-              "en": "Royal Zardozi Velvet Potli",
-              "bn": "জারদৌসি ভেলভেট ব্রাইডাল বটুয়া"
+              "bn": "জারদৌসি ভেলভেট ব্রাইডাল বটুয়া",
+              "en": "Royal Zardozi Velvet Potli"
             },
             "craft": {
-              "en": "Heavy Dabka, Sequin & Gold Wire Hand Embroidery",
-              "bn": "খাঁটি ডাবল জরি ও সিকোয়েন্স কাজ"
-            },
-            "price": {
-              "en": "৳ 2,800",
-              "bn": "৳ ২,৮০০"
+              "bn": "খাঁটি ডাবল জরি ও সিকোয়েন্স কাজ",
+              "en": "Heavy Dabka, Sequin & Gold Wire Hand Embroidery"
             },
             "image": "/images/lifestyle/potli_zardozi_velvet.jpg",
-            "tag": {
-              "en": "Best Seller",
-              "bn": "বেস্ট সেলার"
+            "price": {
+              "bn": "৳ ২,৮০০",
+              "en": "৳ 2,800"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "potli-2",
+            "tag": {
+              "bn": "এক্সক্লুসিভ",
+              "en": "Exclusive"
+            },
             "name": {
-              "en": "Pearl Handcrafted Minaudière Box Clutch",
-              "bn": "মুক্তার ব্রাইডাল বক্স ক্লাচ"
+              "bn": "মুক্তার ব্রাইডাল বক্স ক্লাচ",
+              "en": "Pearl Handcrafted Minaudière Box Clutch"
             },
             "craft": {
-              "en": "Intricate Pearl Beads on Antique Brass Frame",
-              "bn": "হাতে গাঁথা পার্ল ও গোল্ডেন ব্রাস ফ্রেম"
-            },
-            "price": {
-              "en": "৳ 3,600",
-              "bn": "৳ ৩,৬০০"
+              "bn": "হাতে গাঁথা পার্ল ও গোল্ডেন ব্রাস ফ্রেম",
+              "en": "Intricate Pearl Beads on Antique Brass Frame"
             },
             "image": "/images/lifestyle/clutch_pearl_minaudiere.jpg",
-            "tag": {
-              "en": "Exclusive",
-              "bn": "এক্সক্লুসিভ"
+            "price": {
+              "bn": "৳ ৩,৬০০",
+              "en": "৳ 3,600"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "potli-3",
+            "tag": {
+              "bn": "পার্টি এডিশন",
+              "en": "Party Edition"
+            },
             "name": {
-              "en": "Banarasi Weave Envelope Silk Clutch",
-              "bn": "রেশমি বেনারসি সিল্ক ক্লাচ"
+              "bn": "রেশমি বেনারসি সিল্ক ক্লাচ",
+              "en": "Banarasi Weave Envelope Silk Clutch"
             },
             "craft": {
-              "en": "Pure Kashi Brocade Silk with Magnetic Lock",
-              "bn": "অ্যান্টিক গোল্ড মেটাল লক ও বেনারসি উইভ"
-            },
-            "price": {
-              "en": "৳ 2,400",
-              "bn": "৳ ২,৪০০"
+              "bn": "অ্যান্টিক গোল্ড মেটাল লক ও বেনারসি উইভ",
+              "en": "Pure Kashi Brocade Silk with Magnetic Lock"
             },
             "image": "/images/lifestyle/clutch_banarasi_envelope.jpg",
-            "tag": {
-              "en": "Party Edition",
-              "bn": "পার্টি এডিশন"
+            "price": {
+              "bn": "৳ ২,৪০০",
+              "en": "৳ 2,400"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "potli-4",
+            "tag": {
+              "bn": "সীমিত সংস্করণ",
+              "en": "Limited Craft"
+            },
             "name": {
-              "en": "Mughal Antique Beaded Potli",
-              "bn": "মোগল মোটিফ অ্যান্টিক বটুয়া"
+              "bn": "মোগল মোটিফ অ্যান্টিক বটুয়া",
+              "en": "Mughal Antique Beaded Potli"
             },
             "craft": {
-              "en": "Handmade Silk Tassels with Glass Bead Embroidery",
-              "bn": "হ্যান্ডমেড ট্যাসেল ও গ্লাস বিডস কাজ"
-            },
-            "price": {
-              "en": "৳ 3,200",
-              "bn": "৳ ৩,২০০"
+              "bn": "হ্যান্ডমেড ট্যাসেল ও গ্লাস বিডস কাজ",
+              "en": "Handmade Silk Tassels with Glass Bead Embroidery"
             },
             "image": "/images/lifestyle/potli_mughal_antique.jpg",
-            "tag": {
-              "en": "Limited Craft",
-              "bn": "সীমিত সংস্করণ"
+            "price": {
+              "bn": "৳ ৩,২০০",
+              "en": "৳ 3,200"
             },
             "inStock": true,
             "featured": false
           }
-        ]
+        ],
+        "tagline": {
+          "bn": "জারদৌসি ভেলভেট ও ধাতব কারুকাজ",
+          "en": "Zardozi Velvet & Hand-Gilded Bags"
+        },
+        "coverImage": "/images/lifestyle/clutches_cover.jpg",
+        "description": {
+          "bn": "শাড়ির আভিজাত্যের সাথে মানানসই জারদৌসি কারুকাজ ও মোতি গাঁথা বটুয়া ব্যাগ।",
+          "en": "Opulent evening clutches and bridal potli bags designed to complement your drapes."
+        }
       },
       {
         "id": "unstitched",
-        "slug": "unstitched-suits",
         "name": {
-          "en": "Luxury Unstitched Suits",
-          "bn": "লাক্সারি আনস্টিচড ৩-পিস"
+          "bn": "লাক্সারি আনস্টিচড ৩-পিস",
+          "en": "Luxury Unstitched Suits"
         },
-        "tagline": {
-          "en": "Boutique Organza, Jamdani & Silk Ensembles",
-          "bn": "অরগানজা, জামদানি ও সিল্কের ৩-পিস"
-        },
-        "description": {
-          "en": "Tailor-free luxury: pristine fabrics you customize to your exact proportions.",
-          "bn": "সাইজের ঝামেলামুক্ত খাঁটি ফেব্রিক — আপনার নিজের মাপে আরামদায়কভাবে বানিয়ে নিন।"
-        },
+        "slug": "unstitched-suits",
         "badge": {
-          "en": "Zero Fitting Return Risk",
-          "bn": "১০০% খাঁটি ফেব্রিক • জিরো রিটার্ন রিস্ক"
+          "bn": "১০০% খাঁটি ফেব্রিক • জিরো রিটার্ন রিস্ক",
+          "en": "Zero Fitting Return Risk"
         },
-        "coverImage": "/images/lifestyle/suits_cover.jpg",
         "items": [
           {
             "id": "suit-1",
+            "tag": {
+              "bn": "১০০% হ্যান্ডলুম",
+              "en": "100% Handloom"
+            },
             "name": {
-              "en": "Heritage Jamdani Weave Unstitched 3-Piece",
-              "bn": "ঐতিহ্যবাহী জামদানি আনস্টিচড ৩-পিস"
+              "bn": "ঐতিহ্যবাহী জামদানি আনস্টিচড ৩-পিস",
+              "en": "Heritage Jamdani Weave Unstitched 3-Piece"
             },
             "craft": {
-              "en": "Handloom Jamdani Dupatta with Egyptian Cotton Kameez",
-              "bn": "হাতে বোনা জামদানি ওড়না ও ফাইন কটন কামিজ"
-            },
-            "price": {
-              "en": "৳ 6,500",
-              "bn": "৳ ৬,৫০০"
+              "bn": "হাতে বোনা জামদানি ওড়না ও ফাইন কটন কামিজ",
+              "en": "Handloom Jamdani Dupatta with Egyptian Cotton Kameez"
             },
             "image": "/images/lifestyle/suit_jamdani_cotton.jpg",
-            "tag": {
-              "en": "100% Handloom",
-              "bn": "১০০% হ্যান্ডলুম"
+            "price": {
+              "bn": "৳ ৬,৫০০",
+              "en": "৳ 6,500"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "suit-2",
+            "tag": {
+              "bn": "উৎসবে অনন্য",
+              "en": "Festive Edit"
+            },
             "name": {
-              "en": "Pure Organza Resham Embroidered Suit",
-              "bn": "পিওর অরগানজা রেশম এমব্রয়ডারি ৩-পিস"
+              "bn": "পিওর অরগানজা রেশম এমব্রয়ডারি ৩-পিস",
+              "en": "Pure Organza Resham Embroidered Suit"
             },
             "craft": {
-              "en": "Scalloped Cutwork Dupatta with Pure Cotton Satin Pants",
-              "bn": "কাটওয়ার্ক ওড়না ও সফট সাটিন কটন বটম"
-            },
-            "price": {
-              "en": "৳ 7,800",
-              "bn": "৳ ৭,৮০০"
+              "bn": "কাটওয়ার্ক ওড়না ও সফট সাটিন কটন বটম",
+              "en": "Scalloped Cutwork Dupatta with Pure Cotton Satin Pants"
             },
             "image": "/images/lifestyle/suit_organza_resham.jpg",
-            "tag": {
-              "en": "Festive Edit",
-              "bn": "উৎসবে অনন্য"
+            "price": {
+              "bn": "৳ ৭,৮০০",
+              "en": "৳ 7,800"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "suit-3",
+            "tag": {
+              "bn": "পিওর সিল্ক",
+              "en": "Pure Silk"
+            },
             "name": {
-              "en": "Tussar Silk Festive 3-Piece Ensemble",
-              "bn": "রেশমি তসর উৎসবধর্মী ৩-পিস"
+              "bn": "রেশমি তসর উৎসবধর্মী ৩-পিস",
+              "en": "Tussar Silk Festive 3-Piece Ensemble"
             },
             "craft": {
-              "en": "Natural Dye Tussar with Woven Zari Borders",
-              "bn": "ন্যাচারাল ডাই তসর ও রিচ জরি পাড়"
-            },
-            "price": {
-              "en": "৳ 8,200",
-              "bn": "৳ ৮,২০০"
+              "bn": "ন্যাচারাল ডাই তসর ও রিচ জরি পাড়",
+              "en": "Natural Dye Tussar with Woven Zari Borders"
             },
             "image": "/images/lifestyle/suit_tussar_silk.jpg",
-            "tag": {
-              "en": "Pure Silk",
-              "bn": "পিওর সিল্ক"
+            "price": {
+              "bn": "৳ ৮,২০০",
+              "en": "৳ 8,200"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "suit-4",
+            "tag": {
+              "bn": "সিগনেচার আর্ট",
+              "en": "Signature Art"
+            },
             "name": {
-              "en": "Lucknowi Chikankari Muslin Suit",
-              "bn": "লখনউই চিকেনকারি মসলিন ৩-পিস"
+              "bn": "লখনউই চিকেনকারি মসলিন ৩-পিস",
+              "en": "Lucknowi Chikankari Muslin Suit"
             },
             "craft": {
-              "en": "Intricate Shadow Work on Superfine Muslin Fabric",
-              "bn": "সূক্ষ্ম হাত সেলাই ও মুকাইশ ওয়ার্ক"
-            },
-            "price": {
-              "en": "৳ 9,500",
-              "bn": "৳ ৯,৫০০"
+              "bn": "সূক্ষ্ম হাত সেলাই ও মুকাইশ ওয়ার্ক",
+              "en": "Intricate Shadow Work on Superfine Muslin Fabric"
             },
             "image": "/images/lifestyle/suit_chikankari_muslin.jpg",
-            "tag": {
-              "en": "Signature Art",
-              "bn": "সিগনেচার আর্ট"
+            "price": {
+              "bn": "৳ ৯,৫০০",
+              "en": "৳ 9,500"
             },
             "inStock": true,
             "featured": false
           }
-        ]
+        ],
+        "tagline": {
+          "bn": "অরগানজা, জামদানি ও সিল্কের ৩-পিস",
+          "en": "Boutique Organza, Jamdani & Silk Ensembles"
+        },
+        "coverImage": "/images/lifestyle/suits_cover.jpg",
+        "description": {
+          "bn": "সাইজের ঝামেলামুক্ত খাঁটি ফেব্রিক — আপনার নিজের মাপে আরামদায়কভাবে বানিয়ে নিন।",
+          "en": "Tailor-free luxury: pristine fabrics you customize to your exact proportions."
+        }
       },
       {
         "id": "shawls",
-        "slug": "pashmina-shawls",
         "name": {
-          "en": "Kashmiri Pashmina & Shawls",
-          "bn": "কাশ্মীরি ও রেশমি শাল"
+          "bn": "কাশ্মীরি ও রেশমি শাল",
+          "en": "Kashmiri Pashmina & Shawls"
         },
-        "tagline": {
-          "en": "Cashmere, Tussar & Velvet Winter Heirlooms",
-          "bn": "খাঁটি পশমিনা, তসর ও ভেলভেট চাদর"
-        },
-        "description": {
-          "en": "Warmth woven with regal history — heirloom wraps for winter galas and weddings.",
-          "bn": "শীতের সন্ধ্যায় রাজকীয় আভিজাত্য—হাতে বোনা খাঁটি পশমিনা ও রেশমি জামেভার চাদর।"
-        },
+        "slug": "pashmina-shawls",
         "badge": {
-          "en": "High AOV • Generational Keepsake",
-          "bn": "শীতকালীন রয়াল কালেকশন • জিরো সাইজ রিস্ক"
+          "bn": "শীতকালীন রয়াল কালেকশন • জিরো সাইজ রিস্ক",
+          "en": "High AOV • Generational Keepsake"
         },
-        "coverImage": "/images/lifestyle/shawls_cover.jpg",
         "items": [
           {
             "id": "shawl-1",
+            "tag": {
+              "bn": "খাঁটি পশমিনা",
+              "en": "Pure Pashmina"
+            },
             "name": {
-              "en": "Authentic Kashmiri Pashmina Kani Shawl",
-              "bn": "খাঁটি কাশ্মীরি পশমিনা কানি শাল"
+              "bn": "খাঁটি কাশ্মীরি পশমিনা কানি শাল",
+              "en": "Authentic Kashmiri Pashmina Kani Shawl"
             },
             "craft": {
-              "en": "100% Changthangi Cashmere with Wooden Needle Kani Weave",
-              "bn": "১০০% খাঁটি কাশ্মির উল ও ঐতিহ্যবাহী কানি কাজ"
-            },
-            "price": {
-              "en": "৳ 14,500",
-              "bn": "৳ ১৪,৫০০"
+              "bn": "১০০% খাঁটি কাশ্মির উল ও ঐতিহ্যবাহী কানি কাজ",
+              "en": "100% Changthangi Cashmere with Wooden Needle Kani Weave"
             },
             "image": "/images/lifestyle/shawl_kashmiri_pashmina.jpg",
-            "tag": {
-              "en": "Pure Pashmina",
-              "bn": "খাঁটি পশমিনা"
+            "price": {
+              "bn": "৳ ১৪,৫০০",
+              "en": "৳ 14,500"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "shawl-2",
+            "tag": {
+              "bn": "ব্রাইডাল সিগনেচার",
+              "en": "Bridal Signature"
+            },
             "name": {
-              "en": "Jamawar Velvet Bridal Shawl",
-              "bn": "জামেভার ভেলভেট ব্রাইডাল শাল"
+              "bn": "জামেভার ভেলভেট ব্রাইডাল শাল",
+              "en": "Jamawar Velvet Bridal Shawl"
             },
             "craft": {
-              "en": "Deep Bordeaux Velvet with Zari & Tilla Embroidery",
-              "bn": "ডিপ বোরদো ভেলভেটে জারদৌসি ও তিল্লা কাজ"
-            },
-            "price": {
-              "en": "৳ 8,900",
-              "bn": "৳ ৮,৯০০"
+              "bn": "ডিপ বোরদো ভেলভেটে জারদৌসি ও তিল্লা কাজ",
+              "en": "Deep Bordeaux Velvet with Zari & Tilla Embroidery"
             },
             "image": "/images/lifestyle/shawl_jamawar_velvet.jpg",
-            "tag": {
-              "en": "Bridal Signature",
-              "bn": "ব্রাইডাল সিগনেচার"
+            "price": {
+              "bn": "৳ ৮,৯০০",
+              "en": "৳ 8,900"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "shawl-3",
+            "tag": {
+              "bn": "বাংলার ঐতিহ্য",
+              "en": "Bangla Heritage"
+            },
             "name": {
-              "en": "Rajshahi Matka Silk Embroidered Chadar",
-              "bn": "রাজশাহী মটকা রেশমি চাদর"
+              "bn": "রাজশাহী মটকা রেশমি চাদর",
+              "en": "Rajshahi Matka Silk Embroidered Chadar"
             },
             "craft": {
-              "en": "Raw Mulberry Silk with Nakshi Kantha Artisan Work",
-              "bn": "খাঁটি দেশি রেশম ও সূক্ষ্ম নকশী কাঁথা স্টিচ"
-            },
-            "price": {
-              "en": "৳ 4,500",
-              "bn": "৳ ৪,৫০০"
+              "bn": "খাঁটি দেশি রেশম ও সূক্ষ্ম নকশী কাঁথা স্টিচ",
+              "en": "Raw Mulberry Silk with Nakshi Kantha Artisan Work"
             },
             "image": "/images/lifestyle/shawl_rajshahi_matka.jpg",
-            "tag": {
-              "en": "Bangla Heritage",
-              "bn": "বাংলার ঐতিহ্য"
+            "price": {
+              "bn": "৳ ৪,৫০০",
+              "en": "৳ 4,500"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "shawl-4",
+            "tag": {
+              "bn": "ইভনিং র‍্যাপ",
+              "en": "Evening Wrap"
+            },
             "name": {
-              "en": "Tussar Gilded Evening Stole",
-              "bn": "তসর সোনালি জরি ইভনিং স্টোল"
+              "bn": "তসর সোনালি জরি ইভনিং স্টোল",
+              "en": "Tussar Gilded Evening Stole"
             },
             "craft": {
-              "en": "Golden Handloom Weft with Reversible Diamond Weave",
-              "bn": "সোনালি হ্যান্ডলুম জরি বর্ডার ও নরম টেক্সচার"
-            },
-            "price": {
-              "en": "৳ 3,800",
-              "bn": "৳ ৩,৮০০"
+              "bn": "সোনালি হ্যান্ডলুম জরি বর্ডার ও নরম টেক্সচার",
+              "en": "Golden Handloom Weft with Reversible Diamond Weave"
             },
             "image": "/images/lifestyle/shawl_tussar_stole.jpg",
-            "tag": {
-              "en": "Evening Wrap",
-              "bn": "ইভনিং র‍্যাপ"
+            "price": {
+              "bn": "৳ ৩,৮০০",
+              "en": "৳ 3,800"
             },
             "inStock": true,
             "featured": false
           }
-        ]
+        ],
+        "tagline": {
+          "bn": "খাঁটি পশমিনা, তসর ও ভেলভেট চাদর",
+          "en": "Cashmere, Tussar & Velvet Winter Heirlooms"
+        },
+        "coverImage": "/images/lifestyle/shawls_cover.jpg",
+        "description": {
+          "bn": "শীতের সন্ধ্যায় রাজকীয় আভিজাত্য—হাতে বোনা খাঁটি পশমিনা ও রেশমি জামেভার চাদর।",
+          "en": "Warmth woven with regal history — heirloom wraps for winter galas and weddings."
+        }
       }
     ]
   }

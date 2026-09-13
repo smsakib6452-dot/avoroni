@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE0AD" />
+      <stop offset="35%" stop-color="#DFAC57" />
+      <stop offset="70%" stop-color="#9E6E24" />
+      <stop offset="100%" stop-color="#FCE0AD" />
+    </linearGradient>
+    <radialGradient id="rubyGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FF4D6D" />
+      <stop offset="40%" stop-color="#C9184A" />
+      <stop offset="100%" stop-color="#590D22" />
+    </radialGradient>
+    <radialGradient id="emeraldGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#52B788" />
+      <stop offset="50%" stop-color="#2D6A4F" />
+      <stop offset="100%" stop-color="#081C15" />
+    </radialGradient>
+    <radialGradient id="pearlGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F4EBD9" />
+      <stop offset="100%" stop-color="#D5C5A8" />
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <g filter="url(#glow)">
+    <!-- Silk Dori / Ties at back -->
+    <path d="M 120 70 Q 200 40 300 50 Q 400 40 480 70" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-dasharray="4,2" />
+    
+    <!-- Primary Collar Arch (Base Gold Band) -->
+    <path d="M 130 90 Q 300 190 470 90 Q 440 145 300 215 Q 160 145 130 90 Z" fill="url(#goldGrad)" stroke="#7A531A" stroke-width="2" />
+
+    <!-- Inset Kundan Gem Stones on Main Band -->
+    <!-- Centerpiece Medallion -->
+    <g transform="translate(300, 180)">
+      <circle cx="0" cy="0" r="28" fill="url(#goldGrad)" stroke="#6A4612" stroke-width="2" />
+      <circle cx="0" cy="0" r="20" fill="url(#rubyGrad)" stroke="#3A0007" stroke-width="1.5" />
+      <!-- Surrounding Kundan petals -->
+      <circle cx="-16" cy="-16" r="6" fill="url(#pearlGrad)" />
+      <circle cx="16" cy="-16" r="6" fill="url(#pearlGrad)" />
+      <circle cx="-22" cy="0" r="6" fill="url(#pearlGrad)" />
+      <circle cx="22" cy="0" r="6" fill="url(#pearlGrad)" />
+      <circle cx="-16" cy="16" r="6" fill="url(#pearlGrad)" />
+      <circle cx="16" cy="16" r="6" fill="url(#pearlGrad)" />
+      <circle cx="0" cy="22" r="6" fill="url(#pearlGrad)" />
+      <!-- Hanging Emerald Drop from Centerpiece -->
+      <path d="M 0 28 Q -10 55 0 70 Q 10 55 0 28 Z" fill="url(#emeraldGrad)" stroke="#0E301F" stroke-width="1.5" />
+      <circle cx="0" cy="74" r="4.5" fill="url(#pearlGrad)" />
+    </g>
+
+    <!-- Left Flank Kundan Medallions -->
+    <g transform="translate(240, 168)">
+      <circle cx="0" cy="0" r="18" fill="url(#goldGrad)" />
+      <circle cx="0" cy="0" r="12" fill="url(#emeraldGrad)" />
+      <path d="M 0 18 Q -7 38 0 48 Q 7 38 0 18 Z" fill="url(#rubyGrad)" />
+      <circle cx="0" cy="52" r="3.5" fill="url(#pearlGrad)" />
+    </g>
+    <g transform="translate(185, 145)">
+      <circle cx="0" cy="0" r="16" fill="url(#goldGrad)" />
+      <circle cx="0" cy="0" r="10" fill="url(#rubyGrad)" />
+      <path d="M 0 16 Q -6 32 0 40 Q 6 32 0 16 Z" fill="url(#emeraldGrad)" />
+      <circle cx="0" cy="43" r="3" fill="url(#pearlGrad)" />
+    </g>
+    <g transform="translate(142, 115)">
+      <circle cx="0" cy="0" r="13" fill="url(#goldGrad)" />
+      <circle cx="0" cy="0" r="8" fill="url(#pearlGrad)" />
+      <circle cx="0" cy="22" r="3.5" fill="url(#pearlGrad)" />
+    </g>
+
+    <!-- Right Flank Kundan Medallions -->
+    <g transform="translate(360, 168)">
+      <circle cx="0" cy="0" r="18" fill="url(#goldGrad)" />
+      <circle cx="0" cy="0" r="12" fill="url(#emeraldGrad)" />
+      <path d="M 0 18 Q -7 38 0 48 Q 7 38 0 18 Z" fill="url(#rubyGrad)" />
+      <circle cx="0" cy="52" r="3.5" fill="url(#pearlGrad)" />
+    </g>
+    <g transform="translate(415, 145)">
+      <circle cx="0" cy="0" r="16" fill="url(#goldGrad)" />
+      <circle cx="0" cy="0" r="10" fill="url(#rubyGrad)" />
+      <path d="M 0 16 Q -6 32 0 40 Q 6 32 0 16 Z" fill="url(#emeraldGrad)" />
+      <circle cx="0" cy="43" r="3" fill="url(#pearlGrad)" />
+    </g>
+    <g transform="translate(458, 115)">
+      <circle cx="0" cy="0" r="13" fill="url(#goldGrad)" />
+      <circle cx="0" cy="0" r="8" fill="url(#pearlGrad)" />
+      <circle cx="0" cy="22" r="3.5" fill="url(#pearlGrad)" />
+    </g>
+
+    <!-- Lower Fringe of Cascading Seed Pearls (30 Pearls) -->
+    <g id="pearlFringe">
+      
+          <line x1="146.78571428571428" y1="108.95408163265306" x2="146.78571428571428" y2="124.95408163265306" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="146.78571428571428" cy="124.95408163265306" r="4" fill="url(#pearlGrad)" />
+          <circle cx="146.78571428571428" cy="131.95408163265307" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="158.57142857142858" y1="117.24489795918367" x2="158.57142857142858" y2="133.24489795918367" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="158.57142857142858" cy="133.24489795918367" r="4" fill="url(#pearlGrad)" />
+          <circle cx="158.57142857142858" cy="140.24489795918367" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="170.35714285714283" y1="124.87244897959184" x2="170.35714285714283" y2="140.87244897959184" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="170.35714285714283" cy="140.87244897959184" r="4" fill="url(#pearlGrad)" />
+          <circle cx="170.35714285714283" cy="147.87244897959184" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="182.14285714285717" y1="131.83673469387756" x2="182.14285714285717" y2="147.83673469387756" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="182.14285714285717" cy="147.83673469387756" r="4" fill="url(#pearlGrad)" />
+          <circle cx="182.14285714285717" cy="154.83673469387756" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="193.92857142857144" y1="138.13775510204084" x2="193.92857142857144" y2="154.13775510204084" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="193.92857142857144" cy="154.13775510204084" r="4" fill="url(#pearlGrad)" />
+          <circle cx="193.92857142857144" cy="161.13775510204084" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="205.7142857142857" y1="143.77551020408163" x2="205.7142857142857" y2="159.77551020408163" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="205.7142857142857" cy="159.77551020408163" r="4" fill="url(#pearlGrad)" />
+          <circle cx="205.7142857142857" cy="166.77551020408163" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="217.5" y1="148.75" x2="217.5" y2="164.75" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="217.5" cy="164.75" r="4" fill="url(#pearlGrad)" />
+          <circle cx="217.5" cy="171.75" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="229.28571428571428" y1="153.0612244897959" x2="229.28571428571428" y2="169.0612244897959" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="229.28571428571428" cy="169.0612244897959" r="4" fill="url(#pearlGrad)" />
+          <circle cx="229.28571428571428" cy="176.0612244897959" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="241.0714285714286" y1="156.70918367346943" x2="241.0714285714286" y2="172.70918367346943" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="241.0714285714286" cy="172.70918367346943" r="4" fill="url(#pearlGrad)" />
+          <circle cx="241.0714285714286" cy="179.70918367346943" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="252.85714285714283" y1="159.6938775510204" x2="252.85714285714283" y2="175.6938775510204" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="252.85714285714283" cy="175.6938775510204" r="4" fill="url(#pearlGrad)" />
+          <circle cx="252.85714285714283" cy="182.6938775510204" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="264.64285714285717" y1="162.01530612244898" x2="264.64285714285717" y2="178.01530612244898" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="264.64285714285717" cy="178.01530612244898" r="4" fill="url(#pearlGrad)" />
+          <circle cx="264.64285714285717" cy="185.01530612244898" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="276.42857142857144" y1="163.6734693877551" x2="276.42857142857144" y2="179.6734693877551" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="276.42857142857144" cy="179.6734693877551" r="4" fill="url(#pearlGrad)" />
+          <circle cx="276.42857142857144" cy="186.6734693877551" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="288.2142857142857" y1="164.6683673469388" x2="288.2142857142857" y2="180.6683673469388" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="288.2142857142857" cy="180.6683673469388" r="4" fill="url(#pearlGrad)" />
+          <circle cx="288.2142857142857" cy="187.6683673469388" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="300" y1="165" x2="300" y2="181" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="300" cy="181" r="4" fill="url(#pearlGrad)" />
+          <circle cx="300" cy="188" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="311.7857142857143" y1="164.6683673469388" x2="311.7857142857143" y2="180.6683673469388" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="311.7857142857143" cy="180.6683673469388" r="4" fill="url(#pearlGrad)" />
+          <circle cx="311.7857142857143" cy="187.6683673469388" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="323.57142857142856" y1="163.6734693877551" x2="323.57142857142856" y2="179.6734693877551" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="323.57142857142856" cy="179.6734693877551" r="4" fill="url(#pearlGrad)" />
+          <circle cx="323.57142857142856" cy="186.6734693877551" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="335.35714285714283" y1="162.01530612244898" x2="335.35714285714283" y2="178.01530612244898" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="335.35714285714283" cy="178.01530612244898" r="4" fill="url(#pearlGrad)" />
+          <circle cx="335.35714285714283" cy="185.01530612244898" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="347.14285714285717" y1="159.6938775510204" x2="347.14285714285717" y2="175.6938775510204" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="347.14285714285717" cy="175.6938775510204" r="4" fill="url(#pearlGrad)" />
+          <circle cx="347.14285714285717" cy="182.6938775510204" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="358.92857142857144" y1="156.7091836734694" x2="358.92857142857144" y2="172.7091836734694" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="358.92857142857144" cy="172.7091836734694" r="4" fill="url(#pearlGrad)" />
+          <circle cx="358.92857142857144" cy="179.7091836734694" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="370.7142857142857" y1="153.06122448979593" x2="370.7142857142857" y2="169.06122448979593" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="370.7142857142857" cy="169.06122448979593" r="4" fill="url(#pearlGrad)" />
+          <circle cx="370.7142857142857" cy="176.06122448979593" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="382.5" y1="148.75" x2="382.5" y2="164.75" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="382.5" cy="164.75" r="4" fill="url(#pearlGrad)" />
+          <circle cx="382.5" cy="171.75" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="394.2857142857143" y1="143.77551020408166" x2="394.2857142857143" y2="159.77551020408166" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="394.2857142857143" cy="159.77551020408166" r="4" fill="url(#pearlGrad)" />
+          <circle cx="394.2857142857143" cy="166.77551020408166" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="406.07142857142856" y1="138.1377551020408" x2="406.07142857142856" y2="154.1377551020408" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="406.07142857142856" cy="154.1377551020408" r="4" fill="url(#pearlGrad)" />
+          <circle cx="406.07142857142856" cy="161.1377551020408" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="417.85714285714283" y1="131.83673469387756" x2="417.85714285714283" y2="147.83673469387756" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="417.85714285714283" cy="147.83673469387756" r="4" fill="url(#pearlGrad)" />
+          <circle cx="417.85714285714283" cy="154.83673469387756" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="429.64285714285717" y1="124.87244897959184" x2="429.64285714285717" y2="140.87244897959184" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="429.64285714285717" cy="140.87244897959184" r="4" fill="url(#pearlGrad)" />
+          <circle cx="429.64285714285717" cy="147.87244897959184" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="441.42857142857144" y1="117.24489795918367" x2="441.42857142857144" y2="133.24489795918367" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="441.42857142857144" cy="133.24489795918367" r="4" fill="url(#pearlGrad)" />
+          <circle cx="441.42857142857144" cy="140.24489795918367" r="3" fill="url(#pearlGrad)" />
+        
+          <line x1="453.2142857142857" y1="108.95408163265306" x2="453.2142857142857" y2="124.95408163265306" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="453.2142857142857" cy="124.95408163265306" r="4" fill="url(#pearlGrad)" />
+          <circle cx="453.2142857142857" cy="131.95408163265307" r="3" fill="url(#pearlGrad)" />
+        
+    </g>
+  </g>
+</svg>

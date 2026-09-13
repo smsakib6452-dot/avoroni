@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 500" width="650" height="500">
+  <defs>
+    <linearGradient id="pashminaWool" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A1521" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#340B15" stop-opacity="0.92" />
+      <stop offset="100%" stop-color="#220008" stop-opacity="0.95" />
+    </linearGradient>
+    <linearGradient id="shawlGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE09E" />
+      <stop offset="50%" stop-color="#D19C41" />
+      <stop offset="100%" stop-color="#805012" />
+    </linearGradient>
+    <filter id="shawlShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <g filter="url(#shawlShadow)">
+    <!-- Elegant Kashmiri Shawl Draped Around Both Shoulders -->
+    <path d="M 60 140 
+             Q 200 60 325 70 
+             Q 450 60 590 140 
+             Q 620 280 560 420 
+             Q 480 340 325 360 
+             Q 170 340 90 420 
+             Q 30 280 60 140 Z" 
+          fill="url(#pashminaWool)" />
+
+    <!-- Center Opening for Neck & Collarbone -->
+    <path d="M 230 72 Q 325 240 420 72 Q 325 150 230 72 Z" fill="none" stroke="url(#shawlGold)" stroke-width="12" />
+
+    <!-- Ornate Kani Border around Outer Shawl Edge -->
+    <path d="M 60 140 Q 200 60 325 70 Q 450 60 590 140" fill="none" stroke="url(#shawlGold)" stroke-width="14" />
+    <path d="M 90 420 Q 170 340 325 360 Q 480 340 560 420" fill="none" stroke="url(#shawlGold)" stroke-width="18" stroke-dasharray="12,6" />
+
+    <!-- Floral Corner Medallions (Paisley / Kalka) -->
+    <g transform="translate(140, 360) scale(0.6)">
+      <path d="M 0 0 C 30 -40, 50 -10, 20 30 C -10 60, -40 20, 0 0 Z" fill="url(#shawlGold)" />
+    </g>
+    <g transform="translate(510, 360) scale(0.6) scale(-1, 1)">
+      <path d="M 0 0 C 30 -40, 50 -10, 20 30 C -10 60, -40 20, 0 0 Z" fill="url(#shawlGold)" />
+    </g>
+  </g>
+</svg>

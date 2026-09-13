@@ -1,0 +1,62 @@
+[
+  {
+    "id": "AVR-2026-8941",
+    "type": "order",
+    "createdAt": "2026-09-12T18:30:00.000Z",
+    "status": "confirmed",
+    "customerName": "সাবরিনা আক্তার (Sabrina Akhter)",
+    "phone": "01711223344",
+    "email": "sabrina.akhter@gmail.com",
+    "address": "বাড়ি ১২, রোড ৭, সেক্টর ৪, উত্তরা, ঢাকা",
+    "deliveryZone": "inside_dhaka",
+    "deliveryFee": 80,
+    "paymentMethod": "cod",
+    "product": {
+      "id": "jamdani-white",
+      "name": "Shweto White & Gold Dhakai Jamdani",
+      "weave": "UNESCO Intangible Heritage 84-Count",
+      "color": "Shweto White & Gold",
+      "price": "৳ 9,500",
+      "numericPrice": 9500,
+      "image": "/images/colorways/jamdani_white.jpg"
+    },
+    "notes": "বিয়ের অনুষ্ঠানে উপহার হিসেবে যাবে, দয়া করে রাজকীয় ভেলভেট বক্সে সুন্দর করে প্যাক করে দিবেন।",
+    "totalAmount": 9580
+  },
+  {
+    "id": "AVR-2026-8942",
+    "type": "order",
+    "createdAt": "2026-09-13T04:15:00.000Z",
+    "status": "pending",
+    "customerName": "ড. রোকসানা জামান (Dr. Roksana Zaman)",
+    "phone": "01819345678",
+    "email": "roksana.zaman@bsmmu.edu.bd",
+    "address": "হোল্ডিং ৪৫, নাসিরাবাদ হাউজিং সোসাইটি, চট্টগ্রাম",
+    "deliveryZone": "outside_dhaka",
+    "deliveryFee": 150,
+    "paymentMethod": "cod",
+    "product": {
+      "id": "mirpur-red",
+      "name": "Maharani Bridal Red Katan",
+      "weave": "Pure Kadwa Silk & 24k Gold Zari",
+      "color": "Maharani Bridal Red",
+      "price": "৳ 12,500",
+      "numericPrice": 12500,
+      "image": "/images/colorways/mirpur_red.jpg"
+    },
+    "notes": "ডেলিভারির আগে ফোন দিবেন।",
+    "totalAmount": 12650
+  },
+  {
+    "id": "INQ-2026-1029",
+    "type": "inquiry",
+    "createdAt": "2026-09-13T09:40:00.000Z",
+    "status": "pending",
+    "customerName": "নাদিয়া হাসান (Nadia Hasan)",
+    "phone": "01755667788",
+    "email": "nadia.hasan@yahoo.com",
+    "occasion": "Bridal Trousseau",
+    "message": "আসসালামু আলাইকুম, আগামী ডিসেম্বরে আমার মেয়ের বিয়ে। আমরা ৫টি ঐতিহ্যবাহী ঢাকাই জামদানি এবং ২টি রাজশাহী সিল্কের কাস্টম উইভিং করাতে চাচ্ছি। বনানী স্টুডিওতে সরাসরি দেখার সময় কবে ফাঁকা আছে?",
+    "notes": "VIP Bridal Client Inquiry"
+  }
+]

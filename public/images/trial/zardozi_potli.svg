@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 550" width="450" height="550">
+  <defs>
+    <radialGradient id="velvetWine" cx="40%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#7B1E2B" />
+      <stop offset="60%" stop-color="#540B16" />
+      <stop offset="100%" stop-color="#2B0007" />
+    </radialGradient>
+    <linearGradient id="potliGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE7AB" />
+      <stop offset="50%" stop-color="#DCA347" />
+      <stop offset="100%" stop-color="#8F5E15" />
+    </linearGradient>
+    <filter id="potliShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <g filter="url(#potliShadow)" transform="translate(225, 260)">
+    <!-- Golden Drawstring / Handle Handle -->
+    <path d="M -20 -150 Q -80 -90 -20 -35" fill="none" stroke="url(#potliGold)" stroke-width="8" stroke-linecap="round" />
+    <path d="M 20 -150 Q 80 -90 20 -35" fill="none" stroke="url(#potliGold)" stroke-width="8" stroke-linecap="round" />
+    <circle cx="0" cy="-150" r="14" fill="url(#potliGold)" />
+
+    <!-- Top Ruffled Neck -->
+    <path d="M -55 -45 Q -30 -75 0 -55 Q 30 -75 55 -45 Q 0 -35 -55 -45 Z" fill="url(#velvetWine)" stroke="url(#potliGold)" stroke-width="3" />
+    
+    <!-- Gold Drawstring Tie & Beads -->
+    <rect x="-60" y="-38" width="120" height="12" rx="6" fill="url(#potliGold)" />
+    
+    <!-- Main Velvet Bag Body (Spherical Potli Pouch) -->
+    <ellipse cx="0" cy="70" rx="135" ry="145" fill="url(#velvetWine)" stroke="url(#potliGold)" stroke-width="3" />
+    
+    <!-- Rich Zardozi Gold Floral Embroidery on Velvet -->
+    <circle cx="0" cy="70" r="50" fill="none" stroke="url(#potliGold)" stroke-width="4" stroke-dasharray="8,4" />
+    <circle cx="0" cy="70" r="32" fill="none" stroke="url(#potliGold)" stroke-width="3" />
+    <!-- 8 Petals radiating -->
+    <circle cx="58" cy="70" r="6" fill="url(#potliGold)" /><circle cx="41.01219330881976" cy="111.01219330881975" r="6" fill="url(#potliGold)" /><circle cx="3.5514757175273244e-15" cy="128" r="6" fill="url(#potliGold)" /><circle cx="-41.012193308819754" cy="111.01219330881976" r="6" fill="url(#potliGold)" /><circle cx="-58" cy="70" r="6" fill="url(#potliGold)" /><circle cx="-41.01219330881977" cy="28.987806691180246" r="6" fill="url(#potliGold)" /><circle cx="-1.0654427152581972e-14" cy="12" r="6" fill="url(#potliGold)" /><circle cx="41.01219330881975" cy="28.987806691180232" r="6" fill="url(#potliGold)" />
+
+    <!-- Hanging Drawstring Pearl Tassels -->
+    <g transform="translate(-50, -28)">
+      <line x1="0" y1="0" x2="-25" y2="80" stroke="url(#potliGold)" stroke-width="3" />
+      <circle cx="-25" cy="85" r="7" fill="url(#potliGold)" />
+      <circle cx="-25" cy="98" r="5" fill="#FFF" />
+    </g>
+    <g transform="translate(50, -28)">
+      <line x1="0" y1="0" x2="25" y2="80" stroke="url(#potliGold)" stroke-width="3" />
+      <circle cx="25" cy="85" r="7" fill="url(#potliGold)" />
+      <circle cx="25" cy="98" r="5" fill="#FFF" />
+    </g>
+
+    <!-- Bottom Pearl Fringe -->
+    <circle cx="0" cy="218" r="9" fill="url(#potliGold)" />
+    <circle cx="0" cy="232" r="7" fill="#FFF" />
+    <circle cx="-35" cy="210" r="7" fill="#FFF" />
+    <circle cx="35" cy="210" r="7" fill="#FFF" />
+  </g>
+</svg>

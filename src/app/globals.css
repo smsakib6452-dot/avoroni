@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #F5F0E8;
+  --color-cream: #EDE3D5;
+  --color-dark: #1A1514;
+  --color-burgundy: #6D1F2A;
+  --color-wine: #46151D;
+  --color-gold: #B89A62;
+  --color-gold-muted: #C8B289;
+  
+  --font-serif: var(--font-cormorant), "Noto Serif Bengali", "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-sans: var(--font-manrope), "Hind Siliguri", "Manrope", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --background: #F5F0E8;
+  --foreground: #1A1514;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #F5F0E8;
+  color: #1A1514;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F5F0E8;
+  color: #1A1514;
+  overflow-x: hidden;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+/* Luxury selection color */
+::selection {
+  background-color: #6D1F2A;
+  color: #F5F0E8;
+}
+
+/* Lenis smooth scrolling styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Fine subtle hairline borders */
+.border-hairline {
+  border-width: 1px;
+  border-color: rgba(26, 21, 20, 0.12);
+}
+
+.border-hairline-light {
+  border-width: 1px;
+  border-color: rgba(245, 240, 232, 0.18);
+}
+
+.border-hairline-gold {
+  border-width: 1px;
+  border-color: rgba(184, 154, 98, 0.28);
+}
+
+/* Custom editorial link line animation */
+.editorial-link {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #C5A869, #E5D2A4);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 9999px;
+}
+
+.editorial-link:hover::after {
+  width: 100%;
+}
+
+/* Smooth image clip utilities */
+.clip-inset-hidden {
+  clip-path: inset(100% 0 0 0);
+}
+
+.clip-inset-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Bengali Typography Rules: Preserve ligatures, matras & conjuncts */
+html[data-lang="bn"] {
+  font-family: "Hind Siliguri", var(--font-manrope), -apple-system, sans-serif;
+}
+
+html[data-lang="bn"] .font-serif {
+  font-family: "Noto Serif Bengali", var(--font-cormorant), Georgia, serif !important;
+  letter-spacing: 0em !important;
+  line-height: 1.15 !important;
+}
+
+html[data-lang="bn"] .font-sans {
+  font-family: "Hind Siliguri", var(--font-manrope), sans-serif !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Neutralize extreme uppercase tracking for Bengali to ensure characters never break apart */
+html[data-lang="bn"] [class*="tracking-"] {
+  letter-spacing: 0.01em !important;
+}

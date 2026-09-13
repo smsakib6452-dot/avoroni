@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 650" width="600" height="650">
+  <defs>
+    <linearGradient id="chandraGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE6B3" />
+      <stop offset="50%" stop-color="#D9A349" />
+      <stop offset="100%" stop-color="#9C6B1F" />
+    </linearGradient>
+    <radialGradient id="chandraRuby" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FF5C7A" />
+      <stop offset="60%" stop-color="#C9184A" />
+      <stop offset="100%" stop-color="#590D22" />
+    </radialGradient>
+    <radialGradient id="chandraPearl" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#F3E7D3" />
+      <stop offset="100%" stop-color="#CCA672" />
+    </radialGradient>
+  </defs>
+
+  <g>
+    <!-- Tier 1 Strand -->
+    <path d="M 170 80 Q 300 240 430 80" fill="none" stroke="url(#chandraGold)" stroke-width="4" stroke-linecap="round" />
+    <!-- Tier 2 Strand -->
+    <path d="M 155 90 Q 300 310 445 90" fill="none" stroke="url(#chandraGold)" stroke-width="4.5" stroke-dasharray="10,4" />
+    <!-- Tier 3 Strand with Pearls -->
+    <path d="M 140 100 Q 300 380 460 100" fill="none" stroke="url(#chandraGold)" stroke-width="5" />
+    <!-- Tier 4 Strand -->
+    <path d="M 125 110 Q 300 450 475 110" fill="none" stroke="url(#chandraGold)" stroke-width="5.5" stroke-dasharray="8,3" />
+
+    <!-- Royal Bottom Medallion -->
+    <g transform="translate(300, 480)">
+      <circle cx="0" cy="0" r="48" fill="url(#chandraGold)" stroke="#6A4612" stroke-width="3" />
+      <circle cx="0" cy="0" r="34" fill="url(#chandraRuby)" />
+      <polygon points="0,-22 18,0 0,22 -18,0" fill="url(#chandraGold)" />
+      <circle cx="0" cy="0" r="8" fill="#FFF" />
+      
+      <!-- Hanging Pearl Tassels -->
+      <line x1="-25" y1="45" x2="-25" y2="75" stroke="url(#chandraGold)" stroke-width="2" />
+      <circle cx="-25" cy="80" r="6" fill="url(#chandraPearl)" />
+      
+      <line x1="0" y1="48" x2="0" y2="90" stroke="url(#chandraGold)" stroke-width="3" />
+      <circle cx="0" cy="98" r="8" fill="url(#chandraRuby)" />
+      <circle cx="0" cy="112" r="6" fill="url(#chandraPearl)" />
+
+      <line x1="25" y1="45" x2="25" y2="75" stroke="url(#chandraGold)" stroke-width="2" />
+      <circle cx="25" cy="80" r="6" fill="url(#chandraPearl)" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 700" width="600" height="700">
+  <defs>
+    <linearGradient id="fabricShade" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7F3EA" stop-opacity="0.95" />
+      <stop offset="35%" stop-color="#F7F3EA" stop-opacity="0.88" />
+      <stop offset="70%" stop-color="#F7F3EA" stop-opacity="0.82" />
+      <stop offset="100%" stop-color="#F7F3EA" stop-opacity="0.92" />
+    </linearGradient>
+    <linearGradient id="zariShine" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#FFE9B3" />
+      <stop offset="45%" stop-color="#D6A847" />
+      <stop offset="85%" stop-color="#9C6B1F" />
+      <stop offset="100%" stop-color="#FFE9B3" />
+    </linearGradient>
+    <pattern id="jamdaniMotif" width="60" height="60" patternUnits="userSpaceOnUse">
+      <!-- Traditional Karat & Kolka Booti -->
+      <path d="M 30 10 C 38 18, 42 26, 30 42 C 18 26, 22 18, 30 10 Z" fill="url(#zariShine)" opacity="0.85" />
+      <circle cx="30" cy="25" r="3" fill="#FFF" opacity="0.6" />
+      <circle cx="10" cy="10" r="2.5" fill="url(#zariShine)" opacity="0.6" />
+      <circle cx="50" cy="50" r="2.5" fill="url(#zariShine)" opacity="0.6" />
+    </pattern>
+    <filter id="drapeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="-4" dy="8" stdDeviation="8" flood-color="#000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <!-- Translucent Diagonal Royal Saree Pallu & Pleat Drape -->
+  <g filter="url(#drapeShadow)">
+    <!-- Base Pallu Fold flowing from Left Shoulder down across Chest to Right Waist -->
+    <path d="M 120 40 
+             Q 180 15 260 20
+             Q 340 180 490 380 
+             Q 530 460 550 560
+             Q 450 620 360 640
+             Q 280 480 200 320
+             Q 130 180 120 40 Z" 
+          fill="url(#fabricShade)" />
+
+    <!-- Subtle Pleat Shadow Folds -->
+    <path d="M 180 25 Q 260 200 390 440" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="12" filter="blur(6px)" />
+    <path d="M 220 22 Q 300 220 430 470" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="10" filter="blur(4px)" />
+
+    <!-- Jamdani Gold Motif Pattern Fill -->
+    <path d="M 120 40 
+             Q 180 15 260 20
+             Q 340 180 490 380 
+             Q 530 460 550 560
+             Q 450 620 360 640
+             Q 280 480 200 320
+             Q 130 180 120 40 Z" 
+          fill="url(#jamdaniMotif)" />
+
+    <!-- Outer Gold Zari Border (Paar / পাড়) -->
+    <path d="M 120 40 Q 130 180 200 320 Q 280 480 360 640" 
+          fill="none" stroke="url(#zariShine)" stroke-width="26" stroke-linecap="round" />
+    <path d="M 120 40 Q 130 180 200 320 Q 280 480 360 640" 
+          fill="none" stroke="#68420B" stroke-width="2" stroke-dasharray="6,4" />
+
+    <!-- Inner Regal Zari Brocade Accent -->
+    <path d="M 260 20 Q 340 180 490 380 Q 530 460 550 560" 
+          fill="none" stroke="url(#zariShine)" stroke-width="18" stroke-linecap="round" />
+
+    <!-- Hanging Pallu Corner Tassels (ঝালর) at Waist/Hip -->
+    <g transform="translate(360, 640)">
+      <circle cx="0" cy="5" r="5" fill="url(#zariShine)" />
+      <line x1="0" y1="5" x2="0" y2="35" stroke="url(#zariShine)" stroke-width="3" />
+      <circle cx="-15" cy="3" r="4.5" fill="url(#zariShine)" />
+      <line x1="-15" y1="3" x2="-15" y2="30" stroke="url(#zariShine)" stroke-width="2.5" />
+      <circle cx="15" cy="3" r="4.5" fill="url(#zariShine)" />
+      <line x1="15" y1="3" x2="15" y2="30" stroke="url(#zariShine)" stroke-width="2.5" />
+    </g>
+  </g>
+</svg>

@@ -341,6 +341,7 @@ export default function BestSellers() {
                 src={selectedItem.image}
                 alt={selectedItem.name[language]}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-top"
               />
             </div>

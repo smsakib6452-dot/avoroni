@@ -335,11 +335,16 @@ export default function AdminPage() {
           <div className="p-6 border-b border-[#B89A62]/20 flex items-center justify-between">
             <div className="flex flex-col gap-1.5">
               <BrandLogo size={34} variant="light" />
-              <span className="text-[9px] tracking-[0.25em] uppercase text-[#B89A62]">
-                Atelier CMS Panel
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-[9px] tracking-[0.25em] uppercase text-[#B89A62]">
+                  Atelier CMS Panel
+                </span>
+                <span className="inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 font-mono font-medium" title="Supabase Cloud PostgreSQL Active">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Supabase Cloud
+                </span>
+              </div>
             </div>
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20" title="Live Sync Active" />
           </div>
 
           {/* Navigation Links */}

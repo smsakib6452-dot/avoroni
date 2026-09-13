@@ -688,6 +688,7 @@ export default function ShopByColor() {
                 src={`${activeColor.image}?v=20260912_all_real_v4`}
                 alt={activeColor.title[language]}
                 fill
+                sizes="(max-width: 768px) 85vw, 576px"
                 className="object-contain"
                 unoptimized
               />

@@ -4,8 +4,10 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function EditorialCollection() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const headingGroupRef = useRef<HTMLDivElement>(null);
   const plate1Ref = useRef<HTMLDivElement>(null);
@@ -141,16 +143,15 @@ export default function EditorialCollection() {
         >
           <div className="flex flex-col gap-3">
             <span className="font-sans text-[9.5px] tracking-[0.38em] uppercase text-[#6D1F2A] font-medium">
-              Editorial Feature &bull; Vol. IX
+              {t("editorial_movement")}
             </span>
             <h2 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-light text-[#1A1514] tracking-tight leading-[0.95]">
-              The Architecture of Drape
+              {t("editorial_heading")}
             </h2>
           </div>
 
           <p className="font-sans text-xs tracking-wider text-[#1A1514]/55 max-w-xs font-light leading-relaxed">
-            Six yards of unbroken handloom geometry. Preserving ancient loom
-            structures from the holy ghats of Kashi.
+            {t("editorial_subtitle")}
           </p>
         </div>
 
@@ -174,8 +175,8 @@ export default function EditorialCollection() {
             </div>
 
             <div className="flex items-center justify-between text-[9px] tracking-[0.3em] uppercase text-[#1A1514]/45 font-sans pt-1">
-              <span>Plate I &bull; Imperial Kashi Brocade</span>
-              <span className="text-[#6D1F2A]">Kashi Silk Archive</span>
+              <span>{t("editorial_plate_1_title")}</span>
+              <span className="text-[#6D1F2A]">{t("editorial_plate_1_tag")}</span>
             </div>
           </div>
 
@@ -184,19 +185,15 @@ export default function EditorialCollection() {
             {/* Curatorial Essay */}
             <div ref={essayRef} className="flex flex-col gap-6 max-w-md">
               <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-[#B89A62] font-semibold">
-                Curator&rsquo;s Monograph
+                {t("editorial_monograph_pill")}
               </span>
 
               <h3 className="font-serif text-3xl sm:text-4xl font-light leading-snug text-[#1A1514]">
-                &ldquo;In Indian handloom philosophy, the uncut fabric is sacred.
-                To shear it is to diminish its cosmic continuum.&rdquo;
+                {t("editorial_monograph_quote")}
               </h3>
 
               <p className="font-sans text-xs sm:text-sm text-[#1A1514]/70 font-light leading-relaxed">
-                Every warp and weft woven at Avoroni honors the discipline of
-                continuous gold thread filigree. Our master artisans in
-                Varanasi practice pit-loom weaving where each leaf motif is
-                interlocked by hand, requiring months of silent devotion.
+                {t("editorial_monograph_desc")}
               </p>
 
               <div className="pt-2">
@@ -204,7 +201,7 @@ export default function EditorialCollection() {
                   href="#shop-by-color"
                   className="editorial-link font-sans text-[11px] tracking-[0.28em] uppercase text-[#6D1F2A] font-medium"
                 >
-                  Discover The Palette &rarr;
+                  {t("editorial_palette_btn")}
                 </a>
               </div>
             </div>
@@ -227,8 +224,8 @@ export default function EditorialCollection() {
               </div>
 
               <div className="flex items-center justify-between text-[9px] tracking-[0.25em] uppercase text-[#1A1514]/45 font-sans">
-                <span>Plate II &bull; 24k Zari Filament</span>
-                <span>180 Handloom Hours</span>
+                <span>{t("editorial_plate_2_title")}</span>
+                <span>{t("editorial_plate_2_tag")}</span>
               </div>
             </div>
           </div>
@@ -243,12 +240,10 @@ export default function EditorialCollection() {
           >
             <div className="h-[1px] w-12 bg-[#B89A62]/60" />
             <blockquote className="font-serif text-3xl sm:text-4xl text-[#1A1514]/90 font-light italic leading-snug">
-              &ldquo;The gold does not fade; it merely learns the contours of
-              the wearer, softening into a family heirloom across
-              centuries.&rdquo;
+              {t("editorial_poetic_quote")}
             </blockquote>
             <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-[#1A1514]/40">
-              The Heritage Weaving Registry
+              {t("editorial_quote_caption")}
             </span>
           </div>
 
@@ -270,8 +265,8 @@ export default function EditorialCollection() {
             </div>
 
             <div className="flex items-center justify-between text-[9px] tracking-[0.3em] uppercase text-[#1A1514]/45 font-sans pt-2">
-              <span>Plate III &bull; Peacock Emerald Kanchipuram</span>
-              <span className="text-[#6D1F2A]">Pure Zari Twill</span>
+              <span>{t("editorial_plate_3_title")}</span>
+              <span className="text-[#6D1F2A]">{t("editorial_plate_3_tag")}</span>
             </div>
           </div>
         </div>

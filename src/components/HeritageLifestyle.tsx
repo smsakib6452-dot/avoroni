@@ -331,6 +331,7 @@ export default function HeritageLifestyle() {
                 src={selectedProduct.product.image || "/images/editorial_detail.jpg"}
                 alt={getLocalized(selectedProduct.product.name, language)}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover object-center"
               />
             </div>

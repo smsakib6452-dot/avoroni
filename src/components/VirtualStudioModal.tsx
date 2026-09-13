@@ -517,6 +517,7 @@ export default function VirtualStudioModal() {
           src={photoSrc}
           alt="User Portrait"
           fill
+          sizes="(max-width: 768px) 100vw, 60vw"
           className="object-contain"
           priority
         />
@@ -552,6 +553,7 @@ export default function VirtualStudioModal() {
               src={currentDrape}
               alt="Saree Drape Preview"
               fill
+              sizes="(max-width: 768px) 100vw, 60vw"
               className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
               priority
             />
@@ -833,6 +835,7 @@ export default function VirtualStudioModal() {
                     src={isComparing ? getActiveUserImage() : aiResultImage}
                     alt="AI Virtual Try-On"
                     fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
                     className="object-contain"
                     priority
                   />
@@ -1001,6 +1004,7 @@ export default function VirtualStudioModal() {
                     src={selectedProduct.image}
                     alt={getLocalized(selectedProduct.name, language)}
                     fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
                     className="object-contain"
                     priority
                   />
@@ -1162,6 +1166,7 @@ export default function VirtualStudioModal() {
                   src={selectedProduct.image}
                   alt={getLocalized(selectedProduct.name, language)}
                   fill
+                  sizes="56px"
                   className="object-cover"
                 />
               </div>
@@ -1265,6 +1270,7 @@ export default function VirtualStudioModal() {
                           src={item.image}
                           alt={getLocalized(item.name, language)}
                           fill
+                          sizes="(max-width: 640px) 33vw, 120px"
                           className="object-cover"
                         />
                         {isSelected && (

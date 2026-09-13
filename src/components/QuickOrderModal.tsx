@@ -210,6 +210,7 @@ export default function QuickOrderModal() {
                       src={product.image}
                       alt={product.name}
                       fill
+                      sizes="56px"
                       className="object-cover"
                     />
                   </div>
@@ -277,6 +278,7 @@ export default function QuickOrderModal() {
                     src={product.image}
                     alt={product.name}
                     fill
+                    sizes="64px"
                     className="object-cover"
                   />
                 </div>

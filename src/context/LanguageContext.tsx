@@ -71,6 +71,28 @@ const DICTIONARY: Record<Language, Record<string, string>> = {
     bestseller_cta: "Explore All",
     bestseller_footnote: "More Than A Saree — An Heirloom",
 
+    // Editorial Archive
+    editorial_pill: "Archival Monograph",
+    editorial_movement: "Movement I • The Sacred Continuum",
+    editorial_heading: "Where Warp Meets Eternity",
+    editorial_subtitle:
+      "Archival textile editorial showcasing the interplay of pure 24k gold zari, hand-spun muslin, and heritage subcontinent weaves.",
+    editorial_monograph_pill: "Curator’s Monograph",
+    editorial_monograph_quote:
+      "“In traditional handloom philosophy, the uncut fabric is sacred. To shear it is to diminish its cosmic continuum.”",
+    editorial_monograph_desc:
+      "Every warp and weft woven at Avoroni honors the discipline of continuous gold thread filigree. Our master artisans in Narayanganj, Mirpur, and heritage craft clusters practice pit-loom weaving where each motif is interlocked by hand, requiring months of silent devotion.",
+    editorial_palette_btn: "Discover The Palette →",
+    editorial_plate_1_title: "Plate I • Imperial Kashi Brocade",
+    editorial_plate_1_tag: "Kashi Silk Archive",
+    editorial_plate_2_title: "Plate II • 24k Zari Filament",
+    editorial_plate_2_tag: "180 Handloom Hours",
+    editorial_poetic_quote:
+      "“The gold does not fade; it merely learns the contours of the wearer, softening into a family heirloom across centuries.”",
+    editorial_quote_caption: "The Heritage Weaving Registry • Avoroni Dhaka",
+    editorial_plate_3_title: "Plate III • Peacock Emerald Kanchipuram",
+    editorial_plate_3_tag: "Pure Zari Twill",
+
     // Contact
     contact_pill: "Contact Us",
     contact_heading: "We'd Love to Hear From You",
@@ -256,6 +278,28 @@ const DICTIONARY: Record<Language, Record<string, string>> = {
       "আমাদের প্রিয় রমণীদের পছন্দের শীর্ষে থাকা শাড়ি — ভালোবাসায় মোড়া, স্মৃতির সুতোয় বোনা।",
     bestseller_cta: "সবগুলো দেখুন",
     bestseller_footnote: "শুধু শাড়ি নয় — এক অমূল্য ঐতিহ্য",
+
+    // Editorial Archive
+    editorial_pill: "ঐতিহাসিক মনোগ্রাফ",
+    editorial_movement: "প্রথম পর্ব • শাশ্বত তাঁতশিল্পের মেলবন্ধন",
+    editorial_heading: "যেখানে সুতোয় রচিত হয় অনন্তকাল",
+    editorial_subtitle:
+      "খাঁটি ২৪ ক্যারেট সোনার জরি, হাতে কাটা মসলিন এবং উপমহাদেশের অনন্য বুননশিল্পের রাজকীয় এডিটরিয়াল সংকলন।",
+    editorial_monograph_pill: "কিউরেটরের বার্তা",
+    editorial_monograph_quote:
+      "“ঐতিহ্যবাহী তাঁতের দর্শনে অকর্তিত শাড়ির জমিন এক অপাপবিদ্ধ পবিত্রতা। প্রতিটি বুননই জীবনের এক নিরবচ্ছিন্ন প্রবাহ।”",
+    editorial_monograph_desc:
+      "আভরণীর প্রতিটি টানা ও পোড়েনের সুতোয় সংরক্ষিত সোনার জরির বিশুদ্ধতা। রূপগঞ্জের শীতলক্ষ্যা তীর, মীরপুর কাতানপল্লী ও উপমহাদেশের ঐতিহ্যবাহী তাঁতশিল্পী পরিবারগুলো বংশপরম্পরায় নিখুঁত হাতে ফুটিয়ে তোলেন প্রতিটি মোটিফ, যার পেছনে থাকে মাসের পর মাস নীরব সাধনা।",
+    editorial_palette_btn: "রং ও কালেকশন দেখুন →",
+    editorial_plate_1_title: "প্লেট ১ • রাজকীয় বেনারসি ব্রোকেড",
+    editorial_plate_1_tag: "বেনারসি সিল্ক আর্কাইভ",
+    editorial_plate_2_title: "প্লেট ২ • ২৪ ক্যারেট জরি ফিলামেন্ট",
+    editorial_plate_2_tag: "১৮০ ঘণ্টার হস্তশিল্প",
+    editorial_poetic_quote:
+      "“খাঁটি সোনার দীপ্তি কখনো ম্লান হয় না; বরং প্রজন্মের পর প্রজন্ম স্পর্শ করে হয়ে ওঠে চিরন্তন পারিবারিক সম্পদ।”",
+    editorial_quote_caption: "হেরিটেজ উইভিং রেজিস্ট্রি • আভরণী ঢাকা",
+    editorial_plate_3_title: "প্লেট ৩ • ময়ূরকণ্ঠী পান্না কাঞ্জিভরম",
+    editorial_plate_3_tag: "খাঁটি জরি টুইল",
 
     // Contact
     contact_pill: "যোগাযোগ",

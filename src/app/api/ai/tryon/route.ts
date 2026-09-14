@@ -231,13 +231,48 @@ async function runGeminiTryOn(
       console.warn("Google Imagen 3 generation notice:", e.message);
     }
 
-    // If Imagen 3 didn't return an image, return Gemini intelligence metadata
-    return {
-      engine: "Google Gemini 2.0 Atelier Intelligence",
-      stylingTip,
-    };
+    // 3. Ultra-Realistic FLUX.1 Neural Diffusion Haute Couture Synthesis
+    try {
+      console.log("Synthesizing luxury drape via FLUX.1 Neural Engine...");
+      const couturePrompt = `ultra-photorealistic high fashion editorial portrait of a graceful South Asian Bangladeshi woman wearing an authentic handcrafted ${productName} ${category}, intricate gold zari embroidery, authentic traditional Bengali saree drape with pallu over shoulder, radiant luxury lighting, upscale Dhaka heritage maison backdrop, 8k resolution, cinematic studio lighting`;
+      const fluxUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(couturePrompt)}?width=896&height=1200&model=flux&nologo=true`;
+
+      const fluxRes = await fetch(fluxUrl);
+      if (fluxRes.ok) {
+        const fluxRaw = Buffer.from(await fluxRes.arrayBuffer());
+        if (fluxRaw.length > 5000) {
+          const targetW = 896;
+          const targetH = 1200;
+
+          const resizedGen = await sharp(fluxRaw)
+            .resize(targetW, targetH, { fit: "cover" })
+            .toBuffer();
+
+          // Extract user's genuine head and face to preserve 100% genuine identity
+          const headH = Math.round(targetH * 0.28);
+          const userHead = await sharp(userBuffer)
+            .resize(targetW, targetH, { fit: "cover", position: "top" })
+            .extract({ left: 0, top: 0, width: targetW, height: headH })
+            .toBuffer();
+
+          // Blend seamlessly over generated drape
+          const blendedOutput = await sharp(resizedGen)
+            .composite([{ input: userHead, top: 0, left: 0, blend: "over" }])
+            .jpeg({ quality: 92 })
+            .toBuffer();
+
+          return {
+            buffer: blendedOutput,
+            engine: "FLUX.1 Haute Couture AI Synthesis",
+            stylingTip: stylingTip || `এই ঐতিহ্যবাহী ${productName} শাড়ির সাথে এন্টিক কুন্দন ও পোলকি জুয়েলারি আভিজাত্য এনে দেবে।`,
+          };
+        }
+      }
+    } catch (fluxErr: any) {
+      console.warn("FLUX.1 synthesis notice:", fluxErr.message);
+    }
   } catch (err: any) {
-    console.warn("Google Gemini try-on general notice:", err.message);
+    console.warn("Generative try-on general notice:", err.message);
   }
 
   return null;
@@ -293,7 +328,7 @@ export async function POST(req: NextRequest) {
           
           <circle cx="${w - 65}" cy="${h - 56}" r="24" fill="#4A151E" stroke="#C5A869" stroke-width="2" />
           <circle cx="${w - 65}" cy="${h - 56}" r="20" fill="none" stroke="#C5A869" stroke-width="1" stroke-dasharray="3,3" />
-          <text x="${w - 65}" y="${h - 50}" font-family="sans-serif" font-size="16" fill="#FFF0A0" text-anchor="middle">✨</text>
+          <polygon points="${w-65},${h-66} ${w-62},${h-57} ${w-53},${h-57} ${w-60},${h-52} ${w-57},${h-43} ${w-65},${h-48} ${w-73},${h-43} ${w-70},${h-52} ${w-77},${h-57} ${w-68},${h-57}" fill="#FFF0A0" />
         </svg>
       `;
 
@@ -362,25 +397,24 @@ export async function POST(req: NextRequest) {
     if (category === "saree") {
       let geminiProcessed = false;
 
-      if (geminiKey) {
-        const geminiRes = await runGeminiTryOn(
-          userNormalized,
-          productNameEn,
-          category,
-          geminiKey
-        );
+      // Call Generative AI Studio (Google Gemini / FLUX.1)
+      const geminiRes = await runGeminiTryOn(
+        userNormalized,
+        productNameEn,
+        category,
+        geminiKey
+      );
 
-        if (geminiRes?.stylingTip) {
-          stylingTip = geminiRes.stylingTip;
-        }
+      if (geminiRes?.stylingTip) {
+        stylingTip = geminiRes.stylingTip;
+      }
 
-        if (geminiRes?.buffer) {
-          finalOutputBuffer = geminiRes.buffer;
-          engineUsed = geminiRes.engine;
-          geminiProcessed = true;
-        } else if (geminiRes?.engine) {
-          engineUsed = geminiRes.engine;
-        }
+      if (geminiRes?.buffer) {
+        finalOutputBuffer = geminiRes.buffer;
+        engineUsed = geminiRes.engine;
+        geminiProcessed = true;
+      } else if (geminiRes?.engine) {
+        engineUsed = geminiRes.engine;
       }
 
       if (!geminiProcessed) {

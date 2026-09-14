@@ -124,22 +124,16 @@ function getGeminiApiKey(): string {
   return "";
 }
 
-// Google Gemini Generative Haute Couture Drape Engine
-async function runGeminiTryOn(
-  userBuffer: Buffer,
+// Fetch AI Fashion Stylist Critique & Jewelry Advice from Google Gemini
+async function fetchGeminiStylingTip(
   productName: string,
   category: string,
   apiKey: string
-): Promise<{ buffer?: Buffer; engine: string; stylingTip?: string } | null> {
+): Promise<string | null> {
   if (!apiKey) return null;
 
   try {
-    console.log("Connecting to Google Gemini Generative Studio...");
-    let stylingTip: string | undefined = undefined;
-
-    // 1. Fetch AI Fashion Critique & Draping Advice
-    // Models to try in order of availability
-    const candidateModels = ["gemini-flash-latest", "gemini-3.6-flash", "gemini-2.5-flash", "gemini-1.5-flash"];
+    const candidateModels = ["gemini-flash-latest", "gemini-2.5-flash", "gemini-1.5-flash"];
     for (const modelName of candidateModels) {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
@@ -168,111 +162,15 @@ async function runGeminiTryOn(
           const data = await res.json();
           const tipText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
           if (tipText) {
-            stylingTip = tipText.trim();
-            break;
+            return tipText.trim();
           }
         }
       } catch (e) {
         // try next candidate
       }
     }
-
-    // 2. High-Fashion Editorial Saree Synthesis via Google Imagen 3
-    try {
-      const imagenEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
-      const couturePrompt = `Photorealistic ultra-luxury editorial portrait of a graceful South Asian Bangladeshi woman wearing an authentic handcrafted ${productName} ${category}. Rich vibrant traditional colors, intricate gold zari borders, authentic traditional Bengali saree drape with delicate pleats and pallu gracefully resting over shoulder, radiant studio lighting, soft golden hour glow, upscale Dhaka heritage maison backdrop, 8k resolution, photorealistic fabric texture, natural skin tones.`;
-
-      const imgRes = await fetch(imagenEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          instances: [{ prompt: couturePrompt }],
-          parameters: {
-            sampleCount: 1,
-            aspectRatio: "3:4",
-            outputOptions: { mimeType: "image/jpeg" },
-          },
-        }),
-      });
-
-      if (imgRes.ok) {
-        const imgData = await imgRes.json();
-        const b64 = imgData?.predictions?.[0]?.bytesBase64Encoded;
-        if (b64) {
-          const generatedRaw = Buffer.from(b64, "base64");
-          const targetW = 896;
-          const targetH = 1200;
-
-          const resizedGen = await sharp(generatedRaw)
-            .resize(targetW, targetH, { fit: "cover" })
-            .toBuffer();
-
-          // Extract user's genuine head and face to preserve 100% genuine identity
-          const headH = Math.round(targetH * 0.28);
-          const userHead = await sharp(userBuffer)
-            .resize(targetW, targetH, { fit: "cover", position: "top" })
-            .extract({ left: 0, top: 0, width: targetW, height: headH })
-            .toBuffer();
-
-          // Blend seamlessly over generated drape
-          const blendedOutput = await sharp(resizedGen)
-            .composite([{ input: userHead, top: 0, left: 0, blend: "over" }])
-            .jpeg({ quality: 92 })
-            .toBuffer();
-
-          return {
-            buffer: blendedOutput,
-            engine: "Google Gemini & Imagen 3 Generative Studio",
-            stylingTip,
-          };
-        }
-      }
-    } catch (e: any) {
-      console.warn("Google Imagen 3 generation notice:", e.message);
-    }
-
-    // 3. Ultra-Realistic FLUX.1 Neural Diffusion Haute Couture Synthesis
-    try {
-      console.log("Synthesizing luxury drape via FLUX.1 Neural Engine...");
-      const couturePrompt = `ultra-photorealistic high fashion editorial portrait of a graceful South Asian Bangladeshi woman wearing an authentic handcrafted ${productName} ${category}, intricate gold zari embroidery, authentic traditional Bengali saree drape with pallu over shoulder, radiant luxury lighting, upscale Dhaka heritage maison backdrop, 8k resolution, cinematic studio lighting`;
-      const fluxUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(couturePrompt)}?width=896&height=1200&model=flux&nologo=true`;
-
-      const fluxRes = await fetch(fluxUrl);
-      if (fluxRes.ok) {
-        const fluxRaw = Buffer.from(await fluxRes.arrayBuffer());
-        if (fluxRaw.length > 5000) {
-          const targetW = 896;
-          const targetH = 1200;
-
-          const resizedGen = await sharp(fluxRaw)
-            .resize(targetW, targetH, { fit: "cover" })
-            .toBuffer();
-
-          // Extract user's genuine head and face to preserve 100% genuine identity
-          const headH = Math.round(targetH * 0.28);
-          const userHead = await sharp(userBuffer)
-            .resize(targetW, targetH, { fit: "cover", position: "top" })
-            .extract({ left: 0, top: 0, width: targetW, height: headH })
-            .toBuffer();
-
-          // Blend seamlessly over generated drape
-          const blendedOutput = await sharp(resizedGen)
-            .composite([{ input: userHead, top: 0, left: 0, blend: "over" }])
-            .jpeg({ quality: 92 })
-            .toBuffer();
-
-          return {
-            buffer: blendedOutput,
-            engine: "FLUX.1 Haute Couture AI Synthesis",
-            stylingTip: stylingTip || `এই ঐতিহ্যবাহী ${productName} শাড়ির সাথে এন্টিক কুন্দন ও পোলকি জুয়েলারি আভিজাত্য এনে দেবে।`,
-          };
-        }
-      }
-    } catch (fluxErr: any) {
-      console.warn("FLUX.1 synthesis notice:", fluxErr.message);
-    }
   } catch (err: any) {
-    console.warn("Generative try-on general notice:", err.message);
+    console.warn("Gemini styling tip notice:", err.message);
   }
 
   return null;
@@ -306,7 +204,7 @@ export async function POST(req: NextRequest) {
     const width = 896;
     const height = 1200;
 
-    // Prepare Luxury Avoroni Dhaka Watermark Function
+    // Prepare Luxury Avoroni Dhaka Watermark Function (Crisp typography + SVG vector insignia)
     const addLuxuryWatermark = async (imageBuffer: Buffer): Promise<Buffer> => {
       const meta = await sharp(imageBuffer).metadata();
       const w = meta.width || width;
@@ -348,7 +246,24 @@ export async function POST(req: NextRequest) {
       userImage.includes("wardrobe") ||
       userImage.includes("editorial");
 
+    // Fetch AI styling tip (from Gemini if API key available, otherwise authentic curated styling advice)
+    const geminiKey = getGeminiApiKey();
+    let stylingTip = await fetchGeminiStylingTip(productNameBn, category, geminiKey);
+    if (!stylingTip) {
+      if (category === "saree") {
+        stylingTip = `এই ঐতিহ্যবাহী ${productNameBn} শাড়ির সাথে এন্টিক কুন্দন ও পোলকি জুয়েলারি আভিজাত্য এনে দেবে।`;
+      } else if (category === "jewelry") {
+        stylingTip = `এই রাজকীয় গয়নার সাথে লাল বা মেরুন রঙের কাতান শাড়ি সম্পূর্ণ ব্রাইডাল আভিজাত্য ফুটিয়ে তোলে।`;
+      } else if (category === "shawl") {
+        stylingTip = `এই কাশ্মীরি পশমিনা শালটি যেকোনো সন্ধ্যার আভিজাত্যপূর্ণ পোশাকের সাথে রাজকীয় ছোঁয়া প্রদান করে।`;
+      } else {
+        stylingTip = `এই ঐতিহ্যবাহী পিসটি আপনার উৎসবের সাজে এক অনন্য মাত্রা যোগ করবে।`;
+      }
+    }
+
+    // =========================================================================
     // 2. DEMO MODEL SHOWCASE: 100% Crystal-Clear, Untouched Face & Master Saree
+    // =========================================================================
     if (isDemoModel) {
       let showcaseBuffer: Buffer;
       if (category === "saree") {
@@ -373,163 +288,142 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         success: true,
         resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-        engine: "Avoroni Haute Couture Editorial Showcase",
+        engine: "Avoroni Haute Couture Editorial Atelier",
+        stylingTip,
         productName: { bn: productNameBn, en: productNameEn },
         category,
       });
     }
 
-    // 3. REAL USER TRY-ON (User Snapped a Photo or Uploaded Their Photo)
+    // =========================================================================
+    // 3. REAL CUSTOMER TRY-ON (User Snapped Photo or Uploaded Photo)
+    // The customer's face, neck, hair, and genuine portrait are 100% PRESERVED!
+    // Saree drape is overlaid naturally on shoulders & torso below neckline.
+    // =========================================================================
     const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
 
-    // Normalize user photo to clean 3:4 portrait preserving head & face
+    // Normalize user photo to clean 3:4 portrait preserving genuine identity
     const userNormalized = await sharp(userBuffer)
       .resize(width, height, { fit: "cover", position: "top" })
       .toBuffer();
 
     let finalOutputBuffer: Buffer | null = null;
-    let engineUsed = "Avoroni Haute Couture Atelier Drape Engine";
-    let stylingTip: string | undefined = undefined;
-
-    // Check for Google Gemini API key
-    const geminiKey = getGeminiApiKey();
+    const engineUsed = "Avoroni AI Virtual Fitting Atelier";
 
     if (category === "saree") {
-      let geminiProcessed = false;
+      let drapeBuffer: Buffer | null = null;
 
-      // Call Generative AI Studio (Google Gemini / FLUX.1)
-      const geminiRes = await runGeminiTryOn(
-        userNormalized,
-        productNameEn,
-        category,
-        geminiKey
-      );
-
-      if (geminiRes?.stylingTip) {
-        stylingTip = geminiRes.stylingTip;
+      // 1. If product has custom overlay / drape image
+      if (product.overlayImage) {
+        try {
+          drapeBuffer = await resolveImageBuffer(product.overlayImage, reqOrigin);
+        } catch (e) {}
       }
 
-      if (geminiRes?.buffer) {
-        finalOutputBuffer = geminiRes.buffer;
-        engineUsed = geminiRes.engine;
-        geminiProcessed = true;
-      } else if (geminiRes?.engine) {
-        engineUsed = geminiRes.engine;
-      }
+      // 2. Map saree to authentic high-resolution transparent drape PNG
+      if (!drapeBuffer) {
+        const sareeMap: Record<string, string> = {
+          "v-saree-1": "drape_jamdani_red.png",
+          "v-saree-2": "drape_mirpur_red.png",
+          "v-saree-3": "drape_jamdani_white.png",
+          "v-saree-4": "drape_rajshahi_blue.png",
+          "v-saree-5": "drape_banaras_red.png",
+          "v-saree-6": "drape_kanchipuram_green.png",
+          "v-saree-7": "drape_tangail_yellow.png",
+          "v-saree-8": "drape_chanderi_red.png",
+          "v-saree-9": "drape_jamdani_green.png",
+          "v-saree-10": "drape_mirpur_purple.png",
+        };
 
-      if (!geminiProcessed) {
-        // Precision Saree Drape Fallback with Custom Fit
-        let drapeBuffer: Buffer | null = null;
+        let drapeFile = sareeMap[product.id];
+        if (!drapeFile) {
+          if (product.id?.includes("mirpur_purple") || product.image?.includes("mirpur_purple")) {
+            drapeFile = "drape_mirpur_purple.png";
+          } else if (product.id?.includes("mirpur") || product.image?.includes("mirpur")) {
+            drapeFile = "drape_mirpur_red.png";
+          } else if (product.id?.includes("white") || product.image?.includes("white")) {
+            drapeFile = "drape_jamdani_white.png";
+          } else if (product.id?.includes("rajshahi") || product.image?.includes("rajshahi")) {
+            drapeFile = "drape_rajshahi_blue.png";
+          } else if (product.id?.includes("banaras") || product.image?.includes("banaras")) {
+            drapeFile = "drape_banaras_red.png";
+          } else if (product.id?.includes("kanchipuram") || product.image?.includes("kanchipuram")) {
+            drapeFile = "drape_kanchipuram_green.png";
+          } else if (product.id?.includes("tangail") || product.image?.includes("tangail")) {
+            drapeFile = "drape_tangail_yellow.png";
+          } else if (product.id?.includes("chanderi") || product.image?.includes("chanderi")) {
+            drapeFile = "drape_chanderi_red.png";
+          } else if (product.id?.includes("jamdani_green") || product.image?.includes("jamdani_green")) {
+            drapeFile = "drape_jamdani_green.png";
+          } else {
+            drapeFile = "drape_jamdani_red.png";
+          }
+        }
 
-        // If product has custom overlay / drape image
-        if (product.overlayImage) {
+        const drapePath = path.join(publicDir, "images", "trial", drapeFile);
+        if (fs.existsSync(drapePath)) {
           try {
-            drapeBuffer = await resolveImageBuffer(product.overlayImage, reqOrigin);
-          } catch (e) {
-            // ignore
-          }
+            drapeBuffer = fs.readFileSync(drapePath);
+          } catch (e) {}
         }
 
-        if (!drapeBuffer) {
-          const sareeMap: Record<string, string> = {
-            "v-saree-1": "drape_jamdani_red.png",
-            "v-saree-2": "drape_mirpur_red.png",
-            "v-saree-3": "drape_jamdani_white.png",
-            "v-saree-4": "drape_rajshahi_blue.png",
-            "v-saree-5": "drape_banaras_red.png",
-            "v-saree-6": "drape_kanchipuram_green.png",
-            "v-saree-7": "drape_tangail_yellow.png",
-            "v-saree-8": "drape_chanderi_red.png",
-            "v-saree-9": "drape_jamdani_green.png",
-            "v-saree-10": "drape_mirpur_purple.png",
-          };
-
-          let drapeFile = sareeMap[product.id];
-          if (!drapeFile) {
-            if (product.id?.includes("mirpur_purple") || product.image?.includes("mirpur_purple")) {
-              drapeFile = "drape_mirpur_purple.png";
-            } else if (product.id?.includes("mirpur") || product.image?.includes("mirpur")) {
-              drapeFile = "drape_mirpur_red.png";
-            } else if (product.id?.includes("white") || product.image?.includes("white")) {
-              drapeFile = "drape_jamdani_white.png";
-            } else if (product.id?.includes("rajshahi") || product.image?.includes("rajshahi")) {
-              drapeFile = "drape_rajshahi_blue.png";
-            } else if (product.id?.includes("banaras") || product.image?.includes("banaras")) {
-              drapeFile = "drape_banaras_red.png";
-            } else if (product.id?.includes("kanchipuram") || product.image?.includes("kanchipuram")) {
-              drapeFile = "drape_kanchipuram_green.png";
-            } else if (product.id?.includes("tangail") || product.image?.includes("tangail")) {
-              drapeFile = "drape_tangail_yellow.png";
-            } else if (product.id?.includes("chanderi") || product.image?.includes("chanderi")) {
-              drapeFile = "drape_chanderi_red.png";
-            } else if (product.id?.includes("jamdani_green") || product.image?.includes("jamdani_green")) {
-              drapeFile = "drape_jamdani_green.png";
-            } else {
-              drapeFile = "drape_jamdani_red.png";
+        // Fallback fetch from Vercel CDN origin if file is on CDN
+        if (!drapeBuffer && reqOrigin) {
+          try {
+            const res = await fetch(`${reqOrigin.replace(/\/$/, "")}/images/trial/${drapeFile}`);
+            if (res.ok) {
+              drapeBuffer = Buffer.from(await res.arrayBuffer());
             }
-          }
-
-          let drapePath = path.join(publicDir, "images", "trial", drapeFile);
-          if (fs.existsSync(drapePath)) {
-            try {
-              drapeBuffer = fs.readFileSync(drapePath);
-            } catch (e) {}
-          }
-
-          // Fallback fetch from Vercel CDN origin if file is on CDN
-          if (!drapeBuffer && reqOrigin) {
-            try {
-              const res = await fetch(`${reqOrigin.replace(/\/$/, "")}/images/trial/${drapeFile}`);
-              if (res.ok) {
-                drapeBuffer = Buffer.from(await res.arrayBuffer());
-              }
-            } catch (e) {}
-          }
+          } catch (e) {}
         }
+      }
 
-        // If drapeBuffer still not found, use garmentBuffer directly
-        if (!drapeBuffer) {
-          drapeBuffer = garmentBuffer;
-        }
+      // 3. Fallback to garmentBuffer if drape PNG is not found
+      if (!drapeBuffer) {
+        drapeBuffer = garmentBuffer;
+      }
 
-        // Read custom fit parameters from frontend sliders (if provided)
-        const scale = Number(customFit?.scale) || 1.0;
-        const offsetX = Number(customFit?.offsetX) || 0;
-        const offsetY = Number(customFit?.offsetY) || 0;
+      // 4. Calculate Precision Fit Coordinates
+      // Clamped scale from 0.6x to 2.4x (default 1.15x)
+      const scale = Math.max(0.6, Math.min(2.4, Number(customFit?.scale) || 1.15));
+      const targetW = Math.round(width * scale);
+      const targetH = Math.round(height * scale);
 
-        const targetW = Math.round(width * scale);
-        const targetH = Math.round(height * scale);
+      const scaledDrape = await sharp(drapeBuffer)
+        .resize(targetW, targetH, { fit: "fill" })
+        .toBuffer();
 
-        // Resize transparent drape
-        const scaledDrape = await sharp(drapeBuffer)
-          .resize(targetW, targetH, { fit: "fill" })
+      // Screen coordinate conversion: frontend modal canvas is ~600px tall vs 1200px server resolution
+      const coordScale = 1.8;
+      const shiftX = Math.round(Number(customFit?.offsetX || 0) * coordScale);
+      const shiftY = Math.round(Number(customFit?.offsetY !== undefined ? customFit.offsetY : 160) * coordScale);
+
+      const leftPos = Math.round((width - targetW) / 2) + shiftX;
+      const initialTop = Math.round((height - targetH) / 2) + shiftY;
+
+      // Absolute safety rule: Saree drape must NEVER encroach onto the face or eyes (minimum y >= 20% of height)
+      const minTopY = Math.round(height * 0.20);
+      const topPos = Math.max(minTopY, initialTop);
+
+      // Bounding box intersection calculation
+      const srcLeft = Math.max(0, -leftPos);
+      const srcTop = Math.max(0, -topPos);
+      const dstLeft = Math.max(0, leftPos);
+      const dstTop = Math.max(0, topPos);
+      const cropW = Math.min(width - dstLeft, targetW - srcLeft);
+      const cropH = Math.min(height - dstTop, targetH - srcTop);
+
+      if (cropW > 0 && cropH > 0) {
+        const croppedDrape = await sharp(scaledDrape)
+          .extract({ left: srcLeft, top: srcTop, width: cropW, height: cropH })
           .toBuffer();
 
-        const leftPos = Math.round((width - targetW) / 2) + offsetX;
-        // Position at chest level, strictly below the chin and neck line
-        const minChestY = Math.round(height * 0.22);
-        const topPos = Math.max(offsetY || minChestY, minChestY);
-
-        // Safe intersection bounding box calculation to prevent Sharp out-of-bounds error
-        const srcLeft = Math.max(0, -leftPos);
-        const srcTop = Math.max(0, -topPos);
-        const dstLeft = Math.max(0, leftPos);
-        const dstTop = Math.max(0, topPos);
-        const cropW = Math.min(width - dstLeft, targetW - srcLeft);
-        const cropH = Math.min(height - dstTop, targetH - srcTop);
-
-        if (cropW > 0 && cropH > 0) {
-          const croppedDrape = await sharp(scaledDrape)
-            .extract({ left: srcLeft, top: srcTop, width: cropW, height: cropH })
-            .toBuffer();
-
-          finalOutputBuffer = await sharp(userNormalized)
-            .composite([{ input: croppedDrape, left: dstLeft, top: dstTop, blend: "over" }])
-            .jpeg({ quality: 92 })
-            .toBuffer();
-        } else {
-          finalOutputBuffer = userNormalized;
-        }
+        finalOutputBuffer = await sharp(userNormalized)
+          .composite([{ input: croppedDrape, left: dstLeft, top: dstTop, blend: "over" }])
+          .jpeg({ quality: 92 })
+          .toBuffer();
+      } else {
+        finalOutputBuffer = userNormalized;
       }
     } else if (category === "jewelry") {
       // Heritage Jewelry styled naturally

@@ -81,26 +81,26 @@ const WARDROBE_ITEMS: TrialItem[] = [
     price: { en: "৳ 12,800", bn: "৳ ১২,৮০০" },
   },
 
-  // 2. Royal Heritage Jewelry (Authentic editorial jewelry crops)
+  // 2. Royal Heritage Jewelry (Authentic editorial model looks)
   {
     id: "v-jewel-1",
     name: { en: "Royal Jadau Kundan Choker", bn: "রাজকীয় কুন্দন চোকার ও কানপাশা" },
     category: "jewelry",
-    image: "/images/lifestyle/jewel_kundan_choker.jpg",
+    image: "/images/editorial_portrait.jpg",
     price: { en: "৳ 8,500", bn: "৳ ৮,৫০০" },
   },
   {
     id: "v-jewel-2",
     name: { en: "Imperial Polki Jhumka", bn: "অ্যান্টিক পোলকি ঝুমকা সেট" },
     category: "jewelry",
-    image: "/images/lifestyle/jewel_chandbali_jhumka.jpg",
+    image: "/images/contact_intro.jpg",
     price: { en: "৳ 4,200", bn: "৳ ৪,২০০" },
   },
   {
     id: "v-jewel-3",
     name: { en: "Mughal Royal Chandrahaar", bn: "মোগল চন্দ্রহার ও সীতাহার" },
     category: "jewelry",
-    image: "/images/lifestyle/jewel_chandrahaar_pendant.jpg",
+    image: "/images/lifestyle/jewelry_cover.jpg",
     price: { en: "৳ 12,500", bn: "৳ ১২,৫০০" },
   },
 
@@ -1346,8 +1346,8 @@ export default function VirtualStudioModal() {
                 </span>
 
                 <div className="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
-                  {/* OPTION 1: MANUAL PNG DRAPE TOGGLE */}
-                  {(uploadedPhoto || capturedSnapshot) && (
+                  {/* OPTION 1: MANUAL PNG DRAPE TOGGLE (Only for Sarees with 2D drapes) */}
+                  {(uploadedPhoto || capturedSnapshot) && currentDrape && (
                     <button
                       type="button"
                       onClick={() => {

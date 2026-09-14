@@ -194,9 +194,29 @@ export async function POST(req: NextRequest) {
     const productNameBn = getLoc(product.name, "bn") || "সিগনেচার কালেকশন";
     const productNameEn = getLoc(product.name, "en") || "Signature Heritage Drape";
 
-    // 1. Resolve exact garment image buffer (supports remote URLs e.g. Cloudinary, local paths, base64)
-    const rawGarmentInput = product.image || product.overlayImage || "/images/colorways/jamdani_red.jpg";
-    const garmentBuffer = await resolveImageBuffer(rawGarmentInput, reqOrigin);
+    // 1. Resolve exact target editorial model image (supports sarees, jewelry, shawls, clutches)
+    let rawTargetInput = product.image || product.overlayImage;
+    if (category === "jewelry") {
+      if (product.id === "v-jewel-1") {
+        rawTargetInput = "/images/editorial_portrait.jpg"; // Model wearing Royal Kundan Choker & matching jewelry
+      } else if (product.id === "v-jewel-2") {
+        rawTargetInput = "/images/contact_intro.jpg"; // Model wearing Imperial Polki Jhumkas
+      } else if (product.id === "v-jewel-3") {
+        rawTargetInput = "/images/lifestyle/jewelry_cover.jpg"; // Model wearing Mughal Chandrahaar
+      } else {
+        rawTargetInput = "/images/lifestyle/jewelry_cover.jpg";
+      }
+    } else if (category === "shawl") {
+      rawTargetInput = product.id === "v-shawl-2" ? "/images/lifestyle/shawls_cover.jpg" : "/images/lifestyle/shawl_kashmiri_pashmina.jpg";
+    } else if (category === "clutch") {
+      rawTargetInput = "/images/editorial_large.jpg";
+    }
+
+    if (!rawTargetInput) {
+      rawTargetInput = "/images/colorways/jamdani_red.jpg";
+    }
+
+    const targetBuffer = await resolveImageBuffer(rawTargetInput, reqOrigin);
 
     // Standard 3:4 portrait dimensions
     const width = 896;
@@ -251,11 +271,11 @@ export async function POST(req: NextRequest) {
     // =========================================================================
     // REAL AI NEURAL VIRTUAL TRY-ON (IDENTITY-PRESERVING HAUTE COUTURE FITTING)
     // Seamlessly transfers the customer's exact face, eyes, smile, skin tone,
-    // and facial features onto the royal handcrafted saree atelier look!
+    // and facial features onto the chosen royal handcrafted saree or jewelry look!
     // =========================================================================
-    if (category === "saree" && sourceMode !== "model" && userImage) {
+    if (sourceMode !== "model" && userImage) {
       try {
-        console.log("Executing Identity-Preserving Neural Atelier Fitting...");
+        console.log(`Executing Identity-Preserving Neural Atelier Fitting for ${category} (${product.id})...`);
         const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
 
         // Normalize user image to clean 896x1200 portrait for facial landmark detection
@@ -264,14 +284,14 @@ export async function POST(req: NextRequest) {
           .jpeg({ quality: 94 })
           .toBuffer();
 
-        const targetBlob = new Blob([new Uint8Array(garmentBuffer)], { type: "image/jpeg" });
+        const targetBlob = new Blob([new Uint8Array(targetBuffer)], { type: "image/jpeg" });
         const sourceBlob = new Blob([new Uint8Array(userResized)], { type: "image/jpeg" });
 
         // Primary Engine: High-Precision Neural Face-Swap & Skin Tone Synthesis
         try {
           const swapClient = await Client.connect("felixrosberg/face-swap");
           const swapPromise = swapClient.predict("/run_inference", [
-            targetBlob, // Target: Royal model wearing the authentic saree
+            targetBlob, // Target: Royal model wearing the authentic saree/jewelry
             sourceBlob, // Source: Customer's exact face/selfie/hijab photo
             100,
             100,
@@ -303,37 +323,39 @@ export async function POST(req: NextRequest) {
             }
           }
         } catch (swapErr: any) {
-          console.warn("Notice: Face swap secondary fallback to IDM-VTON:", swapErr.message);
+          console.warn("Notice: Face swap secondary fallback:", swapErr.message);
         }
 
-        // Secondary Fallback Engine: IDM-VTON Neural Diffusion
-        const vtonClient = await Client.connect("yisol/IDM-VTON");
-        const vtonRes: any = await vtonClient.predict("/tryon", [
-          { background: sourceBlob, layers: [], composite: null },
-          targetBlob,
-          `Authentic ${productNameEn} saree, traditional royal Bengali handcrafted saree`,
-          true,
-          false,
-          20,
-          42
-        ]);
+        // Secondary Fallback Engine for Sarees: IDM-VTON Neural Diffusion
+        if (category === "saree") {
+          const vtonClient = await Client.connect("yisol/IDM-VTON");
+          const vtonRes: any = await vtonClient.predict("/tryon", [
+            { background: sourceBlob, layers: [], composite: null },
+            targetBlob,
+            `Authentic ${productNameEn} saree, traditional royal Bengali handcrafted saree`,
+            true,
+            false,
+            20,
+            42
+          ]);
 
-        const vtonUrl = vtonRes?.data?.[0]?.url;
-        if (vtonUrl) {
-          const vtonFetch = await fetch(vtonUrl);
-          if (vtonFetch.ok) {
-            const rawVton = Buffer.from(await vtonFetch.arrayBuffer());
-            const watermarked = await addLuxuryWatermark(rawVton);
+          const vtonUrl = vtonRes?.data?.[0]?.url;
+          if (vtonUrl) {
+            const vtonFetch = await fetch(vtonUrl);
+            if (vtonFetch.ok) {
+              const rawVton = Buffer.from(await vtonFetch.arrayBuffer());
+              const watermarked = await addLuxuryWatermark(rawVton);
 
-            return NextResponse.json({
-              success: true,
-              resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-              engine: "IDM-VTON Neural Garment Diffusion",
-              stylingTip,
-              productName: { bn: productNameBn, en: productNameEn },
-              category,
-              isClientFit: true,
-            });
+              return NextResponse.json({
+                success: true,
+                resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
+                engine: "IDM-VTON Neural Garment Diffusion",
+                stylingTip,
+                productName: { bn: productNameBn, en: productNameEn },
+                category,
+                isClientFit: true,
+              });
+            }
           }
         }
       } catch (neuralErr: any) {
@@ -350,28 +372,9 @@ export async function POST(req: NextRequest) {
     }
 
     // =========================================================================
-    // HAUTE COUTURE ATELIER SHOWCASE (Demo Model or Non-Saree Accessories)
+    // HAUTE COUTURE ATELIER SHOWCASE (Demo Model Mode)
     // =========================================================================
-    let showcaseBuffer: Buffer;
-    if (category === "saree") {
-      showcaseBuffer = garmentBuffer;
-    } else if (category === "jewelry") {
-      const jewelMap: Record<string, string> = {
-        "v-jewel-1": "images/lifestyle/jewel_kundan_choker.jpg",
-        "v-jewel-2": "images/lifestyle/jewel_chandbali_jhumka.jpg",
-        "v-jewel-3": "images/lifestyle/jewel_chandrahaar_pendant.jpg",
-      };
-      const jFile = jewelMap[product.id] || "images/lifestyle/jewelry_cover.jpg";
-      showcaseBuffer = await resolveImageBuffer(jFile, reqOrigin);
-    } else if (category === "shawl") {
-      showcaseBuffer = await resolveImageBuffer("images/lifestyle/shawls_cover.jpg", reqOrigin);
-    } else if (category === "clutch") {
-      showcaseBuffer = await resolveImageBuffer("images/lifestyle/clutches_cover.jpg", reqOrigin);
-    } else {
-      showcaseBuffer = garmentBuffer;
-    }
-
-    const watermarked = await addLuxuryWatermark(showcaseBuffer);
+    const watermarked = await addLuxuryWatermark(targetBuffer);
 
     return NextResponse.json({
       success: true,
@@ -380,7 +383,7 @@ export async function POST(req: NextRequest) {
       stylingTip,
       productName: { bn: productNameBn, en: productNameEn },
       category,
-      isClientFit: sourceMode !== "model",
+      isClientFit: false,
     });
   } catch (error: any) {
     console.error("AI Try-On API error:", error);

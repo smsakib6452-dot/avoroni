@@ -249,17 +249,24 @@ export async function POST(req: NextRequest) {
     }
 
     // =========================================================================
-    // REAL AI NEURAL VIRTUAL TRY-ON (When customer uploads a photo or takes snapshot)
+    // REAL AI NEURAL VIRTUAL TRY-ON
     // Uses state-of-the-art IDM-VTON Neural Garment Transfer Diffusion Model
-    // Replaces the customer's clothes with the authentic saree while preserving
-    // their face, eyes, smile, skin tone, hair, and background with 100% photorealism!
+    // Replaces the outfit with the authentic saree while preserving 100% of
+    // face, eyes, hair, skin tone, jewelry, and background photorealism!
     // =========================================================================
-    if (sourceMode !== "model" && userImage && category === "saree") {
+    if (category === "saree") {
       try {
         console.log("Connecting to IDM-VTON Neural Diffusion Engine...");
-        const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
+        
+        // For demo model mode, use our royal editorial portrait model as base
+        let baseUserImage = userImage;
+        if (sourceMode === "model" || !baseUserImage) {
+          baseUserImage = "/images/contact_intro.jpg";
+        }
 
-        // Normalize user image to 768x1024 for optimal diffusion try-on speed and quality
+        const userBuffer = await resolveImageBuffer(baseUserImage, reqOrigin);
+
+        // Normalize image to 768x1024 for optimal diffusion try-on speed and quality
         const userResized = await sharp(userBuffer)
           .resize(768, 1024, { fit: "cover", position: "top" })
           .jpeg({ quality: 92 })
@@ -275,13 +282,13 @@ export async function POST(req: NextRequest) {
           `Authentic ${productNameEn} saree, traditional royal Bengali handcrafted saree`,
           true,  // auto-masking
           false, // auto-crop
-          22,    // denoise_steps (~18-20s speed)
+          20,    // denoise_steps (~18-20s speed)
           42     // seed
         ]);
 
         // 45s safety timeout for serverless
         const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("IDM-VTON timeout")), 45000)
+          setTimeout(() => reject(new Error("IDM-VTON processing timeout")), 45000)
         );
 
         const result: any = await Promise.race([predictPromise, timeoutPromise]);
@@ -300,17 +307,28 @@ export async function POST(req: NextRequest) {
               stylingTip,
               productName: { bn: productNameBn, en: productNameEn },
               category,
-              isClientFit: true,
+              isClientFit: sourceMode !== "model",
             });
           }
         }
       } catch (neuralErr: any) {
-        console.warn("Notice: IDM-VTON fallback to editorial showcase:", neuralErr.message);
+        console.warn("Notice: IDM-VTON neural diffusion notice:", neuralErr.message);
+        // If customer uploaded their own photo, DO NOT silently wipe out their photo with catalog image!
+        if (sourceMode !== "model") {
+          return NextResponse.json(
+            {
+              error: "এআই প্রসেসিং কিছুটা সময় নিচ্ছে। অনুগ্রহ করে কয়েক সেকেন্ড পর পুনরায় 'এআই দিয়ে বানিয়ে নিন' চাপুন।",
+              isTimeout: true,
+              success: false,
+            },
+            { status: 503 }
+          );
+        }
       }
     }
 
     // =========================================================================
-    // HAUTE COUTURE ATELIER SHOWCASE (Demo Model or Fallback)
+    // HAUTE COUTURE ATELIER SHOWCASE (Demo Model or Non-Saree Accessories)
     // =========================================================================
     let showcaseBuffer: Buffer;
     if (category === "saree") {

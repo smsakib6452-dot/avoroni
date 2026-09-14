@@ -341,14 +341,43 @@ export default function VirtualStudioModal() {
     startCamera();
   };
 
+  // Compress & normalize client uploaded images to prevent payload limits and optimize diffusion
+  const compressClientImage = (dataUrl: string, maxDim = 1024): Promise<string> => {
+    return new Promise((resolve) => {
+      const img = new window.Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return resolve(dataUrl);
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", 0.88));
+      };
+      img.onerror = () => resolve(dataUrl);
+      img.src = dataUrl;
+    });
+  };
+
   // Handle Photo File Upload
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       if (typeof event.target?.result === "string") {
-        setUploadedPhoto(event.target.result);
+        const optimized = await compressClientImage(event.target.result, 1024);
+        setUploadedPhoto(optimized);
         setSourceMode("upload");
         setAiResultImage(null);
         setAiEngineUsed("");
@@ -477,9 +506,19 @@ export default function VirtualStudioModal() {
         }),
       });
 
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "AI generation failed");
+      let data: any;
+      try {
+        data = await res.json();
+      } catch (e) {
+        throw new Error(
+          language === "bn"
+            ? "সার্ভারে এআই প্রসেসিং কিছুটা বেশি সময় নিচ্ছে। অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
+            : "Processing timed out. Please try again."
+        );
+      }
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || "AI generation failed");
       }
 
       setAiResultImage(data.resultImage);
@@ -488,9 +527,10 @@ export default function VirtualStudioModal() {
     } catch (err: any) {
       console.error("Try-on generation error:", err);
       setErrorMessage(
-        language === "bn"
+        err?.message ||
+        (language === "bn"
           ? "ট্রায়াল তৈরি করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
-          : "Failed to generate virtual try-on. Please try again."
+          : "Failed to generate virtual try-on. Please try again.")
       );
     } finally {
       clearTimeout(stepTimer1);
@@ -758,6 +798,34 @@ export default function VirtualStudioModal() {
               ? "আসল ছবি প্রদর্শিত হচ্ছে"
               : "Clean Photo Mode"}
           </span>
+        </div>
+      )}
+
+      {/* Prominent Call-To-Action Card when Drape is Hidden */}
+      {!showManualDrape && (
+        <div className="absolute bottom-16 sm:bottom-18 inset-x-3 sm:inset-x-6 z-20 flex justify-center pointer-events-none">
+          <div className="pointer-events-auto max-w-md w-full p-3 rounded-2xl bg-black/92 border border-[#B89A62]/60 backdrop-blur-md shadow-2xl flex items-center justify-between gap-3 animate-fadeIn">
+            <div className="flex items-center gap-2.5 text-left">
+              <span className="text-xl shrink-0">✨</span>
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-[#F5F0E8]">
+                  {language === "bn" ? "পোশাকটি পরে দেখার জন্য প্রস্তুত?" : "Ready to try this saree?"}
+                </span>
+                <span className="text-[10px] text-[#B89A62]">
+                  {language === "bn" ? "এআই সরাসরি আপনার শরীরে শাড়িটি পরাবে" : "AI will drape the saree onto your body"}
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={handleGenerateAiTryOn}
+              disabled={isGenerating}
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#6D1F2A] via-[#852735] to-[#6D1F2A] hover:brightness-110 text-white text-xs font-serif font-bold tracking-wide border border-[#B89A62] shadow-[0_0_15px_rgba(184,154,98,0.4)] cursor-pointer hover:scale-105 transition-all shrink-0 flex items-center gap-1.5"
+            >
+              <span>✨</span>
+              <span>{language === "bn" ? "এআই ট্রায়াল নিন" : "Generate AI Look"}</span>
+            </button>
+          </div>
         </div>
       )}
 

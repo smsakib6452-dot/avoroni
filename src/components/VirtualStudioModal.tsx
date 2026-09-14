@@ -175,10 +175,11 @@ export default function VirtualStudioModal() {
   const [flashTrigger, setFlashTrigger] = useState(false);
 
   // Interactive Fit Adjuster State
-  const [fitScale, setFitScale] = useState<number>(1.25);
+  const [fitScale, setFitScale] = useState<number>(1.15);
   const [fitOffsetX, setFitOffsetX] = useState<number>(0);
-  const [fitOffsetY, setFitOffsetY] = useState<number>(60);
-  const [showFitToolbar, setShowFitToolbar] = useState<boolean>(true);
+  const [fitOffsetY, setFitOffsetY] = useState<number>(160);
+  const [showManualDrape, setShowManualDrape] = useState<boolean>(false);
+  const [showFitToolbar, setShowFitToolbar] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const dragStartRef = useRef<{ startX: number; startY: number; initX: number; initY: number } | null>(null);
 
@@ -352,9 +353,11 @@ export default function VirtualStudioModal() {
         setAiResultImage(null);
         setAiEngineUsed("");
         setAiStylingTip("");
+        setShowManualDrape(false);
+        setShowFitToolbar(false);
         // Default smart fit for selfie/portrait
-        setFitScale(1.35);
-        setFitOffsetY(80);
+        setFitScale(1.15);
+        setFitOffsetY(160);
         setFitOffsetX(0);
       }
     };
@@ -533,8 +536,8 @@ export default function VirtualStudioModal() {
         />
       </div>
 
-      {/* 2. Interactive Saree Drape Overlay */}
-      {currentDrape && (
+      {/* 2. Interactive Saree Drape Overlay (Only when manually enabled) */}
+      {showManualDrape && currentDrape && (
         <div
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
@@ -586,23 +589,24 @@ export default function VirtualStudioModal() {
       </div>
 
       {/* 4. Floating Drape Adjuster Toolbar (Top-Right) */}
-      <div className="absolute top-3 right-3 z-20 flex flex-col items-end gap-2 max-w-[280px]">
-        <button
-          type="button"
-          onClick={() => setShowFitToolbar(!showFitToolbar)}
-          className="px-3 py-1.5 rounded-full bg-black/85 hover:bg-black text-[#F5F0E8] border border-[#B89A62]/50 backdrop-blur-md text-[11px] font-sans flex items-center gap-1.5 shadow-xl cursor-pointer transition-all"
-        >
-          <span>🎚️</span>
-          <span>
-            {language === "bn"
-              ? showFitToolbar
-                ? "টুলবার লুকান"
-                : "সাইজ ও ফিটিং সমন্বয়"
-              : showFitToolbar
-              ? "Hide Controls"
-              : "Adjust Drape Fit"}
-          </span>
-        </button>
+      {showManualDrape && (
+        <div className="absolute top-3 right-3 z-20 flex flex-col items-end gap-2 max-w-[280px]">
+          <button
+            type="button"
+            onClick={() => setShowFitToolbar(!showFitToolbar)}
+            className="px-3 py-1.5 rounded-full bg-black/85 hover:bg-black text-[#F5F0E8] border border-[#B89A62]/50 backdrop-blur-md text-[11px] font-sans flex items-center gap-1.5 shadow-xl cursor-pointer transition-all"
+          >
+            <span>🎚️</span>
+            <span>
+              {language === "bn"
+                ? showFitToolbar
+                  ? "টুলবার লুকান"
+                  : "সাইজ ও ফিটিং সমন্বয়"
+                : showFitToolbar
+                ? "Hide Controls"
+                : "Adjust Drape Fit"}
+            </span>
+          </button>
 
         {showFitToolbar && (
           <div className="w-64 sm:w-72 p-3 rounded-2xl bg-black/92 border border-[#B89A62]/40 backdrop-blur-lg shadow-2xl text-[11px] flex flex-col gap-2.5 animate-fadeIn">
@@ -699,6 +703,19 @@ export default function VirtualStudioModal() {
           </div>
         )}
       </div>
+      )}
+
+      {/* Helper Badge when Drape is Hidden */}
+      {!showManualDrape && (
+        <div className="absolute top-3 right-3 z-20 px-3.5 py-1.5 rounded-full bg-black/85 border border-[#B89A62]/40 backdrop-blur-md text-[11px] text-[#B89A62] flex items-center gap-1.5 shadow-lg">
+          <span>✨</span>
+          <span>
+            {language === "bn"
+              ? "আসল ছবি প্রদর্শিত হচ্ছে"
+              : "Clean Photo Mode"}
+          </span>
+        </div>
+      )}
 
       {/* 5. Bottom Retake / Change Photo Button */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
@@ -1144,40 +1161,71 @@ export default function VirtualStudioModal() {
                 </div>
               </div>
             ) : (
-              // Actions before AI Result is Generated
-              <div className="w-full flex items-center justify-between gap-2">
+              // Actions before AI Result is Generated: TWO EXPLICIT OPTIONS
+              <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3">
                 <span className="text-[11px] text-[#F5F0E8]/60 hidden sm:inline">
                   {language === "bn"
-                    ? "✨ এআই প্রযুক্তিতে আসল ফটোশুটের মতো রিয়েলিস্টিক ফিটিং"
-                    : "✨ AI synthesized realistic editorial drape"}
+                    ? "✨ আপনার ট্রায়াল পদ্ধতি নির্বাচন করুন:"
+                    : "✨ Choose your trial method:"}
                 </span>
 
-                <button
-                  onClick={handleGenerateAiTryOn}
-                  disabled={isGenerating}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#6D1F2A] via-[#852735] to-[#6D1F2A] hover:brightness-110 text-[#F5F0E8] font-serif tracking-wider font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(109,31,42,0.6)] border border-[#B89A62]/50 hover:scale-105"
-                >
-                  <span className="text-base">
-                    {sourceMode === "upload" && !uploadedPhoto
-                      ? "📁"
-                      : sourceMode === "camera" && !capturedSnapshot
-                      ? "📸"
-                      : "✨"}
-                  </span>
-                  <span>
-                    {sourceMode === "upload" && !uploadedPhoto
-                      ? language === "bn"
-                        ? "ছবি আপলোড করুন"
-                        : "Upload Photo First"
-                      : sourceMode === "camera" && !capturedSnapshot
-                      ? language === "bn"
-                        ? "তাৎক্ষণিক ছবি তুলুন"
-                        : "Take Photo First"
-                      : language === "bn"
-                      ? "এআই ভার্চুয়াল ট্রায়াল তৈরি করুন"
-                      : "Generate AI Virtual Look"}
-                  </span>
-                </button>
+                <div className="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
+                  {/* OPTION 1: MANUAL PNG DRAPE TOGGLE */}
+                  {(uploadedPhoto || capturedSnapshot) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const nextState = !showManualDrape;
+                        setShowManualDrape(nextState);
+                        setShowFitToolbar(nextState);
+                      }}
+                      className={`px-4 py-2.5 rounded-xl border transition-all flex items-center justify-center gap-1.5 cursor-pointer text-xs font-semibold shadow-md ${
+                        showManualDrape
+                          ? "bg-[#B89A62] text-black border-[#B89A62] shadow-[0_0_15px_rgba(184,154,98,0.5)]"
+                          : "bg-[#1E1917] hover:bg-[#282220] text-[#F5F0E8] border-[#B89A62]/40"
+                      }`}
+                    >
+                      <span>🎚️</span>
+                      <span>
+                        {showManualDrape
+                          ? language === "bn"
+                            ? "ম্যানুয়াল ড্র্যাপ বন্ধ করুন"
+                            : "Hide PNG Drape"
+                          : language === "bn"
+                          ? "১. ম্যানুয়াল ড্র্যাপ দিয়ে দেখুন"
+                          : "1. View with PNG Drape"}
+                      </span>
+                    </button>
+                  )}
+
+                  {/* OPTION 2: AI GENERATIVE ATELIER TRIAL */}
+                  <button
+                    onClick={handleGenerateAiTryOn}
+                    disabled={isGenerating}
+                    className="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#6D1F2A] via-[#852735] to-[#6D1F2A] hover:brightness-110 text-[#F5F0E8] font-serif tracking-wider font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all shadow-[0_0_20px_rgba(109,31,42,0.6)] border border-[#B89A62]/50 hover:scale-105 text-xs sm:text-sm"
+                  >
+                    <span className="text-base">
+                      {sourceMode === "upload" && !uploadedPhoto
+                        ? "📁"
+                        : sourceMode === "camera" && !capturedSnapshot
+                        ? "📸"
+                        : "✨"}
+                    </span>
+                    <span>
+                      {sourceMode === "upload" && !uploadedPhoto
+                        ? language === "bn"
+                          ? "ছবি আপলোড করুন"
+                          : "Upload Photo First"
+                        : sourceMode === "camera" && !capturedSnapshot
+                        ? language === "bn"
+                          ? "তাৎক্ষণিক ছবি তুলুন"
+                          : "Take Photo First"
+                        : language === "bn"
+                        ? "২. এআই দিয়ে বানিয়ে নিন"
+                        : "2. Generate with AI"}
+                    </span>
+                  </button>
+                </div>
               </div>
             )}
           </div>

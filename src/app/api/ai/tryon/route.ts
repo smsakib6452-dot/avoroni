@@ -289,7 +289,7 @@ export async function POST(req: NextRequest) {
           <rect x="0" y="${h - 130}" width="${w}" height="130" fill="url(#bottomShadow)" />
           
           <text x="45" y="${h - 70}" font-family="'Times New Roman', Georgia, serif" font-size="22" fill="#F5F0E8" letter-spacing="6" font-weight="bold">AVORONI DHAKA</text>
-          <text x="45" y="${h - 42}" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#C5A869" letter-spacing="2" font-weight="600">AI VIRTUAL ATELIER • ${productNameBn}</text>
+          <text x="45" y="${h - 42}" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#C5A869" letter-spacing="2" font-weight="600">AI VIRTUAL ATELIER • ${productNameEn.toUpperCase()}</text>
           
           <circle cx="${w - 65}" cy="${h - 56}" r="24" fill="#4A151E" stroke="#C5A869" stroke-width="2" />
           <circle cx="${w - 65}" cy="${h - 56}" r="20" fill="none" stroke="#C5A869" stroke-width="1" stroke-dasharray="3,3" />
@@ -472,7 +472,9 @@ export async function POST(req: NextRequest) {
           .toBuffer();
 
         const leftPos = Math.round((width - targetW) / 2) + offsetX;
-        const topPos = offsetY;
+        // Position at chest level, strictly below the chin and neck line
+        const minChestY = Math.round(height * 0.22);
+        const topPos = Math.max(offsetY || minChestY, minChestY);
 
         // Safe intersection bounding box calculation to prevent Sharp out-of-bounds error
         const srcLeft = Math.max(0, -leftPos);

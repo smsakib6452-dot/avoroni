@@ -58,6 +58,33 @@ export default function AdminPage() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  // Gemini API testing state
+  const [geminiTestStatus, setGeminiTestStatus] = useState<{ loading: boolean; message: string; success?: boolean } | null>(null);
+
+  const handleTestGeminiKey = async () => {
+    const key = content.aiEngine?.geminiApiKey || "";
+    setGeminiTestStatus({ loading: true, message: "গুগল জেমিনি সার্ভারের সাথে সংযোগ পরীক্ষা করা হচ্ছে..." });
+    try {
+      const res = await fetch("/api/admin/test-gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ apiKey: key }),
+      });
+      const data = await res.json();
+      setGeminiTestStatus({
+        loading: false,
+        success: data.success,
+        message: data.message || (data.success ? "সংযুক্ত হয়েছে!" : "ব্যর্থ হয়েছে।"),
+      });
+    } catch (e: any) {
+      setGeminiTestStatus({
+        loading: false,
+        success: false,
+        message: "কানেকশন এরর: " + e.message,
+      });
+    }
+  };
+
   const fetchInquiries = async () => {
     setIsLoadingInquiries(true);
     try {
@@ -2521,26 +2548,50 @@ export default function AdminPage() {
                       (optional)
                     </span>
                   </label>
-                  <input
-                    type="password"
-                    placeholder="AIzaSy..."
-                    value={content.aiEngine?.geminiApiKey || ""}
-                    onChange={(e) =>
-                      setContent({
-                        ...content,
-                        aiEngine: {
-                          ...(content.aiEngine || {
-                            geminiApiKey: "",
-                            replicateApiKey: "",
-                            modelType: "auto",
-                            statusNote: "",
-                          }),
-                          geminiApiKey: e.target.value,
-                        },
-                      })
-                    }
-                    className="px-4 py-2.5 bg-[#110D0C] border border-[#B89A62]/20 rounded-xl text-xs text-[#F5F0E8] font-mono focus:border-[#B89A62] outline-none placeholder:text-[#F5F0E8]/20"
-                  />
+                  <div className="flex gap-2">
+                    <input
+                      type="password"
+                      placeholder="AIzaSy... or AQ...."
+                      value={content.aiEngine?.geminiApiKey || ""}
+                      onChange={(e) =>
+                        setContent({
+                          ...content,
+                          aiEngine: {
+                            ...(content.aiEngine || {
+                              geminiApiKey: "",
+                              replicateApiKey: "",
+                              modelType: "auto",
+                              statusNote: "",
+                            }),
+                            geminiApiKey: e.target.value,
+                          },
+                        })
+                      }
+                      className="flex-1 px-4 py-2.5 bg-[#110D0C] border border-[#B89A62]/20 rounded-xl text-xs text-[#F5F0E8] font-mono focus:border-[#B89A62] outline-none placeholder:text-[#F5F0E8]/20"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleTestGeminiKey}
+                      disabled={geminiTestStatus?.loading}
+                      className="px-3.5 py-2.5 rounded-xl bg-[#6D1F2A] hover:bg-[#852735] text-[#F5F0E8] text-xs font-semibold whitespace-nowrap cursor-pointer transition-colors shadow flex items-center gap-1.5 shrink-0 disabled:opacity-50"
+                    >
+                      <span>⚡</span>
+                      <span>{geminiTestStatus?.loading ? "পরীক্ষা হচ্ছে..." : "টেস্ট কানেকশন"}</span>
+                    </button>
+                  </div>
+
+                  {geminiTestStatus?.message && (
+                    <div
+                      className={`p-3 rounded-xl text-xs flex items-start gap-2 border animate-in fade-in duration-200 ${
+                        geminiTestStatus.success
+                          ? "bg-emerald-950/60 border-emerald-500/40 text-emerald-300"
+                          : "bg-amber-950/60 border-amber-500/40 text-amber-200"
+                      }`}
+                    >
+                      <span className="text-base shrink-0">{geminiTestStatus.success ? "✅" : "⚠️"}</span>
+                      <p className="leading-relaxed">{geminiTestStatus.message}</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Replicate API Token */}

@@ -249,81 +249,103 @@ export async function POST(req: NextRequest) {
     }
 
     // =========================================================================
-    // REAL AI NEURAL VIRTUAL TRY-ON
-    // Uses state-of-the-art IDM-VTON Neural Garment Transfer Diffusion Model
-    // Replaces the outfit with the authentic saree while preserving 100% of
-    // face, eyes, hair, skin tone, jewelry, and background photorealism!
+    // REAL AI NEURAL VIRTUAL TRY-ON (IDENTITY-PRESERVING HAUTE COUTURE FITTING)
+    // Seamlessly transfers the customer's exact face, eyes, smile, skin tone,
+    // and facial features onto the royal handcrafted saree atelier look!
     // =========================================================================
-    if (category === "saree") {
+    if (category === "saree" && sourceMode !== "model" && userImage) {
       try {
-        console.log("Connecting to IDM-VTON Neural Diffusion Engine...");
-        
-        // For demo model mode, use our royal editorial portrait model as base
-        let baseUserImage = userImage;
-        if (sourceMode === "model" || !baseUserImage) {
-          baseUserImage = "/images/contact_intro.jpg";
-        }
+        console.log("Executing Identity-Preserving Neural Atelier Fitting...");
+        const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
 
-        const userBuffer = await resolveImageBuffer(baseUserImage, reqOrigin);
-
-        // Normalize image to 768x1024 for optimal diffusion try-on speed and quality
+        // Normalize user image to clean 896x1200 portrait for facial landmark detection
         const userResized = await sharp(userBuffer)
-          .resize(768, 1024, { fit: "cover", position: "top" })
-          .jpeg({ quality: 92 })
+          .resize(896, 1200, { fit: "cover", position: "top" })
+          .jpeg({ quality: 94 })
           .toBuffer();
 
-        const userBlob = new Blob([new Uint8Array(userResized)], { type: "image/jpeg" });
-        const garmBlob = new Blob([new Uint8Array(garmentBuffer)], { type: "image/jpeg" });
+        const targetBlob = new Blob([new Uint8Array(garmentBuffer)], { type: "image/jpeg" });
+        const sourceBlob = new Blob([new Uint8Array(userResized)], { type: "image/jpeg" });
 
-        const client = await Client.connect("yisol/IDM-VTON");
-        const predictPromise = client.predict("/tryon", [
-          { background: userBlob, layers: [], composite: null },
-          garmBlob,
+        // Primary Engine: High-Precision Neural Face-Swap & Skin Tone Synthesis
+        try {
+          const swapClient = await Client.connect("felixrosberg/face-swap");
+          const swapPromise = swapClient.predict("/run_inference", [
+            targetBlob, // Target: Royal model wearing the authentic saree
+            sourceBlob, // Source: Customer's exact face/selfie/hijab photo
+            100,
+            100,
+            []
+          ]);
+
+          const swapTimeout = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Face swap timeout")), 25000)
+          );
+
+          const swapResult: any = await Promise.race([swapPromise, swapTimeout]);
+          const swapUrl = swapResult?.data?.[0]?.url;
+
+          if (swapUrl) {
+            const fetchRes = await fetch(swapUrl);
+            if (fetchRes.ok) {
+              const rawOut = Buffer.from(await fetchRes.arrayBuffer());
+              const watermarked = await addLuxuryWatermark(rawOut);
+
+              return NextResponse.json({
+                success: true,
+                resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
+                engine: "Avoroni Haute Couture AI Neural Atelier",
+                stylingTip,
+                productName: { bn: productNameBn, en: productNameEn },
+                category,
+                isClientFit: true,
+              });
+            }
+          }
+        } catch (swapErr: any) {
+          console.warn("Notice: Face swap secondary fallback to IDM-VTON:", swapErr.message);
+        }
+
+        // Secondary Fallback Engine: IDM-VTON Neural Diffusion
+        const vtonClient = await Client.connect("yisol/IDM-VTON");
+        const vtonRes: any = await vtonClient.predict("/tryon", [
+          { background: sourceBlob, layers: [], composite: null },
+          targetBlob,
           `Authentic ${productNameEn} saree, traditional royal Bengali handcrafted saree`,
-          true,  // auto-masking
-          false, // auto-crop
-          20,    // denoise_steps (~18-20s speed)
-          42     // seed
+          true,
+          false,
+          20,
+          42
         ]);
 
-        // 45s safety timeout for serverless
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("IDM-VTON processing timeout")), 45000)
-        );
-
-        const result: any = await Promise.race([predictPromise, timeoutPromise]);
-        const resultUrl = result?.data?.[0]?.url;
-
-        if (resultUrl) {
-          const tryonFetch = await fetch(resultUrl);
-          if (tryonFetch.ok) {
-            const tryonRaw = Buffer.from(await tryonFetch.arrayBuffer());
-            const watermarked = await addLuxuryWatermark(tryonRaw);
+        const vtonUrl = vtonRes?.data?.[0]?.url;
+        if (vtonUrl) {
+          const vtonFetch = await fetch(vtonUrl);
+          if (vtonFetch.ok) {
+            const rawVton = Buffer.from(await vtonFetch.arrayBuffer());
+            const watermarked = await addLuxuryWatermark(rawVton);
 
             return NextResponse.json({
               success: true,
               resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-              engine: "IDM-VTON Neural Diffusion Virtual Try-On",
+              engine: "IDM-VTON Neural Garment Diffusion",
               stylingTip,
               productName: { bn: productNameBn, en: productNameEn },
               category,
-              isClientFit: sourceMode !== "model",
+              isClientFit: true,
             });
           }
         }
       } catch (neuralErr: any) {
-        console.warn("Notice: IDM-VTON neural diffusion notice:", neuralErr.message);
-        // If customer uploaded their own photo, DO NOT silently wipe out their photo with catalog image!
-        if (sourceMode !== "model") {
-          return NextResponse.json(
-            {
-              error: "এআই প্রসেসিং কিছুটা সময় নিচ্ছে। অনুগ্রহ করে কয়েক সেকেন্ড পর পুনরায় 'এআই দিয়ে বানিয়ে নিন' চাপুন।",
-              isTimeout: true,
-              success: false,
-            },
-            { status: 503 }
-          );
-        }
+        console.error("Neural fitting error:", neuralErr.message);
+        return NextResponse.json(
+          {
+            error: "এআই প্রসেসিং কিছুটা সময় নিচ্ছে। অনুগ্রহ করে কয়েক সেকেন্ড পর পুনরায় 'এআই দিয়ে বানিয়ে নিন' চাপুন।",
+            isTimeout: true,
+            success: false,
+          },
+          { status: 503 }
+        );
       }
     }
 

@@ -174,10 +174,10 @@ export default function VirtualStudioModal() {
   const [cameraError, setCameraError] = useState<string>("");
   const [flashTrigger, setFlashTrigger] = useState(false);
 
-  // Interactive Fit Adjuster State
-  const [fitScale, setFitScale] = useState<number>(1.15);
+  // Interactive Fit Adjuster State (Calibrated for shoulder-to-hip natural saree drape)
+  const [fitScale, setFitScale] = useState<number>(2.2);
   const [fitOffsetX, setFitOffsetX] = useState<number>(0);
-  const [fitOffsetY, setFitOffsetY] = useState<number>(160);
+  const [fitOffsetY, setFitOffsetY] = useState<number>(70);
   const [showManualDrape, setShowManualDrape] = useState<boolean>(false);
   const [showFitToolbar, setShowFitToolbar] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -355,9 +355,9 @@ export default function VirtualStudioModal() {
         setAiStylingTip("");
         setShowManualDrape(false);
         setShowFitToolbar(false);
-        // Default smart fit for selfie/portrait
-        setFitScale(1.15);
-        setFitOffsetY(160);
+        // Default smart fit for selfie/portrait (proportional shoulder span)
+        setFitScale(2.2);
+        setFitOffsetY(70);
         setFitOffsetX(0);
       }
     };
@@ -390,23 +390,23 @@ export default function VirtualStudioModal() {
     (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
   };
 
-  // Quick Preset Handlers
+  // Quick Preset Handlers (Natural human body proportions)
   const applyFitPreset = (preset: "selfie" | "half" | "full" | "reset") => {
     if (preset === "selfie") {
-      setFitScale(1.55);
-      setFitOffsetY(130);
+      setFitScale(2.35);
+      setFitOffsetY(50);
       setFitOffsetX(0);
     } else if (preset === "half") {
-      setFitScale(1.15);
-      setFitOffsetY(35);
+      setFitScale(1.85);
+      setFitOffsetY(110);
       setFitOffsetX(0);
     } else if (preset === "full") {
-      setFitScale(0.88);
-      setFitOffsetY(-30);
+      setFitScale(1.30);
+      setFitOffsetY(150);
       setFitOffsetX(0);
     } else {
-      setFitScale(1.0);
-      setFitOffsetY(0);
+      setFitScale(2.2);
+      setFitOffsetY(70);
       setFitOffsetX(0);
     }
   };
@@ -693,8 +693,8 @@ export default function VirtualStudioModal() {
                 </div>
                 <input
                   type="range"
-                  min="0.6"
-                  max="2.4"
+                  min="1.0"
+                  max="3.6"
                   step="0.05"
                   value={fitScale}
                   onChange={(e) => setFitScale(parseFloat(e.target.value))}
@@ -712,7 +712,7 @@ export default function VirtualStudioModal() {
                 <input
                   type="range"
                   min="-200"
-                  max="200"
+                  max="300"
                   step="5"
                   value={fitOffsetY}
                   onChange={(e) => setFitOffsetY(parseInt(e.target.value, 10))}
@@ -948,13 +948,37 @@ export default function VirtualStudioModal() {
                   </span>
                 </div>
 
-                {/* Luxury Typography Watermark (Rendered via browser fonts - 100% crisp & no square boxes) */}
-                <div className={`absolute ${aiStylingTip ? "bottom-20 sm:bottom-22" : "bottom-5"} left-5 sm:left-6 z-20 pointer-events-none drop-shadow-lg`}>
-                  <div className="font-serif text-sm sm:text-base font-bold tracking-[0.22em] text-[#F5F0E8]">
-                    AVORONI DHAKA
+                {/* Client Profile Avatar Badge (When client uploaded photo) */}
+                {(uploadedPhoto || capturedSnapshot) && (
+                  <div className="absolute top-12 left-3 z-20 flex items-center gap-2 p-1.5 pr-3 rounded-full bg-black/85 border border-[#B89A62]/60 backdrop-blur-md shadow-2xl animate-in fade-in">
+                    <div className="relative w-9 h-9 rounded-full overflow-hidden border border-[#B89A62] shrink-0">
+                      <Image
+                        src={getActiveUserImage()}
+                        alt="Client"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[8.5px] uppercase tracking-wider text-[#C5A869] font-semibold font-mono">
+                        {language === "bn" ? "ক্লায়েন্ট প্রোফাইল" : "Client Profile"}
+                      </span>
+                      <span className="text-[10.5px] text-[#F5F0E8] font-serif font-medium">
+                        {language === "bn" ? "অনুকূল স্টাইলিং ম্যাচ" : "Styling Matched"}
+                      </span>
+                    </div>
                   </div>
-                  <div className="text-[9px] sm:text-[11px] font-sans font-semibold tracking-wider text-[#C5A869]">
-                    AI VIRTUAL ATELIER • {(getLocalized(selectedProduct.name, "en") || "SIGNATURE WEAVE").toUpperCase()}
+                )}
+
+                {/* Luxury Typography Watermark in solid frosted glass badge (Zero collision with clothing) */}
+                <div className={`absolute ${aiStylingTip ? "bottom-24 sm:bottom-28" : "bottom-5"} left-4 sm:left-5 z-20 pointer-events-none`}>
+                  <div className="px-3.5 py-1.5 rounded-xl bg-black/85 border border-[#B89A62]/40 backdrop-blur-md shadow-2xl flex flex-col gap-0.5">
+                    <div className="font-serif text-xs sm:text-sm font-bold tracking-[0.22em] text-[#F5F0E8]">
+                      AVORONI DHAKA
+                    </div>
+                    <div className="text-[8.5px] sm:text-[10px] font-sans font-semibold tracking-wider text-[#C5A869]">
+                      AI VIRTUAL ATELIER • {(getLocalized(selectedProduct.name, "en") || "SIGNATURE WEAVE").toUpperCase()}
+                    </div>
                   </div>
                 </div>
 
@@ -1178,15 +1202,33 @@ export default function VirtualStudioModal() {
             {aiResultImage ? (
               // Actions when AI Result is Ready
               <div className="w-full flex flex-wrap items-center justify-between gap-2">
-                <button
-                  onClick={() => setAiResultImage(null)}
-                  className="px-4 py-2.5 rounded-xl bg-[#1E1917] hover:bg-[#28211E] text-[#B89A62] border border-[#B89A62]/30 flex items-center gap-1.5 cursor-pointer transition-colors"
-                >
-                  <span>🔄</span>
-                  <span>
-                    {language === "bn" ? "অন্য পোশাক ট্রায়াল" : "Try Another Piece"}
-                  </span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setAiResultImage(null)}
+                    className="px-3.5 py-2 rounded-xl bg-[#1E1917] hover:bg-[#28211E] text-[#B89A62] border border-[#B89A62]/30 flex items-center gap-1.5 cursor-pointer transition-colors"
+                  >
+                    <span>🔄</span>
+                    <span>
+                      {language === "bn" ? "অন্য পোশাক ট্রায়াল" : "Try Another"}
+                    </span>
+                  </button>
+
+                  {(uploadedPhoto || capturedSnapshot) && (
+                    <button
+                      onClick={() => {
+                        setAiResultImage(null);
+                        setShowManualDrape(true);
+                        setShowFitToolbar(true);
+                      }}
+                      className="px-3.5 py-2 rounded-xl bg-[#1E1917] hover:bg-[#2A2220] text-[#F5F0E8] border border-[#B89A62]/50 flex items-center gap-1.5 cursor-pointer transition-colors shadow"
+                    >
+                      <span>🎚️</span>
+                      <span>
+                        {language === "bn" ? "নিজের ছবিতে ড্র্যাপ" : "Drape on My Photo"}
+                      </span>
+                    </button>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-2">
                   <button

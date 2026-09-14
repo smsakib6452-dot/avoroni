@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
+import { Client } from "@gradio/client";
 
 // Robust buffer resolution supporting Base64, Data URLs, local file paths, and Vercel CDN URLs
 async function resolveImageBuffer(imageInput: string, reqOrigin?: string): Promise<Buffer> {
@@ -248,9 +249,68 @@ export async function POST(req: NextRequest) {
     }
 
     // =========================================================================
-    // HAUTE COUTURE ATELIER SYNTHESIS:
-    // Display the genuine, photorealistic master look of the saree
-    // (Never stamps severed hands, awkward cutouts, or sliced heads)
+    // REAL AI NEURAL VIRTUAL TRY-ON (When customer uploads a photo or takes snapshot)
+    // Uses state-of-the-art IDM-VTON Neural Garment Transfer Diffusion Model
+    // Replaces the customer's clothes with the authentic saree while preserving
+    // their face, eyes, smile, skin tone, hair, and background with 100% photorealism!
+    // =========================================================================
+    if (sourceMode !== "model" && userImage && category === "saree") {
+      try {
+        console.log("Connecting to IDM-VTON Neural Diffusion Engine...");
+        const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
+
+        // Normalize user image to 768x1024 for optimal diffusion try-on speed and quality
+        const userResized = await sharp(userBuffer)
+          .resize(768, 1024, { fit: "cover", position: "top" })
+          .jpeg({ quality: 92 })
+          .toBuffer();
+
+        const userBlob = new Blob([new Uint8Array(userResized)], { type: "image/jpeg" });
+        const garmBlob = new Blob([new Uint8Array(garmentBuffer)], { type: "image/jpeg" });
+
+        const client = await Client.connect("yisol/IDM-VTON");
+        const predictPromise = client.predict("/tryon", [
+          { background: userBlob, layers: [], composite: null },
+          garmBlob,
+          `Authentic ${productNameEn} saree, traditional royal Bengali handcrafted saree`,
+          true,  // auto-masking
+          false, // auto-crop
+          22,    // denoise_steps (~18-20s speed)
+          42     // seed
+        ]);
+
+        // 45s safety timeout for serverless
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("IDM-VTON timeout")), 45000)
+        );
+
+        const result: any = await Promise.race([predictPromise, timeoutPromise]);
+        const resultUrl = result?.data?.[0]?.url;
+
+        if (resultUrl) {
+          const tryonFetch = await fetch(resultUrl);
+          if (tryonFetch.ok) {
+            const tryonRaw = Buffer.from(await tryonFetch.arrayBuffer());
+            const watermarked = await addLuxuryWatermark(tryonRaw);
+
+            return NextResponse.json({
+              success: true,
+              resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
+              engine: "IDM-VTON Neural Diffusion Virtual Try-On",
+              stylingTip,
+              productName: { bn: productNameBn, en: productNameEn },
+              category,
+              isClientFit: true,
+            });
+          }
+        }
+      } catch (neuralErr: any) {
+        console.warn("Notice: IDM-VTON fallback to editorial showcase:", neuralErr.message);
+      }
+    }
+
+    // =========================================================================
+    // HAUTE COUTURE ATELIER SHOWCASE (Demo Model or Fallback)
     // =========================================================================
     let showcaseBuffer: Buffer;
     if (category === "saree") {

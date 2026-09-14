@@ -449,9 +449,10 @@ export default function VirtualStudioModal() {
     setIsGenerating(true);
     setGenerationStep(1);
 
-    // Dynamic steps simulation for high-end luxury feel
-    const stepTimer1 = setTimeout(() => setGenerationStep(2), 600);
-    const stepTimer2 = setTimeout(() => setGenerationStep(3), 1200);
+    // Dynamic neural diffusion steps simulation
+    const stepTimer1 = setTimeout(() => setGenerationStep(2), 3500);
+    const stepTimer2 = setTimeout(() => setGenerationStep(3), 8500);
+    const stepTimer3 = setTimeout(() => setGenerationStep(4), 14000);
 
     try {
       const res = await fetch("/api/ai/tryon", {
@@ -494,6 +495,7 @@ export default function VirtualStudioModal() {
     } finally {
       clearTimeout(stepTimer1);
       clearTimeout(stepTimer2);
+      clearTimeout(stepTimer3);
       setIsGenerating(false);
       setGenerationStep(0);
     }
@@ -1189,8 +1191,20 @@ export default function VirtualStudioModal() {
                   >
                     💎{" "}
                     {language === "bn"
-                      ? "৩. স্টুডিও লাইটিং ও শ্যাডো রেন্ডারিং সম্পন্ন"
-                      : "3. Studio editorial lighting & shadow harmonization"}
+                      ? "৩. পোশাক ট্রান্সফার ও নিউরাল ডিফিউশন ফিটিং"
+                      : "3. Neural diffusion garment transfer"}
+                  </p>
+                  <p
+                    className={`transition-all duration-300 ${
+                      generationStep >= 4
+                        ? "text-[#B89A62] font-semibold"
+                        : "opacity-40"
+                    }`}
+                  >
+                    ✨{" "}
+                    {language === "bn"
+                      ? "৪. রাজকীয় ফিনিশিং ও এআই ফ্যাশন স্টাইলিং পরামর্শ"
+                      : "4. Royal atelier finishing & stylist advice"}
                   </p>
                 </div>
               </div>

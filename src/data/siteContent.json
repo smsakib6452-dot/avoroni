@@ -114,8 +114,8 @@
     }
   },
   "aiEngine": {
-    "modelType": "auto",
-    "statusNote": "Avoroni Neural Engine Active",
+    "modelType": "gemini",
+    "statusNote": "Google Gemini Generative Studio Active",
     "geminiApiKey": "",
     "replicateApiKey": ""
   },

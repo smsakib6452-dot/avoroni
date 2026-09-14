@@ -186,6 +186,8 @@ export default function VirtualStudioModal() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationStep, setGenerationStep] = useState(0);
   const [aiResultImage, setAiResultImage] = useState<string | null>(null);
+  const [aiEngineUsed, setAiEngineUsed] = useState<string>("");
+  const [aiStylingTip, setAiStylingTip] = useState<string>("");
   const [isComparing, setIsComparing] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -208,6 +210,8 @@ export default function VirtualStudioModal() {
       }
       // Reset previous AI result for fresh try-on with new product
       setAiResultImage(null);
+      setAiEngineUsed("");
+      setAiStylingTip("");
     }
   }, [activeItem]);
 
@@ -331,6 +335,8 @@ export default function VirtualStudioModal() {
   const handleRetakePhoto = () => {
     setCapturedSnapshot(null);
     setAiResultImage(null);
+    setAiEngineUsed("");
+    setAiStylingTip("");
     startCamera();
   };
 
@@ -344,6 +350,8 @@ export default function VirtualStudioModal() {
         setUploadedPhoto(event.target.result);
         setSourceMode("upload");
         setAiResultImage(null);
+        setAiEngineUsed("");
+        setAiStylingTip("");
         // Default smart fit for selfie/portrait
         setFitScale(1.35);
         setFitOffsetY(80);
@@ -471,6 +479,8 @@ export default function VirtualStudioModal() {
       }
 
       setAiResultImage(data.resultImage);
+      if (data.engine) setAiEngineUsed(data.engine);
+      if (data.stylingTip) setAiStylingTip(data.stylingTip);
     } catch (err: any) {
       console.error("Try-on generation error:", err);
       setErrorMessage(
@@ -871,11 +881,28 @@ export default function VirtualStudioModal() {
                 <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#6D1F2A]/90 border border-[#B89A62]/40 backdrop-blur-md text-[11px] text-[#F5F0E8] flex items-center gap-1.5 shadow">
                   <span className="text-xs">✨</span>
                   <span>
-                    {language === "bn"
+                    {aiEngineUsed
+                      ? aiEngineUsed
+                      : language === "bn"
                       ? "এআই ভার্চুয়াল লুক সম্পন্ন"
                       : "AI Try-On Ready"}
                   </span>
                 </div>
+
+                {/* Gemini Luxury Fashion Stylist Tip Box */}
+                {aiStylingTip && (
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-black/85 border border-[#B89A62]/40 backdrop-blur-md text-xs text-[#F5F0E8] flex items-start gap-2.5 shadow-2xl z-20 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                    <span className="text-base text-amber-400 shrink-0">✨</span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-[10px] uppercase tracking-wider text-[#B89A62] font-semibold">
+                        {language === "bn" ? "অ্যাটেলিয়ার ফ্যাশন স্টাইলিস্ট" : "Haute Couture Stylist Tip"}
+                      </span>
+                      <p className="text-xs text-[#F5F0E8]/90 italic leading-relaxed">
+                        {aiStylingTip}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

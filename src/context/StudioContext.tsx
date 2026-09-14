@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState } from "react";
 export interface TrialItem {
   id: string;
   name: { en: string; bn: string };
-  category: "saree" | "jewelry" | "clutch" | "shawl";
+  category: "saree" | "jewelry" | "clutch" | "shawl" | "suit" | string;
   image: string;
   overlayImage?: string;
   price: { en: string; bn: string };

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { useStudio, TrialItem } from "@/context/StudioContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { useContent } from "@/context/ContentContext";
 import { useOrderModal } from "@/context/OrderModalContext";
+import { DEFAULT_SITE_CONTENT } from "@/data/defaultContent";
 
 // Curated Wardrobe Items referencing authentic editorial assets
 const WARDROBE_ITEMS: TrialItem[] = [
@@ -151,8 +152,75 @@ const SAREE_DRAPE_MAP: Record<string, string> = {
   "v-saree-10": "/images/trial/drape_mirpur_purple.png",
 };
 
+// Smart Drape Selector matching any saree by ID, region, or color
+function resolveSareeDrape(product: TrialItem): string {
+  if (product.overlayImage) return product.overlayImage;
+  if (SAREE_DRAPE_MAP[product.id]) return SAREE_DRAPE_MAP[product.id];
+
+  const id = (product.id || "").toLowerCase();
+  const nameEn = (product.name?.en || "").toLowerCase();
+  const nameBn = (product.name?.bn || "").toLowerCase();
+  const img = (product.image || "").toLowerCase();
+
+  // White / Ivory Jamdani
+  if (id.includes("white") || nameEn.includes("white") || nameBn.includes("শুভ্র") || img.includes("white")) {
+    return "/images/trial/drape_jamdani_white.png";
+  }
+
+  // Blue / Sapphire / Meghdoot
+  if (id.includes("blue") || nameEn.includes("blue") || nameBn.includes("নীল") || img.includes("blue")) {
+    return "/images/trial/drape_rajshahi_blue.png";
+  }
+
+  // Yellow / Haldi / Basanti / Mustard
+  if (id.includes("yellow") || nameEn.includes("yellow") || nameBn.includes("হলুদ") || img.includes("yellow")) {
+    return "/images/trial/drape_tangail_yellow.png";
+  }
+
+  // Green / Emerald / Peacock
+  if (id.includes("green") || nameEn.includes("green") || nameBn.includes("সবুজ") || img.includes("green")) {
+    if (id.includes("kanchipuram") || nameEn.includes("kanchipuram")) {
+      return "/images/trial/drape_kanchipuram_green.png";
+    }
+    return "/images/trial/drape_jamdani_green.png";
+  }
+
+  // Purple / Jamuni
+  if (id.includes("purple") || nameEn.includes("purple") || nameBn.includes("জামুনি") || nameBn.includes("বেগুনি") || img.includes("purple")) {
+    return "/images/trial/drape_mirpur_purple.png";
+  }
+
+  // Regional specific fallbacks
+  if (id.includes("mirpur") || nameEn.includes("mirpur") || nameBn.includes("মিরপুর")) {
+    return "/images/trial/drape_mirpur_red.png";
+  }
+  if (id.includes("banaras") || nameEn.includes("banaras") || nameBn.includes("বেনারসি")) {
+    return "/images/trial/drape_banaras_red.png";
+  }
+  if (id.includes("chanderi") || nameEn.includes("chanderi") || nameBn.includes("চান্দেরি")) {
+    return "/images/trial/drape_chanderi_red.png";
+  }
+  if (id.includes("kanchipuram") || nameEn.includes("kanchipuram") || nameBn.includes("কাঞ্জিভরম")) {
+    return "/images/trial/drape_kanchipuram_green.png";
+  }
+  if (id.includes("rajshahi") || nameEn.includes("rajshahi") || nameBn.includes("রাজশাহী")) {
+    return "/images/trial/drape_rajshahi_blue.png";
+  }
+  if (id.includes("tangail") || nameEn.includes("tangail") || nameBn.includes("টাঙ্গাইল")) {
+    return "/images/trial/drape_tangail_yellow.png";
+  }
+
+  return "/images/trial/drape_jamdani_red.png";
+}
+
+function getLocText(obj: any, lang: "en" | "bn" = "bn"): string {
+  if (!obj) return "";
+  if (typeof obj === "string") return obj;
+  return obj[lang] || obj.en || "";
+}
+
 type SourceMode = "camera" | "upload" | "model";
-type CategoryFilter = "all" | "saree" | "jewelry" | "clutch" | "shawl";
+type CategoryFilter = "all" | "saree" | "suit" | "jewelry" | "clutch" | "shawl";
 
 export default function VirtualStudioModal() {
   const { isStudioOpen, closeStudio, activeItem } = useStudio();
@@ -163,9 +231,135 @@ export default function VirtualStudioModal() {
   // Source & Product Selection
   const [sourceMode, setSourceMode] = useState<SourceMode>("model");
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Dynamically compile ALL store products from site content into the Studio Wardrobe
+  const allWardrobeItems = useMemo<TrialItem[]>(() => {
+    const items: TrialItem[] = [];
+    const seenIds = new Set<string>();
+
+    const addItem = (item: TrialItem) => {
+      if (!item.id || seenIds.has(item.id)) return;
+      seenIds.add(item.id);
+      items.push(item);
+    };
+
+    // 1. Regional Sarees (All 43 authentic colorway weaves across 7 heritage regions)
+    const regions = content?.regionalSarees?.regions || DEFAULT_SITE_CONTENT.regionalSarees?.regions || [];
+    regions.forEach((region) => {
+      const regionNameBn = getLocText(region.name, "bn");
+      const regionNameEn = getLocText(region.name, "en");
+      (region.colorways || []).forEach((c) => {
+        const cNameBn = getLocText(c.name, "bn");
+        const cNameEn = getLocText(c.name, "en");
+        const priceBn = getLocText(c.price, "bn") || "৳ ৯,৫০০";
+        const priceEn = getLocText(c.price, "en") || "৳ 9,500";
+        addItem({
+          id: `${region.id}-${c.id}`,
+          name: {
+            bn: `${regionNameBn} (${cNameBn})`,
+            en: `${regionNameEn} (${cNameEn})`,
+          },
+          category: "saree",
+          image: c.image || region.primaryImage,
+          price: { bn: priceBn, en: priceEn },
+        });
+      });
+    });
+
+    // 2. New Arrivals (Gulbahar Organza, Dhakai Rose, etc.)
+    const arrivals = content?.newArrivals?.items || DEFAULT_SITE_CONTENT.newArrivals?.items || [];
+    arrivals.forEach((item) => {
+      addItem({
+        id: item.id,
+        name: {
+          bn: getLocText(item.name, "bn"),
+          en: getLocText(item.name, "en"),
+        },
+        category: "saree",
+        image: item.image,
+        price: {
+          bn: getLocText(item.price, "bn"),
+          en: getLocText(item.price, "en"),
+        },
+      });
+    });
+
+    // 3. Best Sellers (Maharani Red Katan, Mayuri Emerald Silk, etc.)
+    const bestSellers = content?.bestSellers?.items || DEFAULT_SITE_CONTENT.bestSellers?.items || [];
+    bestSellers.forEach((item) => {
+      addItem({
+        id: item.id,
+        name: {
+          bn: getLocText(item.name, "bn"),
+          en: getLocText(item.name, "en"),
+        },
+        category: "saree",
+        image: item.image,
+        price: {
+          bn: getLocText(item.price, "bn"),
+          en: getLocText(item.price, "en"),
+        },
+      });
+    });
+
+    // 4. Curated Lifestyle Atelier Categories (Jewelry, Potli/Clutches, Unstitched Suits, Shawls)
+    const lifestyleCategories = content?.lifestyleSection?.categories || DEFAULT_SITE_CONTENT.lifestyleSection?.categories || [];
+    lifestyleCategories.forEach((cat) => {
+      let mappedCat: "jewelry" | "clutch" | "shawl" | "suit" = "saree" as any;
+      const catId = (cat.id || "").toLowerCase();
+      const catSlug = (cat.slug || "").toLowerCase();
+      if (catId.includes("jewel") || catSlug.includes("jewel")) mappedCat = "jewelry";
+      else if (catId.includes("clutch") || catSlug.includes("clutch") || catId.includes("potli")) mappedCat = "clutch";
+      else if (catId.includes("shawl") || catSlug.includes("shawl") || catId.includes("pashmina")) mappedCat = "shawl";
+      else if (catId.includes("suit") || catSlug.includes("suit") || catId.includes("unstitched")) mappedCat = "suit";
+
+      (cat.items || []).forEach((prod) => {
+        addItem({
+          id: prod.id,
+          name: {
+            bn: getLocText(prod.name, "bn"),
+            en: getLocText(prod.name, "en"),
+          },
+          category: mappedCat,
+          image: prod.image,
+          price: {
+            bn: getLocText(prod.price, "bn"),
+            en: getLocText(prod.price, "en"),
+          },
+        });
+      });
+    });
+
+    // 5. Curated Wardrobe Items Fallback
+    WARDROBE_ITEMS.forEach((w) => addItem(w));
+
+    // 6. Active Item if selected from elsewhere
+    if (activeItem) {
+      addItem(activeItem);
+    }
+
+    return items;
+  }, [content, activeItem]);
+
   const [selectedProduct, setSelectedProduct] = useState<TrialItem>(
     activeItem || WARDROBE_ITEMS[0]
   );
+
+  // Filtered wardrobe based on category and search query
+  const filteredWardrobe = useMemo(() => {
+    return allWardrobeItems.filter((item) => {
+      const matchCat = activeCategory === "all" || item.category === activeCategory;
+      if (!matchCat) return false;
+      if (!searchQuery.trim()) return true;
+      const q = searchQuery.toLowerCase().trim();
+      const nameEn = (getLocText(item.name, "en") || "").toLowerCase();
+      const nameBn = (getLocText(item.name, "bn") || "").toLowerCase();
+      const priceEn = (getLocText(item.price, "en") || "").toLowerCase();
+      const priceBn = (getLocText(item.price, "bn") || "").toLowerCase();
+      return nameEn.includes(q) || nameBn.includes(q) || priceEn.includes(q) || priceBn.includes(q);
+    });
+  }, [allWardrobeItems, activeCategory, searchQuery]);
 
   // Photos State
   const [cameraStreamActive, setCameraStreamActive] = useState(false);
@@ -201,8 +395,8 @@ export default function VirtualStudioModal() {
   // Sync activeItem if passed into context
   useEffect(() => {
     if (activeItem) {
-      const match = WARDROBE_ITEMS.find(
-        (w) => w.id === activeItem.id || w.name.en === activeItem.name.en
+      const match = allWardrobeItems.find(
+        (w) => w.id === activeItem.id || w.name.en === activeItem.name.en || w.image === activeItem.image
       );
       if (match) {
         setSelectedProduct(match);
@@ -214,7 +408,7 @@ export default function VirtualStudioModal() {
       setAiEngineUsed("");
       setAiStylingTip("");
     }
-  }, [activeItem]);
+  }, [activeItem, allWardrobeItems]);
 
   // Stop Camera
   const stopCamera = useCallback(() => {
@@ -443,7 +637,7 @@ export default function VirtualStudioModal() {
   // Resolve current transparent drape
   const currentDrape =
     selectedProduct.category === "saree"
-      ? SAREE_DRAPE_MAP[selectedProduct.id] || "/images/trial/drape_jamdani_red.png"
+      ? resolveSareeDrape(selectedProduct)
       : null;
 
   // Determine Current User Portrait Image
@@ -856,11 +1050,6 @@ export default function VirtualStudioModal() {
   );
 
   if (!isStudioOpen) return null;
-
-  const filteredWardrobe = WARDROBE_ITEMS.filter((item) => {
-    if (activeCategory === "all") return true;
-    return item.category === activeCategory;
-  });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md select-none animate-fadeIn">
@@ -1470,25 +1659,56 @@ export default function VirtualStudioModal() {
                 <span className="text-[10px] uppercase tracking-wider text-[#B89A62] font-semibold">
                   {language === "bn" ? "কালেকশন নির্বাচন" : "Select Collection"}
                 </span>
-                <span className="text-[10px] text-[#F5F0E8]/50 font-mono">
+                <span className="text-[10px] text-[#F5F0E8]/70 font-mono font-semibold bg-[#1C1716] px-2 py-0.5 rounded-full border border-[#B89A62]/30">
                   {filteredWardrobe.length}{" "}
-                  {language === "bn" ? "আইটেম" : "Items"}
+                  {language === "bn" ? "টি আইটেম" : "Items"}
                 </span>
               </div>
 
+              {/* Instant Search Bar */}
+              <div className="relative mb-2.5">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={
+                    language === "bn"
+                      ? "পোশাক, গয়না বা রঙ দিয়ে খুঁজুন..."
+                      : "Search by name, color, or weave..."
+                  }
+                  className="w-full px-3 py-1.5 pl-8 pr-7 text-xs bg-[#1C1716] border border-[#B89A62]/30 rounded-xl text-[#F5F0E8] placeholder-[#F5F0E8]/40 focus:outline-none focus:border-[#B89A62] transition-colors"
+                />
+                <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-xs text-[#B89A62]/70 pointer-events-none">
+                  🔍
+                </span>
+                {searchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#F5F0E8]/50 hover:text-[#F5F0E8] cursor-pointer"
+                    title={language === "bn" ? "মুছে ফেলুন" : "Clear"}
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+
               {/* Category Filter Pills */}
-              <div className="flex flex-wrap gap-1.5 text-[10px] mb-3">
+              <div className="flex flex-wrap gap-1 text-[10px] mb-3">
                 {[
                   { id: "all", label: language === "bn" ? "সব" : "All" },
                   { id: "saree", label: language === "bn" ? "শাড়ি" : "Sarees" },
+                  { id: "suit", label: language === "bn" ? "৩-পিস" : "Suits" },
                   { id: "jewelry", label: language === "bn" ? "গয়না" : "Jewelry" },
                   { id: "clutch", label: language === "bn" ? "বটুয়া" : "Potli" },
                   { id: "shawl", label: language === "bn" ? "শাল" : "Shawls" },
                 ].map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveCategory(tab.id as CategoryFilter)}
-                    className={`px-3 py-1 rounded-lg transition-all cursor-pointer font-sans ${
+                    onClick={() => {
+                      setActiveCategory(tab.id as CategoryFilter);
+                    }}
+                    className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer font-sans ${
                       activeCategory === tab.id
                         ? "bg-[#6D1F2A] text-[#F5F0E8] font-semibold shadow"
                         : "bg-[#1A1514] text-[#F5F0E8]/60 hover:text-[#F5F0E8] hover:bg-[#221C1B]"
@@ -1500,48 +1720,83 @@ export default function VirtualStudioModal() {
               </div>
 
               {/* Wardrobe Grid */}
-              <div className="grid grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
-                {filteredWardrobe.map((item) => {
-                  const isSelected = selectedProduct.id === item.id;
-                  return (
-                    <div
-                      key={item.id}
-                      onClick={() => {
-                        setSelectedProduct(item);
-                        setAiResultImage(null);
-                      }}
-                      className={`p-2 rounded-xl border transition-all cursor-pointer flex flex-col gap-1.5 ${
-                        isSelected
-                          ? "bg-[#2A171A] border-[#B89A62] shadow-md ring-1 ring-[#B89A62]/60"
-                          : "bg-[#171312] border-[#B89A62]/20 hover:border-[#B89A62]/50 hover:bg-[#1E1917]"
-                      }`}
-                    >
-                      <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-black/40">
-                        <Image
-                          src={item.image}
-                          alt={getLocalized(item.name, language)}
-                          fill
-                          sizes="(max-width: 640px) 33vw, 120px"
-                          className="object-cover"
-                        />
-                        {isSelected && (
-                          <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#6D1F2A] text-white flex items-center justify-center text-[9px] shadow border border-[#B89A62]">
-                            ✓
-                          </div>
-                        )}
+              {filteredWardrobe.length === 0 ? (
+                <div className="p-6 text-center text-xs text-[#F5F0E8]/60 bg-[#171312] rounded-xl border border-[#B89A62]/20 flex flex-col items-center gap-2">
+                  <span className="text-xl">🔍</span>
+                  <p>
+                    {language === "bn"
+                      ? "কোনো পণ্য পাওয়া যায়নি"
+                      : "No products found"}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setActiveCategory("all");
+                    }}
+                    className="px-3 py-1 rounded-lg bg-[#2A171A] text-[#B89A62] text-[10px] hover:bg-[#3D1E23] cursor-pointer"
+                  >
+                    {language === "bn" ? "ফিল্টার রিসেট করুন" : "Reset Filters"}
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
+                  {filteredWardrobe.map((item) => {
+                    const isSelected = selectedProduct.id === item.id;
+                    const itemCatBadge =
+                      item.category === "saree"
+                        ? language === "bn" ? "শাড়ি" : "Saree"
+                        : item.category === "suit"
+                        ? language === "bn" ? "৩-পিস" : "Suit"
+                        : item.category === "jewelry"
+                        ? language === "bn" ? "গয়না" : "Jewel"
+                        : item.category === "clutch"
+                        ? language === "bn" ? "বটুয়া" : "Potli"
+                        : language === "bn" ? "শাল" : "Shawl";
+
+                    return (
+                      <div
+                        key={item.id}
+                        onClick={() => {
+                          setSelectedProduct(item);
+                          setAiResultImage(null);
+                        }}
+                        className={`p-2 rounded-xl border transition-all cursor-pointer flex flex-col gap-1.5 ${
+                          isSelected
+                            ? "bg-[#2A171A] border-[#B89A62] shadow-md ring-1 ring-[#B89A62]/60"
+                            : "bg-[#171312] border-[#B89A62]/20 hover:border-[#B89A62]/50 hover:bg-[#1E1917]"
+                        }`}
+                      >
+                        <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-black/40">
+                          <Image
+                            src={item.image}
+                            alt={getLocalized(item.name, language)}
+                            fill
+                            sizes="(max-width: 640px) 33vw, 120px"
+                            className="object-cover"
+                          />
+                          <span className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded text-[8.5px] bg-black/75 text-[#B89A62] font-mono backdrop-blur-xs">
+                            {itemCatBadge}
+                          </span>
+                          {isSelected && (
+                            <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#6D1F2A] text-white flex items-center justify-center text-[9px] shadow border border-[#B89A62]">
+                              ✓
+                            </div>
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-[11px] font-serif text-[#F5F0E8] block truncate" title={getLocalized(item.name, language)}>
+                            {getLocalized(item.name, language)}
+                          </span>
+                          <span className="text-[10px] text-[#C5A869] font-semibold">
+                            {getLocalized(item.price, language)}
+                          </span>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <span className="text-[11px] font-serif text-[#F5F0E8] block truncate">
-                          {getLocalized(item.name, language)}
-                        </span>
-                        <span className="text-[10px] text-[#C5A869] font-semibold">
-                          {getLocalized(item.price, language)}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
 
             {/* Try-on Instructions Card */}

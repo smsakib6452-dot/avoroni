@@ -207,9 +207,11 @@ export async function POST(req: NextRequest) {
         rawTargetInput = "/images/lifestyle/jewelry_cover.jpg";
       }
     } else if (category === "shawl") {
-      rawTargetInput = product.id === "v-shawl-2" ? "/images/lifestyle/shawls_cover.jpg" : "/images/lifestyle/shawl_kashmiri_pashmina.jpg";
+      rawTargetInput = product.image || (product.id === "v-shawl-2" ? "/images/lifestyle/shawls_cover.jpg" : "/images/lifestyle/shawl_kashmiri_pashmina.jpg");
     } else if (category === "clutch") {
-      rawTargetInput = "/images/editorial_large.jpg";
+      rawTargetInput = product.image || "/images/editorial_large.jpg";
+    } else if (category === "suit") {
+      rawTargetInput = product.image || "/images/lifestyle/suits_cover.jpg";
     }
 
     if (!rawTargetInput) {
@@ -263,6 +265,8 @@ export async function POST(req: NextRequest) {
         stylingTip = `এই রাজকীয় গয়নার সাথে লাল বা মেরুন রঙের কাতান শাড়ি সম্পূর্ণ ব্রাইডাল আভিজাত্য ফুটিয়ে তোলে।`;
       } else if (category === "shawl") {
         stylingTip = `এই কাশ্মীরি পশমিনা শালটি যেকোনো সন্ধ্যার আভিজাত্যপূর্ণ পোশাকের সাথে রাজকীয় ছোঁয়া প্রদান করে।`;
+      } else if (category === "suit") {
+        stylingTip = `এই আনস্টিচড ৩-পিস পোশাকটি আপনার শারীরিক মাপে অনন্য আভিজাত্য ও স্নিগ্ধতা প্রকাশ করবে।`;
       } else {
         stylingTip = `এই ঐতিহ্যবাহী পিসটি আপনার উৎসবের সাজে এক অনন্য মাত্রা যোগ করবে।`;
       }

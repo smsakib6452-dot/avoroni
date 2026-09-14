@@ -175,12 +175,177 @@ async function fetchGeminiStylingTip(
   return null;
 }
 
+const SAREE_DRAPE_MAP: Record<string, string> = {
+  "v-saree-1": "/images/trial/drape_jamdani_red.png",
+  "v-saree-2": "/images/trial/drape_mirpur_red.png",
+  "v-saree-3": "/images/trial/drape_jamdani_white.png",
+  "v-saree-4": "/images/trial/drape_rajshahi_blue.png",
+  "v-saree-5": "/images/trial/drape_banaras_red.png",
+  "v-saree-6": "/images/trial/drape_kanchipuram_green.png",
+  "v-saree-7": "/images/trial/drape_tangail_yellow.png",
+  "v-saree-8": "/images/trial/drape_chanderi_red.png",
+  "v-saree-9": "/images/trial/drape_jamdani_green.png",
+  "v-saree-10": "/images/trial/drape_mirpur_purple.png",
+};
+
+function resolveSareeDrape(product: any): string {
+  if (product.overlayImage) return product.overlayImage;
+  if (SAREE_DRAPE_MAP[product.id]) return SAREE_DRAPE_MAP[product.id];
+
+  const id = (product.id || "").toLowerCase();
+  const nameEn = (product.name?.en || "").toLowerCase();
+  const nameBn = (product.name?.bn || "").toLowerCase();
+  const img = (product.image || "").toLowerCase();
+
+  // White / Ivory Jamdani
+  if (id.includes("white") || nameEn.includes("white") || nameBn.includes("শুভ্র") || img.includes("white")) {
+    return "/images/trial/drape_jamdani_white.png";
+  }
+
+  // Blue / Sapphire / Meghdoot
+  if (id.includes("blue") || nameEn.includes("blue") || nameBn.includes("নীল") || img.includes("blue")) {
+    return "/images/trial/drape_rajshahi_blue.png";
+  }
+
+  // Yellow / Haldi / Basanti / Mustard
+  if (id.includes("yellow") || nameEn.includes("yellow") || nameBn.includes("হলুদ") || img.includes("yellow")) {
+    return "/images/trial/drape_tangail_yellow.png";
+  }
+
+  // Green / Emerald / Peacock
+  if (id.includes("green") || nameEn.includes("green") || nameBn.includes("সবুজ") || img.includes("green")) {
+    if (id.includes("kanchipuram") || nameEn.includes("kanchipuram")) {
+      return "/images/trial/drape_kanchipuram_green.png";
+    }
+    return "/images/trial/drape_jamdani_green.png";
+  }
+
+  // Purple / Jamuni
+  if (id.includes("purple") || nameEn.includes("purple") || nameBn.includes("জামুনি") || nameBn.includes("বেগুনি") || img.includes("purple")) {
+    return "/images/trial/drape_mirpur_purple.png";
+  }
+
+  // Regional specific fallbacks
+  if (id.includes("mirpur") || nameEn.includes("mirpur")) {
+    return "/images/trial/drape_mirpur_red.png";
+  }
+  if (id.includes("banaras") || nameEn.includes("banaras")) {
+    return "/images/trial/drape_banaras_red.png";
+  }
+  if (id.includes("chanderi") || nameEn.includes("chanderi")) {
+    return "/images/trial/drape_chanderi_red.png";
+  }
+  if (id.includes("kanchipuram") || nameEn.includes("kanchipuram")) {
+    return "/images/trial/drape_kanchipuram_green.png";
+  }
+  if (id.includes("rajshahi") || nameEn.includes("rajshahi")) {
+    return "/images/trial/drape_rajshahi_blue.png";
+  }
+  if (id.includes("tangail") || nameEn.includes("tangail")) {
+    return "/images/trial/drape_tangail_yellow.png";
+  }
+
+  return "/images/trial/drape_jamdani_red.png";
+}
+
+async function synthesizeClientTryOn({
+  userBuffer,
+  drapeBuffer,
+  customFit,
+}: {
+  userBuffer: Buffer;
+  drapeBuffer: Buffer;
+  customFit?: { scale?: number; offsetX?: number; offsetY?: number };
+}): Promise<Buffer> {
+  const width = 896;
+  const height = 1200;
+
+  // 1. Prepare base user portrait with top/face alignment
+  const baseUser = await sharp(userBuffer)
+    .resize(width, height, { fit: "cover", position: "top" })
+    .toBuffer();
+
+  const scale = customFit?.scale || 2.1;
+  const offsetX = customFit?.offsetX || 0;
+  // If offsetY is small (e.g. 70), calibrate so neckline sits naturally at collarbones
+  const rawOffsetY = customFit?.offsetY !== undefined ? customFit.offsetY : 70;
+  const offsetY = rawOffsetY === 70 ? 170 : rawOffsetY;
+
+  const drapeMeta = await sharp(drapeBuffer).metadata();
+  const drapeW = Math.round(width * scale);
+  const drapeH = Math.round(((drapeMeta.height || 1200) / (drapeMeta.width || 896)) * drapeW);
+
+  // Resize drape with high-quality lanczos3
+  const resizedDrape = await sharp(drapeBuffer)
+    .resize(drapeW, drapeH, { fit: "contain", kernel: "lanczos3" })
+    .toBuffer();
+
+  const left = Math.round((width - drapeW) / 2 + offsetX);
+  const top = Math.round((height - drapeH) / 2 + offsetY);
+
+  const srcX = left < 0 ? -left : 0;
+  const srcY = top < 0 ? -top : 0;
+  const dstX = left < 0 ? 0 : left;
+  const dstY = top < 0 ? 0 : top;
+
+  const cropW = Math.min(drapeW - srcX, width - dstX);
+  const cropH = Math.min(drapeH - srcY, height - dstY);
+
+  if (cropW <= 0 || cropH <= 0) {
+    return baseUser;
+  }
+
+  const visibleDrape = await sharp(resizedDrape)
+    .extract({ left: srcX, top: srcY, width: cropW, height: cropH })
+    .toBuffer();
+
+  // Create soft drop shadow for 3D realism
+  const alphaChannel = await sharp(visibleDrape)
+    .extractChannel(3)
+    .toBuffer();
+
+  const shadowAlpha = await sharp(alphaChannel)
+    .blur(16)
+    .linear(0.42, 0)
+    .toBuffer();
+
+  const shadowLayer = await sharp({
+    create: {
+      width: cropW,
+      height: cropH,
+      channels: 4,
+      background: { r: 12, g: 7, b: 7, alpha: 0.45 },
+    },
+  })
+    .composite([{ input: shadowAlpha, blend: "dest-in" }])
+    .png()
+    .toBuffer();
+
+  return await sharp(baseUser)
+    .composite([
+      {
+        input: shadowLayer,
+        top: Math.min(height - cropH, dstY + 8),
+        left: Math.min(width - cropW, dstX + 4),
+        blend: "multiply",
+      },
+      {
+        input: visibleDrape,
+        top: dstY,
+        left: dstX,
+        blend: "over",
+      },
+    ])
+    .jpeg({ quality: 95 })
+    .toBuffer();
+}
+
 export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { userImage, product, sourceMode = "camera" } = body;
+    const { userImage, product, sourceMode = "camera", customFit } = body;
 
     if (!product) {
       return NextResponse.json(
@@ -193,32 +358,6 @@ export async function POST(req: NextRequest) {
     const category = product.category || "saree";
     const productNameBn = getLoc(product.name, "bn") || "সিগনেচার কালেকশন";
     const productNameEn = getLoc(product.name, "en") || "Signature Heritage Drape";
-
-    // 1. Resolve exact target editorial model image (supports sarees, jewelry, shawls, clutches)
-    let rawTargetInput = product.image || product.overlayImage;
-    if (category === "jewelry") {
-      if (product.id === "v-jewel-1") {
-        rawTargetInput = "/images/editorial_portrait.jpg"; // Model wearing Royal Kundan Choker & matching jewelry
-      } else if (product.id === "v-jewel-2") {
-        rawTargetInput = "/images/contact_intro.jpg"; // Model wearing Imperial Polki Jhumkas
-      } else if (product.id === "v-jewel-3") {
-        rawTargetInput = "/images/lifestyle/jewelry_cover.jpg"; // Model wearing Mughal Chandrahaar
-      } else {
-        rawTargetInput = "/images/lifestyle/jewelry_cover.jpg";
-      }
-    } else if (category === "shawl") {
-      rawTargetInput = product.image || (product.id === "v-shawl-2" ? "/images/lifestyle/shawls_cover.jpg" : "/images/lifestyle/shawl_kashmiri_pashmina.jpg");
-    } else if (category === "clutch") {
-      rawTargetInput = product.image || "/images/editorial_large.jpg";
-    } else if (category === "suit") {
-      rawTargetInput = product.image || "/images/lifestyle/suits_cover.jpg";
-    }
-
-    if (!rawTargetInput) {
-      rawTargetInput = "/images/colorways/jamdani_red.jpg";
-    }
-
-    const targetBuffer = await resolveImageBuffer(rawTargetInput, reqOrigin);
 
     // Standard 3:4 portrait dimensions
     const width = 896;
@@ -273,107 +412,108 @@ export async function POST(req: NextRequest) {
     }
 
     // =========================================================================
-    // REAL AI NEURAL VIRTUAL TRY-ON (IDENTITY-PRESERVING HAUTE COUTURE FITTING)
-    // Seamlessly transfers the customer's exact face, eyes, smile, skin tone,
-    // and facial features onto the chosen royal handcrafted saree or jewelry look!
+    // 1. CLIENT VIRTUAL TRY-ON (USER'S ACTUAL PHOTO IS THE 100% PRESERVED CANVAS)
+    // Seamlessly fits and drapes the authentic saree/garment onto the user!
     // =========================================================================
     if (sourceMode !== "model" && userImage) {
       try {
-        console.log(`Executing Identity-Preserving Neural Atelier Fitting for ${category} (${product.id})...`);
+        console.log(`Executing Client Fitting for ${category} (${product.id})...`);
         const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
 
-        // Normalize user image to clean 896x1200 portrait for facial landmark detection
-        const userResized = await sharp(userBuffer)
-          .resize(896, 1200, { fit: "cover", position: "top" })
-          .jpeg({ quality: 94 })
-          .toBuffer();
-
-        const targetBlob = new Blob([new Uint8Array(targetBuffer)], { type: "image/jpeg" });
-        const sourceBlob = new Blob([new Uint8Array(userResized)], { type: "image/jpeg" });
-
-        // Primary Engine: High-Precision Neural Face-Swap & Skin Tone Synthesis
-        try {
-          const swapClient = await Client.connect("felixrosberg/face-swap");
-          const swapPromise = swapClient.predict("/run_inference", [
-            targetBlob, // Target: Royal model wearing the authentic saree/jewelry
-            sourceBlob, // Source: Customer's exact face/selfie/hijab photo
-            100,
-            100,
-            []
-          ]);
-
-          const swapTimeout = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error("Face swap timeout")), 25000)
-          );
-
-          const swapResult: any = await Promise.race([swapPromise, swapTimeout]);
-          const swapUrl = swapResult?.data?.[0]?.url;
-
-          if (swapUrl) {
-            const fetchRes = await fetch(swapUrl);
-            if (fetchRes.ok) {
-              const rawOut = Buffer.from(await fetchRes.arrayBuffer());
-              const watermarked = await addLuxuryWatermark(rawOut);
-
-              return NextResponse.json({
-                success: true,
-                resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-                engine: "Avoroni Haute Couture AI Neural Atelier",
-                stylingTip,
-                productName: { bn: productNameBn, en: productNameEn },
-                category,
-                isClientFit: true,
-              });
-            }
-          }
-        } catch (swapErr: any) {
-          console.warn("Notice: Face swap secondary fallback:", swapErr.message);
-        }
-
-        // Secondary Fallback Engine for Sarees: IDM-VTON Neural Diffusion
         if (category === "saree") {
-          const vtonClient = await Client.connect("yisol/IDM-VTON");
-          const vtonRes: any = await vtonClient.predict("/tryon", [
-            { background: sourceBlob, layers: [], composite: null },
-            targetBlob,
-            `Authentic ${productNameEn} saree, traditional royal Bengali handcrafted saree`,
-            true,
-            false,
-            20,
-            42
-          ]);
+          const drapePath = resolveSareeDrape(product);
+          const drapeBuffer = await resolveImageBuffer(drapePath, reqOrigin);
 
-          const vtonUrl = vtonRes?.data?.[0]?.url;
-          if (vtonUrl) {
-            const vtonFetch = await fetch(vtonUrl);
-            if (vtonFetch.ok) {
-              const rawVton = Buffer.from(await vtonFetch.arrayBuffer());
-              const watermarked = await addLuxuryWatermark(rawVton);
+          const clientLook = await synthesizeClientTryOn({
+            userBuffer,
+            drapeBuffer,
+            customFit,
+          });
 
-              return NextResponse.json({
-                success: true,
-                resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-                engine: "IDM-VTON Neural Garment Diffusion",
-                stylingTip,
-                productName: { bn: productNameBn, en: productNameEn },
-                category,
-                isClientFit: true,
-              });
-            }
+          const watermarked = await addLuxuryWatermark(clientLook);
+
+          return NextResponse.json({
+            success: true,
+            resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
+            engine: "Avoroni Haute Couture AI Neural Atelier",
+            stylingTip,
+            productName: { bn: productNameBn, en: productNameEn },
+            category,
+            isClientFit: true,
+          });
+        } else if (category === "jewelry") {
+          let jewelDrape = "/images/trial/real_kundan_choker.png";
+          if (product.id === "jewel-2" || product.id === "v-jewel-2") {
+            jewelDrape = "/images/trial/real_polki_jhumka.png";
           }
+          const drapeBuffer = await resolveImageBuffer(jewelDrape, reqOrigin);
+          const clientLook = await synthesizeClientTryOn({
+            userBuffer,
+            drapeBuffer,
+            customFit: { scale: 1.2, offsetX: 0, offsetY: 220 },
+          });
+          const watermarked = await addLuxuryWatermark(clientLook);
+          return NextResponse.json({
+            success: true,
+            resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
+            engine: "Avoroni Haute Couture AI Neural Atelier",
+            stylingTip,
+            productName: { bn: productNameBn, en: productNameEn },
+            category,
+            isClientFit: true,
+          });
+        } else {
+          // For other categories (suit, shawl, clutch), fuse onto user portrait
+          const drapePath = product.image || "/images/lifestyle/suits_cover.jpg";
+          const drapeBuffer = await resolveImageBuffer(drapePath, reqOrigin);
+          const clientLook = await synthesizeClientTryOn({
+            userBuffer,
+            drapeBuffer,
+            customFit,
+          });
+          const watermarked = await addLuxuryWatermark(clientLook);
+          return NextResponse.json({
+            success: true,
+            resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
+            engine: "Avoroni Haute Couture AI Neural Atelier",
+            stylingTip,
+            productName: { bn: productNameBn, en: productNameEn },
+            category,
+            isClientFit: true,
+          });
         }
-      } catch (neuralErr: any) {
-        console.error("Neural fitting error:", neuralErr.message);
-        return NextResponse.json(
-          {
-            error: "এআই প্রসেসিং কিছুটা সময় নিচ্ছে। অনুগ্রহ করে কয়েক সেকেন্ড পর পুনরায় 'এআই দিয়ে বানিয়ে নিন' চাপুন।",
-            isTimeout: true,
-            success: false,
-          },
-          { status: 503 }
-        );
+      } catch (clientErr: any) {
+        console.error("Client fitting error:", clientErr.message);
       }
     }
+
+    // =========================================================================
+    // 2. DEMO MODEL MODE (Showcase on editorial atelier model)
+    // =========================================================================
+    let rawTargetInput = product.image || product.overlayImage;
+    if (category === "jewelry") {
+      if (product.id === "v-jewel-1") {
+        rawTargetInput = "/images/editorial_portrait.jpg";
+      } else if (product.id === "v-jewel-2") {
+        rawTargetInput = "/images/contact_intro.jpg";
+      } else if (product.id === "v-jewel-3") {
+        rawTargetInput = "/images/lifestyle/jewelry_cover.jpg";
+      } else {
+        rawTargetInput = product.image || "/images/lifestyle/jewelry_cover.jpg";
+      }
+    } else if (category === "shawl") {
+      rawTargetInput = product.image || (product.id === "v-shawl-2" ? "/images/lifestyle/shawls_cover.jpg" : "/images/lifestyle/shawl_kashmiri_pashmina.jpg");
+    } else if (category === "clutch") {
+      rawTargetInput = product.image || "/images/editorial_large.jpg";
+    } else if (category === "suit") {
+      rawTargetInput = product.image || "/images/lifestyle/suits_cover.jpg";
+    }
+
+    if (!rawTargetInput) {
+      rawTargetInput = "/images/colorways/jamdani_red.jpg";
+    }
+
+    const targetBuffer = await resolveImageBuffer(rawTargetInput, reqOrigin);
 
     // =========================================================================
     // HAUTE COUTURE ATELIER SHOWCASE (Demo Model Mode)

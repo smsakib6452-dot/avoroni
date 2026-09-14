@@ -3,11 +3,10 @@ import sharp from "sharp";
 import fs from "fs";
 import path from "path";
 
-// Robust buffer resolution supporting Base64, Data URLs, local file paths, and remote URLs (e.g. Cloudinary)
-async function resolveImageBuffer(imageInput: string): Promise<Buffer> {
+// Robust buffer resolution supporting Base64, Data URLs, local file paths, and Vercel CDN URLs
+async function resolveImageBuffer(imageInput: string, reqOrigin?: string): Promise<Buffer> {
   if (!imageInput) {
-    const defaultPath = path.join(process.cwd(), "public", "images", "contact_intro.jpg");
-    return fs.readFileSync(defaultPath);
+    return createFallbackCanvas();
   }
 
   // 1. Data URL (data:image/...;base64,...)
@@ -22,17 +21,37 @@ async function resolveImageBuffer(imageInput: string): Promise<Buffer> {
     const cleanPath = imageInput.startsWith("/") ? imageInput.slice(1) : imageInput;
     const fullPath = path.join(process.cwd(), "public", cleanPath);
     if (fs.existsSync(fullPath)) {
-      return fs.readFileSync(fullPath);
+      try {
+        return fs.readFileSync(fullPath);
+      } catch (e) {
+        // ignore and fallback
+      }
+    }
+
+    // Remote fetch fallback for Vercel Serverless Edge CDN
+    if (reqOrigin) {
+      try {
+        const fetchUrl = `${reqOrigin.replace(/\/$/, "")}/${cleanPath}`;
+        const res = await fetch(fetchUrl);
+        if (res.ok) {
+          return Buffer.from(await res.arrayBuffer());
+        }
+      } catch (e) {
+        // ignore and fallback
+      }
     }
   }
 
   // 3. Remote URL (http / https e.g. Cloudinary or Supabase Storage)
   if (imageInput.startsWith("http://") || imageInput.startsWith("https://")) {
-    const res = await fetch(imageInput);
-    if (!res.ok) {
-      throw new Error(`Failed to fetch remote image from ${imageInput}`);
+    try {
+      const res = await fetch(imageInput);
+      if (res.ok) {
+        return Buffer.from(await res.arrayBuffer());
+      }
+    } catch (e) {
+      // ignore and fallback
     }
-    return Buffer.from(await res.arrayBuffer());
   }
 
   // 4. Raw base64 fallback
@@ -45,9 +64,32 @@ async function resolveImageBuffer(imageInput: string): Promise<Buffer> {
     // ignore
   }
 
-  // Fallback to default model image
-  const defaultPath = path.join(process.cwd(), "public", "images", "contact_intro.jpg");
-  return fs.readFileSync(defaultPath);
+  // 5. Default contact intro fallback
+  try {
+    const defaultPath = path.join(process.cwd(), "public", "images", "contact_intro.jpg");
+    if (fs.existsSync(defaultPath)) {
+      return fs.readFileSync(defaultPath);
+    }
+    if (reqOrigin) {
+      const res = await fetch(`${reqOrigin.replace(/\/$/, "")}/images/contact_intro.jpg`);
+      if (res.ok) return Buffer.from(await res.arrayBuffer());
+    }
+  } catch (e) {}
+
+  return createFallbackCanvas();
+}
+
+async function createFallbackCanvas(): Promise<Buffer> {
+  return await sharp({
+    create: {
+      width: 896,
+      height: 1200,
+      channels: 4,
+      background: { r: 24, g: 18, b: 17, alpha: 1 },
+    },
+  })
+    .jpeg({ quality: 90 })
+    .toBuffer();
 }
 
 function getLoc(val: any, lang: "bn" | "en" = "bn"): string {
@@ -82,7 +124,7 @@ function getGeminiApiKey(): string {
   return "";
 }
 
-// Google Gemini 2.0 & Imagen 3 Generative Haute Couture Drape Engine
+// Google Gemini Generative Haute Couture Drape Engine
 async function runGeminiTryOn(
   userBuffer: Buffer,
   productName: string,
@@ -95,40 +137,13 @@ async function runGeminiTryOn(
     console.log("Connecting to Google Gemini Generative Studio...");
     let stylingTip: string | undefined = undefined;
 
-    // 1. Fetch AI Fashion Critique & Draping Advice via Gemini 2.0 Flash / 1.5 Flash
-    try {
-      const geminiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-      const geminiRes = await fetch(geminiEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              role: "user",
-              parts: [
-                {
-                  text: `You are an elite Bangladeshi haute couture fashion stylist for Avoroni Dhaka. A client is trying on this handcrafted ${productName} (${category}). In 1 single elegant sentence in Bengali (বাংলা), write an authentic styling compliment or jewelry recommendation (e.g. Kundan, Polki, or pearl jewelry). Keep it warm, aristocratic, and concise without quotes or markdown.`,
-                },
-              ],
-            },
-          ],
-          generationConfig: {
-            maxOutputTokens: 80,
-            temperature: 0.7,
-          },
-        }),
-      });
-
-      if (geminiRes.ok) {
-        const geminiData = await geminiRes.json();
-        const tipText = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (tipText) {
-          stylingTip = tipText.trim();
-        }
-      } else {
-        // Fallback to gemini-1.5-flash if 2.0 is not active
-        const fbEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-        const fbRes = await fetch(fbEndpoint, {
+    // 1. Fetch AI Fashion Critique & Draping Advice
+    // Models to try in order of availability
+    const candidateModels = ["gemini-flash-latest", "gemini-3.6-flash", "gemini-2.5-flash", "gemini-1.5-flash"];
+    for (const modelName of candidateModels) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -137,21 +152,29 @@ async function runGeminiTryOn(
                 role: "user",
                 parts: [
                   {
-                    text: `Write 1 single short sentence in Bengali (বাংলা) giving a luxury styling tip for wearing this ${productName} saree with traditional jewelry.`,
+                    text: `You are an elite Bangladeshi haute couture fashion stylist for Avoroni Dhaka. A client is trying on this handcrafted ${productName} (${category}). In 1 single elegant sentence in Bengali (বাংলা), write an authentic styling compliment or jewelry recommendation (e.g. Kundan, Polki, or pearl jewelry). Keep it warm, aristocratic, and concise without quotes or markdown.`,
                   },
                 ],
               },
             ],
+            generationConfig: {
+              maxOutputTokens: 80,
+              temperature: 0.7,
+            },
           }),
         });
-        if (fbRes.ok) {
-          const fbData = await fbRes.json();
-          const tipText = fbData?.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (tipText) stylingTip = tipText.trim();
+
+        if (res.ok) {
+          const data = await res.json();
+          const tipText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (tipText) {
+            stylingTip = tipText.trim();
+            break;
+          }
         }
+      } catch (e) {
+        // try next candidate
       }
-    } catch (e: any) {
-      console.warn("Gemini styling tip notice:", e.message);
     }
 
     // 2. High-Fashion Editorial Saree Synthesis via Google Imagen 3
@@ -197,19 +220,12 @@ async function runGeminiTryOn(
             .jpeg({ quality: 92 })
             .toBuffer();
 
-          console.log("Google Imagen 3 & Gemini 2.0 synthesis successful!");
           return {
             buffer: blendedOutput,
-            engine: "Google Gemini 2.0 & Imagen 3 Generative Studio",
+            engine: "Google Gemini & Imagen 3 Generative Studio",
             stylingTip,
           };
         }
-      } else {
-        const errTxt = await imgRes.text();
-        console.warn(
-          "Google Imagen 3 notice (using Atelier Precision Drape with Gemini 2.0 intelligence):",
-          errTxt.slice(0, 150)
-        );
       }
     } catch (e: any) {
       console.warn("Google Imagen 3 generation notice:", e.message);
@@ -241,6 +257,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const reqOrigin = req.nextUrl?.origin || "https://" + (req.headers.get("host") || "localhost:3000");
     const publicDir = path.join(process.cwd(), "public");
     const category = product.category || "saree";
     const productNameBn = getLoc(product.name, "bn") || "সিগনেচার কালেকশন";
@@ -248,7 +265,7 @@ export async function POST(req: NextRequest) {
 
     // 1. Resolve exact garment image buffer (supports remote URLs e.g. Cloudinary, local paths, base64)
     const rawGarmentInput = product.image || product.overlayImage || "/images/colorways/jamdani_red.jpg";
-    const garmentBuffer = await resolveImageBuffer(rawGarmentInput);
+    const garmentBuffer = await resolveImageBuffer(rawGarmentInput, reqOrigin);
 
     // Standard 3:4 portrait dimensions
     const width = 896;
@@ -303,16 +320,16 @@ export async function POST(req: NextRequest) {
         showcaseBuffer = garmentBuffer;
       } else if (category === "jewelry") {
         const jewelMap: Record<string, string> = {
-          "v-jewel-1": "lifestyle/jewel_kundan_choker.jpg",
-          "v-jewel-2": "lifestyle/jewel_chandbali_jhumka.jpg",
-          "v-jewel-3": "lifestyle/jewel_chandrahaar_pendant.jpg",
+          "v-jewel-1": "images/lifestyle/jewel_kundan_choker.jpg",
+          "v-jewel-2": "images/lifestyle/jewel_chandbali_jhumka.jpg",
+          "v-jewel-3": "images/lifestyle/jewel_chandrahaar_pendant.jpg",
         };
-        const jFile = jewelMap[product.id] || "lifestyle/jewelry_cover.jpg";
-        showcaseBuffer = fs.readFileSync(path.join(publicDir, "images", jFile));
+        const jFile = jewelMap[product.id] || "images/lifestyle/jewelry_cover.jpg";
+        showcaseBuffer = await resolveImageBuffer(jFile, reqOrigin);
       } else if (category === "shawl") {
-        showcaseBuffer = fs.readFileSync(path.join(publicDir, "images", "lifestyle", "shawls_cover.jpg"));
+        showcaseBuffer = await resolveImageBuffer("images/lifestyle/shawls_cover.jpg", reqOrigin);
       } else if (category === "clutch") {
-        showcaseBuffer = fs.readFileSync(path.join(publicDir, "images", "lifestyle", "clutches_cover.jpg"));
+        showcaseBuffer = await resolveImageBuffer("images/lifestyle/clutches_cover.jpg", reqOrigin);
       } else {
         showcaseBuffer = garmentBuffer;
       }
@@ -328,7 +345,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. REAL USER TRY-ON (User Snapped a Photo or Uploaded Their Photo)
-    const userBuffer = await resolveImageBuffer(userImage);
+    const userBuffer = await resolveImageBuffer(userImage, reqOrigin);
 
     // Normalize user photo to clean 3:4 portrait preserving head & face
     const userNormalized = await sharp(userBuffer)
@@ -373,7 +390,7 @@ export async function POST(req: NextRequest) {
         // If product has custom overlay / drape image
         if (product.overlayImage) {
           try {
-            drapeBuffer = await resolveImageBuffer(product.overlayImage);
+            drapeBuffer = await resolveImageBuffer(product.overlayImage, reqOrigin);
           } catch (e) {
             // ignore
           }
@@ -419,10 +436,26 @@ export async function POST(req: NextRequest) {
           }
 
           let drapePath = path.join(publicDir, "images", "trial", drapeFile);
-          if (!fs.existsSync(drapePath)) {
-            drapePath = path.join(publicDir, "images", "trial", "drape_jamdani_red.png");
+          if (fs.existsSync(drapePath)) {
+            try {
+              drapeBuffer = fs.readFileSync(drapePath);
+            } catch (e) {}
           }
-          drapeBuffer = fs.readFileSync(drapePath);
+
+          // Fallback fetch from Vercel CDN origin if file is on CDN
+          if (!drapeBuffer && reqOrigin) {
+            try {
+              const res = await fetch(`${reqOrigin.replace(/\/$/, "")}/images/trial/${drapeFile}`);
+              if (res.ok) {
+                drapeBuffer = Buffer.from(await res.arrayBuffer());
+              }
+            } catch (e) {}
+          }
+        }
+
+        // If drapeBuffer still not found, use garmentBuffer directly
+        if (!drapeBuffer) {
+          drapeBuffer = garmentBuffer;
         }
 
         // Read custom fit parameters from frontend sliders (if provided)
@@ -465,68 +498,56 @@ export async function POST(req: NextRequest) {
     } else if (category === "jewelry") {
       // Heritage Jewelry styled naturally
       const jewelOverlayMap: Record<string, { file: string; top: number; widthPct: number }> = {
-        "v-jewel-1": { file: "lifestyle/jewel_kundan_choker.jpg", top: Math.round(height * 0.32), widthPct: 0.28 },
-        "v-jewel-2": { file: "lifestyle/jewel_chandbali_jhumka.jpg", top: Math.round(height * 0.23), widthPct: 0.22 },
-        "v-jewel-3": { file: "lifestyle/jewel_chandrahaar_pendant.jpg", top: Math.round(height * 0.33), widthPct: 0.32 },
+        "v-jewel-1": { file: "images/lifestyle/jewel_kundan_choker.jpg", top: Math.round(height * 0.32), widthPct: 0.28 },
+        "v-jewel-2": { file: "images/lifestyle/jewel_chandbali_jhumka.jpg", top: Math.round(height * 0.23), widthPct: 0.22 },
+        "v-jewel-3": { file: "images/lifestyle/jewel_chandrahaar_pendant.jpg", top: Math.round(height * 0.33), widthPct: 0.32 },
       };
 
-      const jConf = jewelOverlayMap[product.id] || { file: "lifestyle/jewel_kundan_choker.jpg", top: Math.round(height * 0.32), widthPct: 0.28 };
-      const jPath = path.join(publicDir, "images", jConf.file);
+      const jConf = jewelOverlayMap[product.id] || { file: "images/lifestyle/jewel_kundan_choker.jpg", top: Math.round(height * 0.32), widthPct: 0.28 };
+      const jBuffer = await resolveImageBuffer(jConf.file, reqOrigin);
       const jWidth = Math.round(width * jConf.widthPct);
 
-      if (fs.existsSync(jPath)) {
-        const jScaled = await sharp(jPath)
-          .resize(jWidth, jWidth, { fit: "cover" })
-          .png()
-          .toBuffer();
+      const jScaled = await sharp(jBuffer)
+        .resize(jWidth, jWidth, { fit: "cover" })
+        .png()
+        .toBuffer();
 
-        const jLeft = Math.round((width - jWidth) / 2);
+      const jLeft = Math.round((width - jWidth) / 2);
 
-        finalOutputBuffer = await sharp(userNormalized)
-          .composite([{ input: jScaled, top: jConf.top, left: jLeft, blend: "over" }])
-          .jpeg({ quality: 92 })
-          .toBuffer();
-      } else {
-        finalOutputBuffer = userNormalized;
-      }
+      finalOutputBuffer = await sharp(userNormalized)
+        .composite([{ input: jScaled, top: jConf.top, left: jLeft, blend: "over" }])
+        .jpeg({ quality: 92 })
+        .toBuffer();
     } else if (category === "shawl") {
       // Kashmiri Shawl draped across shoulders
-      const shawlPath = path.join(publicDir, "images", "lifestyle", "shawl_kashmiri_pashmina.jpg");
-      if (fs.existsSync(shawlPath)) {
-        const sWidth = Math.round(width * 0.7);
-        const sScaled = await sharp(shawlPath)
-          .resize(sWidth, Math.round(sWidth * 0.6), { fit: "cover" })
-          .png()
-          .toBuffer();
-        const sLeft = Math.round((width - sWidth) / 2);
-        const sTop = Math.round(height * 0.40);
+      const sBuffer = await resolveImageBuffer("images/lifestyle/shawl_kashmiri_pashmina.jpg", reqOrigin);
+      const sWidth = Math.round(width * 0.7);
+      const sScaled = await sharp(sBuffer)
+        .resize(sWidth, Math.round(sWidth * 0.6), { fit: "cover" })
+        .png()
+        .toBuffer();
+      const sLeft = Math.round((width - sWidth) / 2);
+      const sTop = Math.round(height * 0.40);
 
-        finalOutputBuffer = await sharp(userNormalized)
-          .composite([{ input: sScaled, top: sTop, left: sLeft, blend: "over" }])
-          .jpeg({ quality: 92 })
-          .toBuffer();
-      } else {
-        finalOutputBuffer = userNormalized;
-      }
+      finalOutputBuffer = await sharp(userNormalized)
+        .composite([{ input: sScaled, top: sTop, left: sLeft, blend: "over" }])
+        .jpeg({ quality: 92 })
+        .toBuffer();
     } else {
       // Clutch / Potli held at waist level
-      const potliPath = path.join(publicDir, "images", "lifestyle", "potli_zardozi_velvet.jpg");
-      if (fs.existsSync(potliPath)) {
-        const pWidth = Math.round(width * 0.28);
-        const pScaled = await sharp(potliPath)
-          .resize(pWidth, pWidth, { fit: "cover" })
-          .png()
-          .toBuffer();
-        const pLeft = Math.round(width * 0.62);
-        const pTop = Math.round(height * 0.60);
+      const pBuffer = await resolveImageBuffer("images/lifestyle/potli_zardozi_velvet.jpg", reqOrigin);
+      const pWidth = Math.round(width * 0.28);
+      const pScaled = await sharp(pBuffer)
+        .resize(pWidth, pWidth, { fit: "cover" })
+        .png()
+        .toBuffer();
+      const pLeft = Math.round(width * 0.62);
+      const pTop = Math.round(height * 0.60);
 
-        finalOutputBuffer = await sharp(userNormalized)
-          .composite([{ input: pScaled, top: pTop, left: pLeft, blend: "over" }])
-          .jpeg({ quality: 92 })
-          .toBuffer();
-      } else {
-        finalOutputBuffer = userNormalized;
-      }
+      finalOutputBuffer = await sharp(userNormalized)
+        .composite([{ input: pScaled, top: pTop, left: pLeft, blend: "over" }])
+        .jpeg({ quality: 92 })
+        .toBuffer();
     }
 
     if (!finalOutputBuffer) {

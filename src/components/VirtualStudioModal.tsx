@@ -499,13 +499,55 @@ export default function VirtualStudioModal() {
     }
   };
 
-  // Download Generated Look
+  // Download Generated Look with Crisp Luxury Atelier Typography
   const handleDownloadLook = () => {
     if (!aiResultImage) return;
-    const link = document.createElement("a");
-    link.download = `Avoroni_AI_Look_${selectedProduct.id}_${Date.now()}.jpg`;
-    link.href = aiResultImage;
-    link.click();
+    try {
+      const img = new window.Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth || 896;
+        canvas.height = img.naturalHeight || 1200;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          const fallbackLink = document.createElement("a");
+          fallbackLink.download = `Avoroni_AI_Look_${selectedProduct.id}_${Date.now()}.jpg`;
+          fallbackLink.href = aiResultImage;
+          fallbackLink.click();
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0);
+
+        // Draw crisp luxury typography
+        ctx.fillStyle = "#F5F0E8";
+        ctx.font = "bold 22px 'Times New Roman', Georgia, serif";
+        ctx.fillText("AVORONI DHAKA", 45, canvas.height - 70);
+
+        ctx.fillStyle = "#C5A869";
+        ctx.font = "600 13px system-ui, -apple-system, sans-serif";
+        const prodNameEn = (getLocalized(selectedProduct.name, "en") || "Signature Heritage Drape").toUpperCase();
+        ctx.fillText(`AI VIRTUAL ATELIER • ${prodNameEn}`, 45, canvas.height - 42);
+
+        const link = document.createElement("a");
+        link.download = `Avoroni_AI_Look_${selectedProduct.id}_${Date.now()}.jpg`;
+        link.href = canvas.toDataURL("image/jpeg", 0.95);
+        link.click();
+      };
+      img.onerror = () => {
+        const link = document.createElement("a");
+        link.download = `Avoroni_AI_Look_${selectedProduct.id}_${Date.now()}.jpg`;
+        link.href = aiResultImage;
+        link.click();
+      };
+      img.src = aiResultImage;
+    } catch (e) {
+      const link = document.createElement("a");
+      link.download = `Avoroni_AI_Look_${selectedProduct.id}_${Date.now()}.jpg`;
+      link.href = aiResultImage;
+      link.click();
+    }
   };
 
   // Order via WhatsApp
@@ -904,6 +946,16 @@ export default function VirtualStudioModal() {
                       ? "এআই ভার্চুয়াল লুক সম্পন্ন"
                       : "AI Try-On Ready"}
                   </span>
+                </div>
+
+                {/* Luxury Typography Watermark (Rendered via browser fonts - 100% crisp & no square boxes) */}
+                <div className={`absolute ${aiStylingTip ? "bottom-20 sm:bottom-22" : "bottom-5"} left-5 sm:left-6 z-20 pointer-events-none drop-shadow-lg`}>
+                  <div className="font-serif text-sm sm:text-base font-bold tracking-[0.22em] text-[#F5F0E8]">
+                    AVORONI DHAKA
+                  </div>
+                  <div className="text-[9px] sm:text-[11px] font-sans font-semibold tracking-wider text-[#C5A869]">
+                    AI VIRTUAL ATELIER • {(getLocalized(selectedProduct.name, "en") || "SIGNATURE WEAVE").toUpperCase()}
+                  </div>
                 </div>
 
                 {/* Gemini Luxury Fashion Stylist Tip Box */}

@@ -221,9 +221,7 @@ export async function POST(req: NextRequest) {
           </defs>
           <rect x="0" y="${h - 130}" width="${w}" height="130" fill="url(#bottomShadow)" />
           
-          <text x="45" y="${h - 70}" font-family="'Times New Roman', Georgia, serif" font-size="22" fill="#F5F0E8" letter-spacing="6" font-weight="bold">AVORONI DHAKA</text>
-          <text x="45" y="${h - 42}" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#C5A869" letter-spacing="2" font-weight="600">AI VIRTUAL ATELIER • ${productNameEn.toUpperCase()}</text>
-          
+          <!-- Luxury Gold Seal Medallion (Pure Vector Shapes - 100% Font-Independent) -->
           <circle cx="${w - 65}" cy="${h - 56}" r="24" fill="#4A151E" stroke="#C5A869" stroke-width="2" />
           <circle cx="${w - 65}" cy="${h - 56}" r="20" fill="none" stroke="#C5A869" stroke-width="1" stroke-dasharray="3,3" />
           <polygon points="${w-65},${h-66} ${w-62},${h-57} ${w-53},${h-57} ${w-60},${h-52} ${w-57},${h-43} ${w-65},${h-48} ${w-73},${h-43} ${w-70},${h-52} ${w-77},${h-57} ${w-68},${h-57}" fill="#FFF0A0" />

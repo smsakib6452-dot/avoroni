@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
-import { Client } from "@gradio/client";
 
 // Robust buffer resolution supporting Base64, Data URLs, local file paths, and Vercel CDN URLs
 async function resolveImageBuffer(imageInput: string, reqOrigin?: string): Promise<Buffer> {
@@ -25,25 +24,12 @@ async function resolveImageBuffer(imageInput: string, reqOrigin?: string): Promi
       try {
         return fs.readFileSync(fullPath);
       } catch (e) {
-        // ignore and fallback
-      }
-    }
-
-    // Remote fetch fallback for Vercel Serverless Edge CDN
-    if (reqOrigin) {
-      try {
-        const fetchUrl = `${reqOrigin.replace(/\/$/, "")}/${cleanPath}`;
-        const res = await fetch(fetchUrl);
-        if (res.ok) {
-          return Buffer.from(await res.arrayBuffer());
-        }
-      } catch (e) {
-        // ignore and fallback
+        // proceed to other resolvers
       }
     }
   }
 
-  // 3. Remote URL (http / https e.g. Cloudinary or Supabase Storage)
+  // 3. Remote URL (http / https e.g. Vercel deployment origin or Supabase/Cloudinary)
   if (imageInput.startsWith("http://") || imageInput.startsWith("https://")) {
     try {
       const res = await fetch(imageInput);
@@ -51,11 +37,24 @@ async function resolveImageBuffer(imageInput: string, reqOrigin?: string): Promi
         return Buffer.from(await res.arrayBuffer());
       }
     } catch (e) {
-      // ignore and fallback
+      // proceed to relative origin fetch
     }
   }
 
-  // 4. Raw base64 fallback
+  // 4. Relative URL with request origin (essential on Vercel Serverless environment)
+  if (imageInput.startsWith("/") && reqOrigin) {
+    try {
+      const absoluteUrl = `${reqOrigin}${imageInput}`;
+      const res = await fetch(absoluteUrl);
+      if (res.ok) {
+        return Buffer.from(await res.arrayBuffer());
+      }
+    } catch (e) {
+      // fallback
+    }
+  }
+
+  // 5. Raw base64 fallback
   try {
     const rawBuf = Buffer.from(imageInput, "base64");
     if (rawBuf.length > 500) {
@@ -65,32 +64,29 @@ async function resolveImageBuffer(imageInput: string, reqOrigin?: string): Promi
     // ignore
   }
 
-  // 5. Default contact intro fallback
-  try {
-    const defaultPath = path.join(process.cwd(), "public", "images", "contact_intro.jpg");
-    if (fs.existsSync(defaultPath)) {
-      return fs.readFileSync(defaultPath);
-    }
-    if (reqOrigin) {
-      const res = await fetch(`${reqOrigin.replace(/\/$/, "")}/images/contact_intro.jpg`);
-      if (res.ok) return Buffer.from(await res.arrayBuffer());
-    }
-  } catch (e) {}
-
+  // Final guaranteed fallback
   return createFallbackCanvas();
 }
 
+// Guaranteed 896x1200 Haute Couture Canvas (Prevents any ENOENT crashes on Vercel)
 async function createFallbackCanvas(): Promise<Buffer> {
-  return await sharp({
-    create: {
-      width: 896,
-      height: 1200,
-      channels: 4,
-      background: { r: 24, g: 18, b: 17, alpha: 1 },
-    },
-  })
-    .jpeg({ quality: 90 })
-    .toBuffer();
+  const svg = `
+    <svg width="896" height="1200" viewBox="0 0 896 1200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="luxBg" cx="50%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#301018" />
+          <stop offset="60%" stop-color="#190A0D" />
+          <stop offset="100%" stop-color="#0E0507" />
+        </radialGradient>
+      </defs>
+      <rect width="896" height="1200" fill="url(#luxBg)" />
+      <circle cx="448" cy="380" r="140" fill="#240D13" stroke="#C5A869" stroke-width="2" opacity="0.6" />
+      <path d="M 280 850 C 340 650, 556 650, 616 850 Z" fill="#240D13" stroke="#C5A869" stroke-width="2" opacity="0.6" />
+      <text x="448" y="1120" font-family="serif" font-size="28" fill="#F5F0E8" text-anchor="middle" letter-spacing="8" opacity="0.9">AVORONI DHAKA</text>
+      <text x="448" y="1155" font-family="sans-serif" font-size="14" fill="#C5A869" text-anchor="middle" letter-spacing="4" opacity="0.8">HAUTE COUTURE AI ATELIER</text>
+    </svg>
+  `;
+  return await sharp(Buffer.from(svg)).jpeg({ quality: 90 }).toBuffer();
 }
 
 function getLoc(val: any, lang: "bn" | "en" = "bn"): string {
@@ -127,31 +123,60 @@ function getGeminiApiKey(): string {
 async function fetchGeminiStylingTip(
   productName: string,
   category: string,
-  apiKey: string
+  apiKey: string,
+  userBuffer?: Buffer | null
 ): Promise<string | null> {
   if (!apiKey) return null;
 
   try {
-    const candidateModels = ["gemini-3.6-flash", "gemini-2.5-flash", "gemini-flash-latest"];
+    const candidateModels = [
+      "gemini-3.5-flash",
+      "gemini-3.6-flash",
+      "gemini-3.7-flash",
+      "gemini-2.5-flash",
+      "gemini-flash-latest",
+    ];
+
+    let imagePart: any = null;
+    if (userBuffer) {
+      try {
+        const thumb = await sharp(userBuffer)
+          .resize(320, 400, { fit: "cover" })
+          .jpeg({ quality: 80 })
+          .toBuffer();
+        imagePart = {
+          inlineData: {
+            data: thumb.toString("base64"),
+            mimeType: "image/jpeg",
+          },
+        };
+      } catch (e) {
+        // ignore image thumbnail error
+      }
+    }
+
+    const promptText = imagePart
+      ? `You are an elite Bangladeshi haute couture fashion stylist for Avoroni Dhaka. Looking at this client's photo and skin tone/profile, she is trying on this handcrafted ${productName} (${category}). In 1 single elegant, warm sentence in Bengali (বাংলা), give a personalized styling compliment or jewelry recommendation (e.g. Kundan, Polki, gold jhumka, or pearl jewelry) that specifically complements her look. Keep it aristocratic and concise without quotes or markdown.`
+      : `You are an elite Bangladeshi haute couture fashion stylist for Avoroni Dhaka. A client is trying on this handcrafted ${productName} (${category}). In 1 single elegant sentence in Bengali (বাংলা), write an authentic styling compliment or jewelry recommendation (e.g. Kundan, Polki, or pearl jewelry). Keep it warm, aristocratic, and concise without quotes or markdown.`;
+
+    const parts: any[] = [{ text: promptText }];
+    if (imagePart) {
+      parts.unshift(imagePart);
+    }
+
     for (const modelName of candidateModels) {
       try {
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent`;
         const res = await fetch(endpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey,
+          },
           body: JSON.stringify({
-            contents: [
-              {
-                role: "user",
-                parts: [
-                  {
-                    text: `You are an elite Bangladeshi haute couture fashion stylist for Avoroni Dhaka. A client is trying on this handcrafted ${productName} (${category}). In 1 single elegant sentence in Bengali (বাংলা), write an authentic styling compliment or jewelry recommendation (e.g. Kundan, Polki, or pearl jewelry). Keep it warm, aristocratic, and concise without quotes or markdown.`,
-                  },
-                ],
-              },
-            ],
+            contents: [{ role: "user", parts }],
             generationConfig: {
-              maxOutputTokens: 80,
+              maxOutputTokens: 100,
               temperature: 0.7,
             },
           }),
@@ -394,9 +419,10 @@ export async function POST(req: NextRequest) {
         .toBuffer();
     };
 
-    // Fetch AI styling tip (from Gemini if API key available, otherwise authentic curated styling advice)
+    // Fetch AI styling tip (from Google Gemini with visual understanding, falling back to authentic curated styling advice)
     const geminiKey = getGeminiApiKey();
-    let stylingTip = await fetchGeminiStylingTip(productNameBn, category, geminiKey);
+    const userBufForTip = (sourceMode !== "model" && userImage) ? await resolveImageBuffer(userImage, reqOrigin) : null;
+    let stylingTip = await fetchGeminiStylingTip(productNameBn, category, geminiKey, userBufForTip);
     if (!stylingTip) {
       if (category === "saree") {
         stylingTip = `এই ঐতিহ্যবাহী ${productNameBn} শাড়ির সাথে এন্টিক কুন্দন ও পোলকি জুয়েলারি আভিজাত্য এনে দেবে।`;
@@ -410,6 +436,8 @@ export async function POST(req: NextRequest) {
         stylingTip = `এই ঐতিহ্যবাহী পিসটি আপনার উৎসবের সাজে এক অনন্য মাত্রা যোগ করবে।`;
       }
     }
+
+    const atelierEngine = geminiKey ? "Google Gemini Haute Couture AI Studio" : "Avoroni Haute Couture AI Neural Atelier";
 
     // =========================================================================
     // 1. CLIENT VIRTUAL TRY-ON (USER'S ACTUAL PHOTO IS THE 100% PRESERVED CANVAS)
@@ -435,7 +463,7 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({
             success: true,
             resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-            engine: "Avoroni Haute Couture AI Neural Atelier",
+            engine: atelierEngine,
             stylingTip,
             productName: { bn: productNameBn, en: productNameEn },
             category,
@@ -456,7 +484,7 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({
             success: true,
             resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-            engine: "Avoroni Haute Couture AI Neural Atelier",
+            engine: atelierEngine,
             stylingTip,
             productName: { bn: productNameBn, en: productNameEn },
             category,
@@ -475,7 +503,7 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({
             success: true,
             resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-            engine: "Avoroni Haute Couture AI Neural Atelier",
+            engine: atelierEngine,
             stylingTip,
             productName: { bn: productNameBn, en: productNameEn },
             category,
@@ -523,7 +551,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       resultImage: `data:image/jpeg;base64,${watermarked.toString("base64")}`,
-      engine: "Avoroni Haute Couture AI Editorial Atelier",
+      engine: geminiKey ? "Google Gemini Haute Couture AI Studio" : "Avoroni Haute Couture AI Editorial Atelier",
       stylingTip,
       productName: { bn: productNameBn, en: productNameEn },
       category,

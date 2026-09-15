@@ -1241,447 +1241,803 @@
     "categories": [
       {
         "id": "jewelry",
-        "name": {
-          "bn": "অভিজাত গয়না",
-          "en": "Heritage Jewelry"
-        },
         "slug": "heritage-jewelry",
-        "badge": {
-          "bn": "১০০% খাঁটি হস্তশিল্প • ব্রাইডাল স্পেশাল",
-          "en": "Zero Fitting Risk • High Heirloom Value"
+        "name": {
+          "en": "Heritage Jewelry",
+          "bn": "অভিজাত গয়না"
         },
+        "tagline": {
+          "en": "Mughal Jadau & Polki Heirlooms",
+          "bn": "মোগল জাদাউ ও পোলকি কারুকাজ"
+        },
+        "description": {
+          "en": "Artisanal Kundan, Polki, and antique gold filigree crafted without compromise.",
+          "bn": "খাঁটি সোনার পাতে বাঁধানো কুন্দন, অ্যান্টিক পোলকি ও সুনিপুণ মীনা কারুকাজ।"
+        },
+        "badge": {
+          "en": "Zero Fitting Risk • High Heirloom Value",
+          "bn": "১০০% খাঁটি হস্তশিল্প • ব্রাইডাল স্পেশাল"
+        },
+        "coverImage": "/images/lifestyle/jewelry_cover.jpg",
         "items": [
           {
             "id": "jewel-1",
-            "tag": {
-              "bn": "ব্রাইডাল সেট",
-              "en": "Bridal Set"
-            },
             "name": {
-              "bn": "রাজকীয় কুন্দন চোকার ও কানপাশা",
-              "en": "Royal Jadau Kundan Choker Set"
+              "en": "Royal Jadau Kundan Choker Set",
+              "bn": "রাজকীয় কুন্দন চোকার ও কানপাশা"
             },
             "craft": {
-              "bn": "খাঁটি মীনা ও সোনার পাতে বাঁধানো কুন্দন",
-              "en": "Handcrafted 24k Gold Foil Jadau with Natural Pearls"
+              "en": "Handcrafted 24k Gold Foil Jadau with Natural Pearls",
+              "bn": "খাঁটি মীনা ও সোনার পাতে বাঁধানো কুন্দন"
+            },
+            "price": {
+              "en": "৳ 8,500",
+              "bn": "৳ ৮,৫০০"
             },
             "image": "/images/lifestyle/jewel_kundan_choker.jpg",
-            "price": {
-              "bn": "৳ ৮,৫০০",
-              "en": "৳ 8,500"
+            "modelImage": "/images/lifestyle/jewel_kundan_choker_model.jpg",
+            "tag": {
+              "en": "Bridal Set",
+              "bn": "ব্রাইডাল সেট"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "jewel-2",
-            "tag": {
-              "bn": "হস্তনির্মিত",
-              "en": "Handcrafted"
-            },
             "name": {
-              "bn": "অ্যান্টিক পোলকি ও চাঁদবালি ঝুমকা",
-              "en": "Imperial Chandbali & Polki Jhumka"
+              "en": "Imperial Chandbali & Polki Jhumka",
+              "bn": "অ্যান্টিক পোলকি ও চাঁদবালি ঝুমকা"
             },
             "craft": {
-              "bn": "হস্তনির্মিত রাজস্থানি পোলকি ও মুক্তা",
-              "en": "Rajputana Filigree with Clustered Freshwater Pearls"
+              "en": "Rajputana Filigree with Clustered Freshwater Pearls",
+              "bn": "হস্তনির্মিত রাজস্থানি পোলকি ও মুক্তা"
+            },
+            "price": {
+              "en": "৳ 4,200",
+              "bn": "৳ ৪,২০০"
             },
             "image": "/images/lifestyle/jewel_chandbali_jhumka.jpg",
-            "price": {
-              "bn": "৳ ৪,২০০",
-              "en": "৳ 4,200"
+            "modelImage": "/images/lifestyle/jewel_chandbali_jhumka_model.jpg",
+            "tag": {
+              "en": "Handcrafted",
+              "bn": "হস্তনির্মিত"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "jewel-3",
-            "tag": {
-              "bn": "হেরিটেজ গোল্ড",
-              "en": "Heritage Gold"
-            },
             "name": {
-              "bn": "মীনা কারি জাদাউ বালা জোড়া",
-              "en": "Meenakari Jadau Bangles Pair"
+              "en": "Meenakari Jadau Bangles Pair",
+              "bn": "মীনা কারি জাদাউ বালা জোড়া"
             },
             "craft": {
-              "bn": "এথনিক লাল ও সবুজ মীনা কারুকাজ",
-              "en": "Traditional Red & Emerald Green Cloisonné Enamel"
+              "en": "Traditional Red & Emerald Green Cloisonné Enamel",
+              "bn": "এথনিক লাল ও সবুজ মীনা কারুকাজ"
+            },
+            "price": {
+              "en": "৳ 5,500",
+              "bn": "৳ ৫,৫০০"
             },
             "image": "/images/lifestyle/jewel_meenakari_bangles.jpg",
-            "price": {
-              "bn": "৳ ৫,৫০০",
-              "en": "৳ 5,500"
+            "modelImage": "/images/lifestyle/jewel_meenakari_bangles_model.jpg",
+            "tag": {
+              "en": "Heritage Gold",
+              "bn": "হেরিটেজ গোল্ড"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "jewel-4",
-            "tag": {
-              "bn": "মাস্টারপিস",
-              "en": "Masterpiece"
-            },
             "name": {
-              "bn": "মোগল চন্দ্রহার ও সীতাহার",
-              "en": "Mughal Royal Chandrahaar & Pendant"
+              "en": "Mughal Royal Chandrahaar & Pendant",
+              "bn": "মোগল চন্দ্রহার ও সীতাহার"
             },
             "craft": {
-              "bn": "অষ্টধাতুর সূক্ষ্ম তারের ফিলগ্রি নকশা",
-              "en": "Eight-Metal Layered Filigree with Ruby Gemstone"
+              "en": "Eight-Metal Layered Filigree with Ruby Gemstone",
+              "bn": "অষ্টধাতুর সূক্ষ্ম তারের ফিলগ্রি নকশা"
+            },
+            "price": {
+              "en": "৳ 12,500",
+              "bn": "৳ ১২,৫০০"
             },
             "image": "/images/lifestyle/jewel_chandrahaar_pendant.jpg",
+            "modelImage": "/images/lifestyle/jewel_chandrahaar_pendant_model.jpg",
+            "tag": {
+              "en": "Masterpiece",
+              "bn": "মাস্টারপিস"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "jewel-5",
+            "name": {
+              "en": "Navratna Heritage Hasli Choker",
+              "bn": "নবরত্ন রাজকীয় হাসলি চোকার"
+            },
+            "craft": {
+              "en": "Nine Auspicious Gemstones with 22k Antique Gold Filigree",
+              "bn": "নয়টি শুভ রত্নপাথর ও ২২ ক্যারেট খাঁটি অ্যান্টিক গোল্ড তারের কাজ"
+            },
             "price": {
-              "bn": "৳ ১২,৫০০",
-              "en": "৳ 12,500"
+              "en": "৳ 9,800",
+              "bn": "৳ ৯,৮০০"
+            },
+            "image": "/images/lifestyle/jewel_kundan_choker.jpg",
+            "tag": {
+              "en": "Royal Heirloom",
+              "bn": "রাজকীয় উত্তরাধিকার"
+            },
+            "inStock": true,
+            "featured": true
+          },
+          {
+            "id": "jewel-6",
+            "name": {
+              "en": "Temple Kasu Mala & Lakshmi Jhumka",
+              "bn": "অ্যান্টিক মন্দির কাশু মালা ও ঝুমকা"
+            },
+            "craft": {
+              "en": "Embossed Coin Motif Filigree with Coral & Ruby Accents",
+              "bn": "ঐতিহ্যবাহী স্বর্ণমুদ্রা ও নিখুঁত খোদাই করা রুবি কারুকাজ"
+            },
+            "price": {
+              "en": "৳ 14,800",
+              "bn": "৳ ১৪,৮০০"
+            },
+            "image": "/images/lifestyle/jewel_chandrahaar_pendant.jpg",
+            "tag": {
+              "en": "Bridal Antique",
+              "bn": "ব্রাইডাল অ্যান্টিক"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "jewel-7",
+            "name": {
+              "en": "Kundan Matha Patti & Maang Tikka",
+              "bn": "কুন্দন মাথাপাট্টি ও টিকলি সেট"
+            },
+            "craft": {
+              "en": "Bridal Forehead Drape with Seed Pearls and Foil Kundan",
+              "bn": "সোনার পাতে বসানো কুন্দন ও ছোট মুক্তার ঝালর"
+            },
+            "price": {
+              "en": "৳ 4,800",
+              "bn": "৳ ৪,৮০০"
+            },
+            "image": "/images/lifestyle/jewel_chandbali_jhumka.jpg",
+            "tag": {
+              "en": "Bridal Essential",
+              "bn": "কনের সাজ"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "jewel-8",
+            "name": {
+              "en": "Rajputana Gokhru Gold Kada Pair",
+              "bn": "রাজপুতানা গোখরু স্বর্ণ কড়া জোড়া"
+            },
+            "craft": {
+              "en": "Heavy Floral Repoussé Work with Emerald Enamel Screws",
+              "bn": "ভারী খাঁটি ব্রাস-গোল্ড খোদাই ও পান্না মীনা ফিনিশিং"
+            },
+            "price": {
+              "en": "৳ 6,800",
+              "bn": "৳ ৬,৮০০"
+            },
+            "image": "/images/lifestyle/jewel_meenakari_bangles.jpg",
+            "tag": {
+              "en": "Heritage Gold",
+              "bn": "হেরিটেজ গোল্ড"
             },
             "inStock": true,
             "featured": false
           }
-        ],
-        "tagline": {
-          "bn": "মোগল জাদাউ ও পোলকি কারুকাজ",
-          "en": "Mughal Jadau & Polki Heirlooms"
-        },
-        "coverImage": "/images/lifestyle/jewelry_cover.jpg",
-        "description": {
-          "bn": "খাঁটি সোনার পাতে বাঁধানো কুন্দন, অ্যান্টিক পোলকি ও সুনিপুণ মীনা কারুকাজ。",
-          "en": "Artisanal Kundan, Polki, and antique gold filigree crafted without compromise."
-        }
+        ]
       },
       {
         "id": "clutches",
-        "name": {
-          "bn": "রয়েল বটুয়া ও ক্লাচ",
-          "en": "Royal Clutches & Potlis"
-        },
         "slug": "royal-clutches",
-        "badge": {
-          "bn": "সাইজ-মুক্ত • বিয়ের নিখুঁত উপহার",
-          "en": "Zero Size Risk • Perfect Gifting"
+        "name": {
+          "en": "Royal Clutches & Potlis",
+          "bn": "রয়েল বটুয়া ও ক্লাচ"
         },
+        "tagline": {
+          "en": "Zardozi Velvet & Hand-Gilded Bags",
+          "bn": "জারদৌসি ভেলভেট ও ধাতব কারুকাজ"
+        },
+        "description": {
+          "en": "Opulent evening clutches and bridal potli bags designed to complement your drapes.",
+          "bn": "শাড়ির আভিজাত্যের সাথে মানানসই জারদৌসি কারুকাজ ও মোতি গাঁথা বটুয়া ব্যাগ।"
+        },
+        "badge": {
+          "en": "Zero Size Risk • Perfect Gifting",
+          "bn": "সাইজ-মুক্ত • বিয়ের নিখুঁত উপহার"
+        },
+        "coverImage": "/images/lifestyle/clutches_cover.jpg",
         "items": [
           {
             "id": "potli-1",
-            "tag": {
-              "bn": "বেস্ট সেলার",
-              "en": "Best Seller"
-            },
             "name": {
-              "bn": "জারদৌসি ভেলভেট ব্রাইডাল বটুয়া",
-              "en": "Royal Zardozi Velvet Potli"
+              "en": "Royal Zardozi Velvet Potli",
+              "bn": "জারদৌসি ভেলভেট ব্রাইডাল বটুয়া"
             },
             "craft": {
-              "bn": "খাঁটি ডাবল জরি ও সিকোয়েন্স কাজ",
-              "en": "Heavy Dabka, Sequin & Gold Wire Hand Embroidery"
+              "en": "Heavy Dabka, Sequin & Gold Wire Hand Embroidery",
+              "bn": "খাঁটি ডাবল জরি ও সিকোয়েন্স কাজ"
+            },
+            "price": {
+              "en": "৳ 2,800",
+              "bn": "৳ ২,৮০০"
             },
             "image": "/images/lifestyle/potli_zardozi_velvet.jpg",
-            "price": {
-              "bn": "৳ ২,৮০০",
-              "en": "৳ 2,800"
+            "tag": {
+              "en": "Best Seller",
+              "bn": "বেস্ট সেলার"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "potli-2",
-            "tag": {
-              "bn": "এক্সক্লুসিভ",
-              "en": "Exclusive"
-            },
             "name": {
-              "bn": "মুক্তার ব্রাইডাল বক্স ক্লাচ",
-              "en": "Pearl Handcrafted Minaudière Box Clutch"
+              "en": "Pearl Handcrafted Minaudière Box Clutch",
+              "bn": "মুক্তার ব্রাইডাল বক্স ক্লাচ"
             },
             "craft": {
-              "bn": "হাতে গাঁথা পার্ল ও গোল্ডেন ব্রাস ফ্রেম",
-              "en": "Intricate Pearl Beads on Antique Brass Frame"
+              "en": "Intricate Pearl Beads on Antique Brass Frame",
+              "bn": "হাতে গাঁথা পার্ল ও গোল্ডেন ব্রাস ফ্রেম"
+            },
+            "price": {
+              "en": "৳ 3,600",
+              "bn": "৳ ৩,৬০০"
             },
             "image": "/images/lifestyle/clutch_pearl_minaudiere.jpg",
-            "price": {
-              "bn": "৳ ৩,৬০০",
-              "en": "৳ 3,600"
+            "tag": {
+              "en": "Exclusive",
+              "bn": "এক্সক্লুসিভ"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "potli-3",
-            "tag": {
-              "bn": "পার্টি এডিশন",
-              "en": "Party Edition"
-            },
             "name": {
-              "bn": "রেশমি বেনারসি সিল্ক ক্লাচ",
-              "en": "Banarasi Weave Envelope Silk Clutch"
+              "en": "Banarasi Weave Envelope Silk Clutch",
+              "bn": "রেশমি বেনারসি সিল্ক ক্লাচ"
             },
             "craft": {
-              "bn": "অ্যান্টিক গোল্ড মেটাল লক ও বেনারসি উইভ",
-              "en": "Pure Kashi Brocade Silk with Magnetic Lock"
+              "en": "Pure Kashi Brocade Silk with Magnetic Lock",
+              "bn": "অ্যান্টিক গোল্ড মেটাল লক ও বেনারসি উইভ"
+            },
+            "price": {
+              "en": "৳ 2,400",
+              "bn": "৳ ২,৪০০"
             },
             "image": "/images/lifestyle/clutch_banarasi_envelope.jpg",
-            "price": {
-              "bn": "৳ ২,৪০০",
-              "en": "৳ 2,400"
+            "tag": {
+              "en": "Party Edition",
+              "bn": "পার্টি এডিশন"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "potli-4",
-            "tag": {
-              "bn": "সীমিত সংস্করণ",
-              "en": "Limited Craft"
-            },
             "name": {
-              "bn": "মোগল মোটিফ অ্যান্টিক বটুয়া",
-              "en": "Mughal Antique Beaded Potli"
+              "en": "Mughal Antique Beaded Potli",
+              "bn": "মোগল মোটিফ অ্যান্টিক বটুয়া"
             },
             "craft": {
-              "bn": "হ্যান্ডমেড ট্যাসেল ও গ্লাস বিডস কাজ",
-              "en": "Handmade Silk Tassels with Glass Bead Embroidery"
+              "en": "Handmade Silk Tassels with Glass Bead Embroidery",
+              "bn": "হ্যান্ডমেড ট্যাসেল ও গ্লাস বিডস কাজ"
+            },
+            "price": {
+              "en": "৳ 3,200",
+              "bn": "৳ ৩,২০০"
             },
             "image": "/images/lifestyle/potli_mughal_antique.jpg",
+            "tag": {
+              "en": "Limited Craft",
+              "bn": "সীমিত সংস্করণ"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "potli-5",
+            "name": {
+              "en": "Ruby Velvet Dabka Floral Potli",
+              "bn": "রুবি ভেলভেট ডাবকা ফ্লোরাল বটুয়া"
+            },
+            "craft": {
+              "en": "Hand-beaten French Wire & Sequin Zardozi with Pearl Latkan",
+              "bn": "ফ্রেঞ্চ ওয়্যার ও পার্ল লটকনসহ ভেলভেটে হাতের জারদৌসি"
+            },
             "price": {
-              "bn": "৳ ৩,২০০",
-              "en": "৳ 3,200"
+              "en": "৳ 3,400",
+              "bn": "৳ ৩,৪০০"
+            },
+            "image": "/images/lifestyle/potli_zardozi_velvet.jpg",
+            "tag": {
+              "en": "Festive Edit",
+              "bn": "উৎসবে অনন্য"
+            },
+            "inStock": true,
+            "featured": true
+          },
+          {
+            "id": "potli-6",
+            "name": {
+              "en": "Gota Patti Brocade Wristlet Pouch",
+              "bn": "গোটাপট্টি ব্রোকেড রিস্টলেট পাউচ"
+            },
+            "craft": {
+              "en": "Jaipuri Gota Ribbon Work on Pure Raw Silk",
+              "bn": "খাঁটি রেশমে জয়পুরী গোটা ফিতা ও জরি বুনন"
+            },
+            "price": {
+              "en": "৳ 2,200",
+              "bn": "৳ ২,২০০"
+            },
+            "image": "/images/lifestyle/clutch_banarasi_envelope.jpg",
+            "tag": {
+              "en": "New Arrival",
+              "bn": "নতুন কালেকশন"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "potli-7",
+            "name": {
+              "en": "Marigold Raw Silk Embroidered Clutch",
+              "bn": "গোল্ডেন র সিল্ক সুতো নকশী ক্লাচ"
+            },
+            "craft": {
+              "en": "Silk Floss Threadwork with Antiqued Brass Metal Clasp",
+              "bn": "রেশম সুতোর কাজ ও অ্যান্টিক মেটাল ব্রাস ফ্রেম"
+            },
+            "price": {
+              "en": "৳ 2,900",
+              "bn": "৳ ২,৯০০"
+            },
+            "image": "/images/lifestyle/clutch_pearl_minaudiere.jpg",
+            "tag": {
+              "en": "Exclusive",
+              "bn": "এক্সক্লুসিভ"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "potli-8",
+            "name": {
+              "en": "Ahsan Manzil Antique Brass Minaudière",
+              "bn": "আহসান মঞ্জিল অ্যান্টিক মেটাল ক্লাচ"
+            },
+            "craft": {
+              "en": "Hand-chiseled Mughal Floral Filigree over Brass Shell",
+              "bn": "খাঁটি কাঁসা ও ব্রাসে সূক্ষ্ম খোদাই করা মোগল শিল্প"
+            },
+            "price": {
+              "en": "৳ 4,500",
+              "bn": "৳ ৪,৫০০"
+            },
+            "image": "/images/lifestyle/potli_mughal_antique.jpg",
+            "tag": {
+              "en": "Masterpiece",
+              "bn": "মাস্টারপিস"
             },
             "inStock": true,
             "featured": false
           }
-        ],
-        "tagline": {
-          "bn": "জারদৌসি ভেলভেট ও ধাতব কারুকাজ",
-          "en": "Zardozi Velvet & Hand-Gilded Bags"
-        },
-        "coverImage": "/images/lifestyle/clutches_cover.jpg",
-        "description": {
-          "bn": "শাড়ির আভিজাত্যের সাথে মানানসই জারদৌসি কারুকাজ ও মোতি গাঁথা বটুয়া ব্যাগ।",
-          "en": "Opulent evening clutches and bridal potli bags designed to complement your drapes."
-        }
+        ]
       },
       {
         "id": "unstitched",
-        "name": {
-          "bn": "লাক্সারি আনস্টিচড ৩-পিস",
-          "en": "Luxury Unstitched Suits"
-        },
         "slug": "unstitched-suits",
-        "badge": {
-          "bn": "১০০% খাঁটি ফেব্রিক • জিরো রিটার্ন রিস্ক",
-          "en": "Zero Fitting Return Risk"
+        "name": {
+          "en": "Luxury Unstitched Suits",
+          "bn": "লাক্সারি আনস্টিচড ৩-পিস"
         },
+        "tagline": {
+          "en": "Boutique Organza, Jamdani & Silk Ensembles",
+          "bn": "অরগানজা, জামদানি ও সিল্কের ৩-পিস"
+        },
+        "description": {
+          "en": "Tailor-free luxury: pristine fabrics you customize to your exact proportions.",
+          "bn": "সাইজের ঝামেলামুক্ত খাঁটি ফেব্রিক — আপনার নিজের মাপে আরামদায়কভাবে বানিয়ে নিন।"
+        },
+        "badge": {
+          "en": "Zero Fitting Return Risk",
+          "bn": "১০০% খাঁটি ফেব্রিক • জিরো রিটার্ন রিস্ক"
+        },
+        "coverImage": "/images/lifestyle/suits_cover.jpg",
         "items": [
           {
             "id": "suit-1",
-            "tag": {
-              "bn": "১০০% হ্যান্ডলুম",
-              "en": "100% Handloom"
-            },
             "name": {
-              "bn": "ঐতিহ্যবাহী জামদানি আনস্টিচড ৩-পিস",
-              "en": "Heritage Jamdani Weave Unstitched 3-Piece"
+              "en": "Heritage Jamdani Weave Unstitched 3-Piece",
+              "bn": "ঐতিহ্যবাহী জামদানি আনস্টিচড ৩-পিস"
             },
             "craft": {
-              "bn": "হাতে বোনা জামদানি ওড়না ও ফাইন কটন কামিজ",
-              "en": "Handloom Jamdani Dupatta with Egyptian Cotton Kameez"
+              "en": "Handloom Jamdani Dupatta with Egyptian Cotton Kameez",
+              "bn": "হাতে বোনা জামদানি ওড়না ও ফাইন কটন কামিজ"
+            },
+            "price": {
+              "en": "৳ 6,500",
+              "bn": "৳ ৬,৫০০"
             },
             "image": "/images/lifestyle/suit_jamdani_cotton.jpg",
-            "price": {
-              "bn": "৳ ৬,৫০০",
-              "en": "৳ 6,500"
+            "tag": {
+              "en": "100% Handloom",
+              "bn": "১০০% হ্যান্ডলুম"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "suit-2",
-            "tag": {
-              "bn": "উৎসবে অনন্য",
-              "en": "Festive Edit"
-            },
             "name": {
-              "bn": "পিওর অরগানজা রেশম এমব্রয়ডারি ৩-পিস",
-              "en": "Pure Organza Resham Embroidered Suit"
+              "en": "Pure Organza Resham Embroidered Suit",
+              "bn": "পিওর অরগানজা রেশম এমব্রয়ডারি ৩-পিস"
             },
             "craft": {
-              "bn": "কাটওয়ার্ক ওড়না ও সফট সাটিন কটন বটম",
-              "en": "Scalloped Cutwork Dupatta with Pure Cotton Satin Pants"
+              "en": "Scalloped Cutwork Dupatta with Pure Cotton Satin Pants",
+              "bn": "কাটওয়ার্ক ওড়না ও সফট সাটিন কটন বটম"
+            },
+            "price": {
+              "en": "৳ 7,800",
+              "bn": "৳ ৭,৮০০"
             },
             "image": "/images/lifestyle/suit_organza_resham.jpg",
-            "price": {
-              "bn": "৳ ৭,৮০০",
-              "en": "৳ 7,800"
+            "tag": {
+              "en": "Festive Edit",
+              "bn": "উৎসবে অনন্য"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "suit-3",
-            "tag": {
-              "bn": "পিওর সিল্ক",
-              "en": "Pure Silk"
-            },
             "name": {
-              "bn": "রেশমি তসর উৎসবধর্মী ৩-পিস",
-              "en": "Tussar Silk Festive 3-Piece Ensemble"
+              "en": "Tussar Silk Festive 3-Piece Ensemble",
+              "bn": "রেশমি তসর উৎসবধর্মী ৩-পিস"
             },
             "craft": {
-              "bn": "ন্যাচারাল ডাই তসর ও রিচ জরি পাড়",
-              "en": "Natural Dye Tussar with Woven Zari Borders"
+              "en": "Natural Dye Tussar with Woven Zari Borders",
+              "bn": "ন্যাচারাল ডাই তসর ও রিচ জরি পাড়"
+            },
+            "price": {
+              "en": "৳ 8,200",
+              "bn": "৳ ৮,২০০"
             },
             "image": "/images/lifestyle/suit_tussar_silk.jpg",
-            "price": {
-              "bn": "৳ ৮,২০০",
-              "en": "৳ 8,200"
+            "tag": {
+              "en": "Pure Silk",
+              "bn": "পিওর সিল্ক"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "suit-4",
-            "tag": {
-              "bn": "সিগনেচার আর্ট",
-              "en": "Signature Art"
-            },
             "name": {
-              "bn": "লখনউই চিকেনকারি মসলিন ৩-পিস",
-              "en": "Lucknowi Chikankari Muslin Suit"
+              "en": "Lucknowi Chikankari Muslin Suit",
+              "bn": "লখনউই চিকেনকারি মসলিন ৩-পিস"
             },
             "craft": {
-              "bn": "সূক্ষ্ম হাত সেলাই ও মুকাইশ ওয়ার্ক",
-              "en": "Intricate Shadow Work on Superfine Muslin Fabric"
+              "en": "Intricate Shadow Work on Superfine Muslin Fabric",
+              "bn": "সূক্ষ্ম হাত সেলাই ও মুকাইশ ওয়ার্ক"
+            },
+            "price": {
+              "en": "৳ 9,500",
+              "bn": "৳ ৯,৫০০"
             },
             "image": "/images/lifestyle/suit_chikankari_muslin.jpg",
+            "tag": {
+              "en": "Signature Art",
+              "bn": "সিগনেচার আর্ট"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "suit-5",
+            "name": {
+              "en": "Royal Brocade Katan Unstitched 3-Piece",
+              "bn": "রয়াল ব্রোকেড কাতান আনস্টিচড ৩-পিস"
+            },
+            "craft": {
+              "en": "Heavy Gold Zari Katan Dupatta with Pure Silk Kameez Fabric",
+              "bn": "খাঁটি কাতান সিল্ক কামিজ ও ভারী স্বর্ণ জরির জমকালো ওড়না"
+            },
             "price": {
-              "bn": "৳ ৯,৫০০",
-              "en": "৳ 9,500"
+              "en": "৳ 8,900",
+              "bn": "৳ ৮,৯০০"
+            },
+            "image": "/images/lifestyle/suit_tussar_silk.jpg",
+            "tag": {
+              "en": "Bridal Luxury",
+              "bn": "ব্রাইডাল লাক্সারি"
+            },
+            "inStock": true,
+            "featured": true
+          },
+          {
+            "id": "suit-6",
+            "name": {
+              "en": "Mulberry Silk Hand-Blocked Floral Suit",
+              "bn": "রেশম মালবেরি সিল্ক হ্যান্ডব্লক ৩-পিস"
+            },
+            "craft": {
+              "en": "Natural Indigo & Madder Vegetable Dyes on Pure Silk",
+              "bn": "প্রাকৃতিক ভেষজ রঙ ও কাঠের ব্লকে হাতের কাজ"
+            },
+            "price": {
+              "en": "৳ 7,200",
+              "bn": "৳ ৭,২০০"
+            },
+            "image": "/images/lifestyle/suit_jamdani_cotton.jpg",
+            "tag": {
+              "en": "Eco Heritage",
+              "bn": "ইকো হেরিটেজ"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "suit-7",
+            "name": {
+              "en": "Kashmiri Aari Embroidery Chanderi Suit",
+              "bn": "কাশ্মীরি আরি নকশী চান্দেরি ৩-পিস"
+            },
+            "craft": {
+              "en": "Fine Needle Aari Crewelwork on Tissue Sheer Chanderi",
+              "bn": "শিয়ার চান্দেরি কাপড়ে সূক্ষ্ম কাশ্মীরি সুঁইয়ের আরি এমব্রয়ডারি"
+            },
+            "price": {
+              "en": "৳ 8,500",
+              "bn": "৳ ৮,৫০০"
+            },
+            "image": "/images/lifestyle/suit_organza_resham.jpg",
+            "tag": {
+              "en": "Artisan Craft",
+              "bn": "হস্তশিল্প"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "suit-8",
+            "name": {
+              "en": "Pastel Peach Kota Doria Handloom Ensemble",
+              "bn": "কোমল পিচ কোটা ডোরিয়া তাঁত ৩-পিস"
+            },
+            "craft": {
+              "en": "Featherweight Check Weave with Gota Border Accents",
+              "bn": "হাতে বোনা ডোরিয়া চেকের স্নিগ্ধ আরামদায়ক গরমের পোশাক"
+            },
+            "price": {
+              "en": "৳ 5,800",
+              "bn": "৳ ৫,৮০০"
+            },
+            "image": "/images/lifestyle/suit_chikankari_muslin.jpg",
+            "tag": {
+              "en": "Summer Poise",
+              "bn": "গ্রীষ্মের আভিজাত্য"
             },
             "inStock": true,
             "featured": false
           }
-        ],
-        "tagline": {
-          "bn": "অরগানজা, জামদানি ও সিল্কের ৩-পিস",
-          "en": "Boutique Organza, Jamdani & Silk Ensembles"
-        },
-        "coverImage": "/images/lifestyle/suits_cover.jpg",
-        "description": {
-          "bn": "সাইজের ঝামেলামুক্ত খাঁটি ফেব্রিক — আপনার নিজের মাপে আরামদায়কভাবে বানিয়ে নিন।",
-          "en": "Tailor-free luxury: pristine fabrics you customize to your exact proportions."
-        }
+        ]
       },
       {
         "id": "shawls",
-        "name": {
-          "bn": "কাশ্মীরি ও রেশমি শাল",
-          "en": "Kashmiri Pashmina & Shawls"
-        },
         "slug": "pashmina-shawls",
-        "badge": {
-          "bn": "শীতকালীন রয়াল কালেকশন • জিরো সাইজ রিস্ক",
-          "en": "High AOV • Generational Keepsake"
+        "name": {
+          "en": "Kashmiri Pashmina & Shawls",
+          "bn": "কাশ্মীরি ও রেশমি শাল"
         },
+        "tagline": {
+          "en": "Cashmere, Tussar & Velvet Winter Heirlooms",
+          "bn": "খাঁটি পশমিনা, তসর ও ভেলভেট চাদর"
+        },
+        "description": {
+          "en": "Warmth woven with regal history — heirloom wraps for winter galas and weddings.",
+          "bn": "শীতের সন্ধ্যায় রাজকীয় আভিজাত্য—হাতে বোনা খাঁটি পশমিনা ও রেশমি জামেভার চাদর।"
+        },
+        "badge": {
+          "en": "High AOV • Generational Keepsake",
+          "bn": "শীতকালীন রয়াল কালেকশন • জিরো সাইজ রিস্ক"
+        },
+        "coverImage": "/images/lifestyle/shawls_cover.jpg",
         "items": [
           {
             "id": "shawl-1",
-            "tag": {
-              "bn": "খাঁটি পশমিনা",
-              "en": "Pure Pashmina"
-            },
             "name": {
-              "bn": "খাঁটি কাশ্মীরি পশমিনা কানি শাল",
-              "en": "Authentic Kashmiri Pashmina Kani Shawl"
+              "en": "Authentic Kashmiri Pashmina Kani Shawl",
+              "bn": "খাঁটি কাশ্মীরি পশমিনা কানি শাল"
             },
             "craft": {
-              "bn": "১০০% খাঁটি কাশ্মির উল ও ঐতিহ্যবাহী কানি কাজ",
-              "en": "100% Changthangi Cashmere with Wooden Needle Kani Weave"
+              "en": "100% Changthangi Cashmere with Wooden Needle Kani Weave",
+              "bn": "১০০% খাঁটি কাশ্মির উল ও ঐতিহ্যবাহী কানি কাজ"
+            },
+            "price": {
+              "en": "৳ 14,500",
+              "bn": "৳ ১৪,৫০০"
             },
             "image": "/images/lifestyle/shawl_kashmiri_pashmina.jpg",
-            "price": {
-              "bn": "৳ ১৪,৫০০",
-              "en": "৳ 14,500"
+            "tag": {
+              "en": "Pure Pashmina",
+              "bn": "খাঁটি পশমিনা"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "shawl-2",
-            "tag": {
-              "bn": "ব্রাইডাল সিগনেচার",
-              "en": "Bridal Signature"
-            },
             "name": {
-              "bn": "জামেভার ভেলভেট ব্রাইডাল শাল",
-              "en": "Jamawar Velvet Bridal Shawl"
+              "en": "Jamawar Velvet Bridal Shawl",
+              "bn": "জামেভার ভেলভেট ব্রাইডাল শাল"
             },
             "craft": {
-              "bn": "ডিপ বোরদো ভেলভেটে জারদৌসি ও তিল্লা কাজ",
-              "en": "Deep Bordeaux Velvet with Zari & Tilla Embroidery"
+              "en": "Deep Bordeaux Velvet with Zari & Tilla Embroidery",
+              "bn": "ডিপ বোরদো ভেলভেটে জারদৌসি ও তিল্লা কাজ"
+            },
+            "price": {
+              "en": "৳ 8,900",
+              "bn": "৳ ৮,৯০০"
             },
             "image": "/images/lifestyle/shawl_jamawar_velvet.jpg",
-            "price": {
-              "bn": "৳ ৮,৯০০",
-              "en": "৳ 8,900"
+            "tag": {
+              "en": "Bridal Signature",
+              "bn": "ব্রাইডাল সিগনেচার"
             },
             "inStock": true,
             "featured": true
           },
           {
             "id": "shawl-3",
-            "tag": {
-              "bn": "বাংলার ঐতিহ্য",
-              "en": "Bangla Heritage"
-            },
             "name": {
-              "bn": "রাজশাহী মটকা রেশমি চাদর",
-              "en": "Rajshahi Matka Silk Embroidered Chadar"
+              "en": "Rajshahi Matka Silk Embroidered Chadar",
+              "bn": "রাজশাহী মটকা রেশমি চাদর"
             },
             "craft": {
-              "bn": "খাঁটি দেশি রেশম ও সূক্ষ্ম নকশী কাঁথা স্টিচ",
-              "en": "Raw Mulberry Silk with Nakshi Kantha Artisan Work"
+              "en": "Raw Mulberry Silk with Nakshi Kantha Artisan Work",
+              "bn": "খাঁটি দেশি রেশম ও সূক্ষ্ম নকশী কাঁথা স্টিচ"
+            },
+            "price": {
+              "en": "৳ 4,500",
+              "bn": "৳ ৪,৫০০"
             },
             "image": "/images/lifestyle/shawl_rajshahi_matka.jpg",
-            "price": {
-              "bn": "৳ ৪,৫০০",
-              "en": "৳ 4,500"
+            "tag": {
+              "en": "Bangla Heritage",
+              "bn": "বাংলার ঐতিহ্য"
             },
             "inStock": true,
             "featured": false
           },
           {
             "id": "shawl-4",
-            "tag": {
-              "bn": "ইভনিং র‍্যাপ",
-              "en": "Evening Wrap"
-            },
             "name": {
-              "bn": "তসর সোনালি জরি ইভনিং স্টোল",
-              "en": "Tussar Gilded Evening Stole"
+              "en": "Tussar Gilded Evening Stole",
+              "bn": "তসর সোনালি জরি ইভনিং স্টোল"
             },
             "craft": {
-              "bn": "সোনালি হ্যান্ডলুম জরি বর্ডার ও নরম টেক্সচার",
-              "en": "Golden Handloom Weft with Reversible Diamond Weave"
+              "en": "Golden Handloom Weft with Reversible Diamond Weave",
+              "bn": "সোনালি হ্যান্ডলুম জরি বর্ডার ও নরম টেক্সচার"
+            },
+            "price": {
+              "en": "৳ 3,800",
+              "bn": "৳ ৩,৮০০"
             },
             "image": "/images/lifestyle/shawl_tussar_stole.jpg",
+            "tag": {
+              "en": "Evening Wrap",
+              "bn": "ইভনিং র‍্যাপ"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "shawl-5",
+            "name": {
+              "en": "Hand-Embroidered Kashmiri Sozni Shawl",
+              "bn": "হাতে বোনা কাশ্মীরি সোজনি পশমিনা শাল"
+            },
+            "craft": {
+              "en": "Needlework Paisley Medallions on Pure Ladakh Cashmere",
+              "bn": "খাঁটি কাশ্মির উল ও মাসের পর মাস ধরে বোনা সূক্ষ্ম সোজনি কাজ"
+            },
             "price": {
-              "bn": "৳ ৩,৮০০",
-              "en": "৳ 3,800"
+              "en": "৳ 16,800",
+              "bn": "৳ ১৬,৮০০"
+            },
+            "image": "/images/lifestyle/shawl_kashmiri_pashmina.jpg",
+            "tag": {
+              "en": "Masterpiece",
+              "bn": "মাস্টারপিস"
+            },
+            "inStock": true,
+            "featured": true
+          },
+          {
+            "id": "shawl-6",
+            "name": {
+              "en": "Crimson Bridal Pashmina Kalamkari Wrap",
+              "bn": "লাল ব্রাইডাল পশমিনা কলমকারি শাল"
+            },
+            "craft": {
+              "en": "Hand-painted Pen Kalamkari Narrative with Zari Border",
+              "bn": "হাতে আঁকা কলমকারি মোটিফ ও সোনালী জরির রাজকীয় পাড়"
+            },
+            "price": {
+              "en": "৳ 19,500",
+              "bn": "৳ ১৯,৫০০"
+            },
+            "image": "/images/lifestyle/shawl_jamawar_velvet.jpg",
+            "tag": {
+              "en": "Bridal Heirloom",
+              "bn": "ব্রাইডাল শাল"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "shawl-7",
+            "name": {
+              "en": "Swarnachari Silk Heritage Winter Doshala",
+              "bn": "স্বর্ণচরি সিল্ক শীতকালীন রাজকীয় দোসলা"
+            },
+            "craft": {
+              "en": "Woven Mythological Scenes in Gilded Pure Silk Weft",
+              "bn": "খাঁটি সিল্ক ও স্বর্ণ জরিতে পৌরাণিক কাহিনীর অপরূপ বুনন"
+            },
+            "price": {
+              "en": "৳ 9,800",
+              "bn": "৳ ৯,৮০০"
+            },
+            "image": "/images/lifestyle/shawl_rajshahi_matka.jpg",
+            "tag": {
+              "en": "Heritage Silk",
+              "bn": "হেরিটেজ সিল্ক"
+            },
+            "inStock": true,
+            "featured": false
+          },
+          {
+            "id": "shawl-8",
+            "name": {
+              "en": "Ivory Pashmina Chador with Gold Zari Fringe",
+              "bn": "আইভরি শুভ্র পশমিনা সোনালী ঝালর চাদর"
+            },
+            "craft": {
+              "en": "Undyed Himalayan Cashmere with Hand-twisted Zari Tassels",
+              "bn": "হিমালয়ান ক্যাশমির উল ও হাতে তৈরি জরির মনকাড়া ট্যাসেল"
+            },
+            "price": {
+              "en": "৳ 13,500",
+              "bn": "৳ ১৩,৫০০"
+            },
+            "image": "/images/lifestyle/shawl_tussar_stole.jpg",
+            "tag": {
+              "en": "Timeless Pure",
+              "bn": "চিরন্তন শুভ্র"
             },
             "inStock": true,
             "featured": false
           }
-        ],
-        "tagline": {
-          "bn": "খাঁটি পশমিনা, তসর ও ভেলভেট চাদর",
-          "en": "Cashmere, Tussar & Velvet Winter Heirlooms"
-        },
-        "coverImage": "/images/lifestyle/shawls_cover.jpg",
-        "description": {
-          "bn": "শীতের সন্ধ্যায় রাজকীয় আভিজাত্য—হাতে বোনা খাঁটি পশমিনা ও রেশমি জামেভার চাদর।",
-          "en": "Warmth woven with regal history — heirloom wraps for winter galas and weddings."
-        }
+        ]
       }
     ]
   }

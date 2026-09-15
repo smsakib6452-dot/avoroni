@@ -1852,36 +1852,79 @@ export default function AdminPage() {
                         key={prod.id}
                         className="bg-[#171312] border border-[#B89A62]/20 p-5 rounded-2xl flex gap-4 relative group hover:border-[#B89A62]/50 transition-all"
                       >
-                        {/* Image Preview & Upload */}
-                        <div className="flex flex-col gap-2 shrink-0">
-                          <div className="relative w-28 h-36 rounded-xl overflow-hidden bg-[#110D0C] border border-[#B89A62]/20">
-                            <Image
-                              src={prod.image}
-                              alt={prod.name[editLang] || "Product"}
-                              fill
-                              className="object-cover"
-                              unoptimized
-                            />
+                        {/* Image Preview & Uploads (Solo Product & Model Wearing) */}
+                        <div className="flex flex-col gap-2 shrink-0 w-28">
+                          {/* Solo Image Preview & Upload */}
+                          <div>
+                            <span className="text-[8.5px] uppercase text-[#B89A62] block mb-0.5 font-sans font-medium">একক গয়না/পণ্য:</span>
+                            <div className="relative w-28 h-28 rounded-xl overflow-hidden bg-[#110D0C] border border-[#B89A62]/20">
+                              <Image
+                                src={prod.image}
+                                alt={prod.name[editLang] || "Product"}
+                                fill
+                                className="object-cover"
+                                unoptimized
+                              />
+                            </div>
+
+                            <label className="text-[9.5px] text-center text-[#B89A62] hover:text-[#F5F0E8] py-0.5 px-1 rounded-lg bg-[#110D0C] border border-[#B89A62]/20 cursor-pointer block mt-1 transition-colors">
+                              <span>📤 একক ছবি</span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) =>
+                                  handleImageUpload(e, (url) => {
+                                    const updated = [...lifestyleCategories];
+                                    updated[selectedLifestyleCatIndex].items[pIdx].image = url;
+                                    setContent({
+                                      ...content,
+                                      lifestyleSection: { ...content.lifestyleSection!, categories: updated },
+                                    });
+                                  })
+                                }
+                              />
+                            </label>
                           </div>
 
-                          <label className="text-[10px] text-center text-[#B89A62] hover:text-[#F5F0E8] py-1 px-2 rounded-lg bg-[#110D0C] border border-[#B89A62]/20 cursor-pointer block">
-                            <span>📤 ছবি বদলান</span>
-                            <input
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={(e) =>
-                                handleImageUpload(e, (url) => {
-                                  const updated = [...lifestyleCategories];
-                                  updated[selectedLifestyleCatIndex].items[pIdx].image = url;
-                                  setContent({
-                                    ...content,
-                                    lifestyleSection: { ...content.lifestyleSection!, categories: updated },
-                                  });
-                                })
-                              }
-                            />
-                          </label>
+                          {/* Model Image Preview & Upload */}
+                          <div className="pt-2 border-t border-[#B89A62]/15">
+                            <span className="text-[8.5px] uppercase text-[#B89A62] block mb-0.5 font-sans font-medium">মডেল লুক:</span>
+                            <div className="relative w-28 h-28 rounded-xl overflow-hidden bg-[#110D0C] border border-[#B89A62]/20">
+                              {prod.modelImage ? (
+                                <Image
+                                  src={prod.modelImage}
+                                  alt={`${prod.name[editLang]} - Model`}
+                                  fill
+                                  className="object-cover"
+                                  unoptimized
+                                />
+                              ) : (
+                                <div className="flex items-center justify-center h-full text-[9px] text-[#F5F0E8]/40 text-center p-1 font-sans">
+                                  মডেল ছবি নেই
+                                </div>
+                              )}
+                            </div>
+
+                            <label className="text-[9.5px] text-center text-[#B89A62] hover:text-[#F5F0E8] py-0.5 px-1 rounded-lg bg-[#110D0C] border border-[#B89A62]/20 cursor-pointer block mt-1 transition-colors">
+                              <span>✨ মডেল ছবি</span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) =>
+                                  handleImageUpload(e, (url) => {
+                                    const updated = [...lifestyleCategories];
+                                    updated[selectedLifestyleCatIndex].items[pIdx].modelImage = url;
+                                    setContent({
+                                      ...content,
+                                      lifestyleSection: { ...content.lifestyleSection!, categories: updated },
+                                    });
+                                  })
+                                }
+                              />
+                            </label>
+                          </div>
                         </div>
 
                         {/* Product Fields */}
@@ -1978,21 +2021,41 @@ export default function AdminPage() {
                               </div>
                             </div>
 
-                            <div>
-                              <label className="text-[9px] uppercase text-[#B89A62]">ছবির পাথ:</label>
-                              <input
-                                type="text"
-                                value={prod.image}
-                                onChange={(e) => {
-                                  const updated = [...lifestyleCategories];
-                                  updated[selectedLifestyleCatIndex].items[pIdx].image = e.target.value;
-                                  setContent({
-                                    ...content,
-                                    lifestyleSection: { ...content.lifestyleSection!, categories: updated },
-                                  });
-                                }}
-                                className="w-full px-2.5 py-1 bg-[#110D0C] border border-[#B89A62]/20 rounded-lg text-[10px] font-mono text-[#F5F0E8]/70"
-                              />
+                            <div className="grid grid-cols-2 gap-2">
+                              <div>
+                                <label className="text-[9px] uppercase text-[#B89A62]">একক ছবির পাথ:</label>
+                                <input
+                                  type="text"
+                                  value={prod.image}
+                                  onChange={(e) => {
+                                    const updated = [...lifestyleCategories];
+                                    updated[selectedLifestyleCatIndex].items[pIdx].image = e.target.value;
+                                    setContent({
+                                      ...content,
+                                      lifestyleSection: { ...content.lifestyleSection!, categories: updated },
+                                    });
+                                  }}
+                                  className="w-full px-2 py-1 bg-[#110D0C] border border-[#B89A62]/20 rounded-lg text-[10px] font-mono text-[#F5F0E8]/70"
+                                />
+                              </div>
+
+                              <div>
+                                <label className="text-[9px] uppercase text-[#B89A62]">মডেল ছবির পাথ (ঐচ্ছিক):</label>
+                                <input
+                                  type="text"
+                                  value={prod.modelImage || ""}
+                                  placeholder="/images/lifestyle/..."
+                                  onChange={(e) => {
+                                    const updated = [...lifestyleCategories];
+                                    updated[selectedLifestyleCatIndex].items[pIdx].modelImage = e.target.value;
+                                    setContent({
+                                      ...content,
+                                      lifestyleSection: { ...content.lifestyleSection!, categories: updated },
+                                    });
+                                  }}
+                                  className="w-full px-2 py-1 bg-[#110D0C] border border-[#B89A62]/20 rounded-lg text-[10px] font-mono text-[#F5F0E8]/70"
+                                />
+                              </div>
                             </div>
                           </div>
 

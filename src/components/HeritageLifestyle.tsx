@@ -27,7 +27,10 @@ function LifestyleProductCard({
   onOrder,
   onQuickOrder,
 }: CardProps) {
+  const hasModel = !!product.modelImage;
+  const [viewMode, setViewMode] = useState<"solo" | "model">("solo");
   const [imgSrc, setImgSrc] = useState(product.image || "/images/editorial_detail.jpg");
+  const [modelImgSrc, setModelImgSrc] = useState(product.modelImage || "");
   const prodName = getLocalized(product.name, language);
   const prodCraft = getLocalized(product.craft, language);
   const prodPrice = getLocalized(product.price, language);
@@ -41,42 +44,100 @@ function LifestyleProductCard({
         className="relative aspect-[4/5] w-full overflow-hidden bg-[#EFE9DF] cursor-pointer"
         onClick={onSelect}
       >
+        {/* Solo Ornament Image */}
         <Image
           src={imgSrc}
-          alt={prodName}
+          alt={`${prodName} - Solo`}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          className={`object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 ${
+            hasModel && viewMode === "model" ? "opacity-0" : "opacity-100"
+          }`}
           onError={() => setImgSrc("/images/editorial_detail.jpg")}
         />
 
-        {/* Dark gradient vignette at bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 opacity-70 group-hover:opacity-50 transition-opacity duration-300" />
+        {/* Worn by Model Image (if available) */}
+        {hasModel && (
+          <Image
+            src={modelImgSrc}
+            alt={`${prodName} - Worn by Model`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className={`object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 ${
+              viewMode === "model" ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+            }`}
+            onError={() => setModelImgSrc(imgSrc)}
+          />
+        )}
 
-        {/* Top Tag & Stock Status */}
-        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
-          {prodTag && (
-            <span className="px-2.5 py-1 text-[9.5px] font-sans tracking-widest uppercase bg-[#1A1514]/85 backdrop-blur-md text-[#F5F0E8] border border-[#B89A62]/40 rounded-full font-medium">
-              {prodTag}
-            </span>
-          )}
-          {product.inStock ? (
-            <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 text-[9px] text-emerald-300 font-sans tracking-wider">
+        {/* Dark gradient vignette at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 opacity-70 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none" />
+
+        {/* Top Badges & Dual-View Switcher */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
+          <div className="flex items-center gap-1.5 pointer-events-none">
+            {prodTag && (
+              <span className="px-2.5 py-1 text-[9.5px] font-sans tracking-widest uppercase bg-[#1A1514]/85 backdrop-blur-md text-[#F5F0E8] border border-[#B89A62]/40 rounded-full font-medium">
+                {prodTag}
+              </span>
+            )}
+          </div>
+
+          {/* Interactive Dual-View Toggle Pill (Solo Ornament vs Worn by Model) */}
+          {hasModel ? (
+            <div
+              className="flex items-center bg-[#1A1514]/90 backdrop-blur-md rounded-full p-0.5 border border-[#B89A62]/40 shadow-lg pointer-events-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setViewMode("solo")}
+                className={`px-2.5 py-1 rounded-full text-[9px] font-sans tracking-wider uppercase transition-all cursor-pointer ${
+                  viewMode === "solo"
+                    ? "bg-[#B89A62] text-[#1A1514] font-bold shadow-xs"
+                    : "text-[#F5F0E8]/70 hover:text-[#F5F0E8]"
+                }`}
+                title={language === "bn" ? "একক গয়না দেখুন" : "View Solo Craft"}
+              >
+                💎 {language === "bn" ? "গয়না" : "Solo"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("model")}
+                className={`px-2.5 py-1 rounded-full text-[9px] font-sans tracking-wider uppercase transition-all cursor-pointer ${
+                  viewMode === "model"
+                    ? "bg-[#B89A62] text-[#1A1514] font-bold shadow-xs"
+                    : "text-[#F5F0E8]/70 hover:text-[#F5F0E8]"
+                }`}
+                title={language === "bn" ? "মডেলে পরিধান রূপ দেখুন" : "View on Model"}
+              >
+                ✨ {language === "bn" ? "মডেল" : "Model"}
+              </button>
+            </div>
+          ) : product.inStock ? (
+            <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 text-[9px] text-emerald-300 font-sans tracking-wider pointer-events-none">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               {language === "bn" ? "ইন স্টক" : "In Stock"}
             </span>
           ) : (
-            <span className="px-2 py-0.5 rounded-full bg-rose-950/80 backdrop-blur-md text-[9px] text-rose-300 font-sans">
+            <span className="px-2 py-0.5 rounded-full bg-rose-950/80 backdrop-blur-md text-[9px] text-rose-300 font-sans pointer-events-none">
               {language === "bn" ? "অর্ডার নির্ভর" : "Pre-order"}
             </span>
           )}
         </div>
 
-        {/* Category Pill Over Image Bottom */}
-        <div className="absolute bottom-3 left-3 z-10 pointer-events-none">
+        {/* Category Pill & Active Angle Tag Over Image Bottom */}
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
           <span className="text-[10px] tracking-[0.2em] uppercase font-sans text-[#F5F0E8]/90 drop-shadow-md">
             {catName}
           </span>
+          {hasModel && (
+            <span className="text-[9px] tracking-wider uppercase font-sans text-[#F5F0E8]/85 bg-black/50 px-2 py-0.5 rounded-full backdrop-blur-xs border border-white/10 transition-all">
+              {viewMode === "model"
+                ? (language === "bn" ? "✨ মডেলে পরিহিত" : "✨ Worn on Model")
+                : (language === "bn" ? "💎 একক গয়না" : "💎 Solo Craft")}
+            </span>
+          )}
         </div>
 
         {/* Quick View Button Hover Overlay */}
@@ -149,6 +210,7 @@ export default function HeritageLifestyle() {
     product: LifestyleProduct;
     categoryName: string;
   } | null>(null);
+  const [modalImageAngle, setModalImageAngle] = useState<"solo" | "model">("solo");
 
   if (!categories || categories.length === 0) {
     return null;
@@ -254,7 +316,10 @@ export default function HeritageLifestyle() {
               category={category}
               language={language}
               getLocalized={getLocalized}
-              onSelect={() => setSelectedProduct({ product, categoryName: getLocalized(category.name, language) })}
+              onSelect={() => {
+                setSelectedProduct({ product, categoryName: getLocalized(category.name, language) });
+                setModalImageAngle("solo");
+              }}
               onOrder={() => handleWhatsAppOrder(product, getLocalized(category.name, language))}
               onQuickOrder={() =>
                 openOrderModal({
@@ -325,15 +390,75 @@ export default function HeritageLifestyle() {
               ✕
             </button>
 
-            {/* Modal Image */}
-            <div className="relative aspect-[4/5] md:aspect-auto md:h-full w-full bg-[#EFE9DF]">
-              <Image
-                src={selectedProduct.product.image || "/images/editorial_detail.jpg"}
-                alt={getLocalized(selectedProduct.product.name, language)}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
-              />
+            {/* Modal Image Column with Dual-Angle Gallery */}
+            <div className="relative flex flex-col bg-[#EFE9DF]">
+              <div className="relative aspect-[4/5] md:aspect-auto md:h-full w-full min-h-[360px] overflow-hidden">
+                <Image
+                  src={
+                    (modalImageAngle === "model" && selectedProduct.product.modelImage
+                      ? selectedProduct.product.modelImage
+                      : selectedProduct.product.image) || "/images/editorial_detail.jpg"
+                  }
+                  alt={getLocalized(selectedProduct.product.name, language)}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center transition-all duration-500"
+                />
+
+                {/* Badge indicating currently viewed angle */}
+                <div className="absolute top-4 left-4 z-20 pointer-events-none">
+                  <span className="px-3 py-1 text-[10px] font-sans tracking-widest uppercase bg-[#1A1514]/85 backdrop-blur-md text-[#F5F0E8] border border-[#B89A62]/40 rounded-full font-medium shadow-md">
+                    {modalImageAngle === "model"
+                      ? (language === "bn" ? "✨ মডেলে পরিহিত রূপ" : "✨ Worn by Model")
+                      : (language === "bn" ? "💎 একক গয়না কারুকাজ" : "💎 Solo Craft View")}
+                  </span>
+                </div>
+
+                {/* Dual Gallery Thumbnails (Solo & Model) */}
+                {selectedProduct.product.modelImage && (
+                  <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-center gap-2 p-1.5 bg-[#110D0C]/85 backdrop-blur-md rounded-2xl border border-[#B89A62]/30 shadow-lg">
+                    <button
+                      type="button"
+                      onClick={() => setModalImageAngle("solo")}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[11px] font-sans transition-all cursor-pointer ${
+                        modalImageAngle === "solo"
+                          ? "bg-[#B89A62] text-[#1A1514] font-semibold border-[#B89A62] shadow-sm"
+                          : "bg-black/30 border-transparent text-[#F5F0E8]/70 hover:text-white"
+                      }`}
+                    >
+                      <span className="relative w-6 h-6 rounded-md overflow-hidden shrink-0 border border-white/20">
+                        <Image
+                          src={selectedProduct.product.image}
+                          alt="Solo"
+                          fill
+                          className="object-cover"
+                        />
+                      </span>
+                      <span>💎 {language === "bn" ? "একক গয়না" : "Solo Craft"}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setModalImageAngle("model")}
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-[11px] font-sans transition-all cursor-pointer ${
+                        modalImageAngle === "model"
+                          ? "bg-[#B89A62] text-[#1A1514] font-semibold border-[#B89A62] shadow-sm"
+                          : "bg-black/30 border-transparent text-[#F5F0E8]/70 hover:text-white"
+                      }`}
+                    >
+                      <span className="relative w-6 h-6 rounded-md overflow-hidden shrink-0 border border-white/20">
+                        <Image
+                          src={selectedProduct.product.modelImage}
+                          alt="Model"
+                          fill
+                          className="object-cover"
+                        />
+                      </span>
+                      <span>✨ {language === "bn" ? "মডেল লুক" : "On Model"}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Modal Content */}
